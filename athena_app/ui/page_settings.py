@@ -178,7 +178,7 @@ def render_settings_page(engine_results: dict):
                     "Kata Sandi Pengaturan",
                     type="password",
                     key="pwd_field",
-                    placeholder="Ketik kata sandi (mis. ANGKER123)...",
+                    placeholder="Ketik kata sandi",
                     help="Masukkan kata sandi 'ANGKER123' untuk membuka akses penuh.",
                     label_visibility="collapsed",
                 )
