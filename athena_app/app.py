@@ -18,7 +18,6 @@ from athena_app.core.config_manager import ConfigManager
 from athena_app.ui.components import (
     set_selected_scenario,
     get_selected_scenario,
-    FOOTNOTE_TEXT,
     render_stage_stepper,
     render_assumption_banner,
     init_session_state,
@@ -253,6 +252,13 @@ st.markdown(
         font-size: 1.0rem !important;
         padding: 10px 14px !important;
     }
+    div[data-testid="stTextInput"] input::placeholder,
+    div[data-baseweb="input"] input::placeholder,
+    input::placeholder {
+        color: #64748B !important;
+        -webkit-text-fill-color: #64748B !important;
+        opacity: 0.70 !important; /* Opacity placeholder diturunkan 30% */
+    }
     div[data-testid="stTextInput"] label {
         color: #0F172A !important;
         font-weight: 600 !important;
@@ -382,9 +388,13 @@ def main():
         ]
 
         if "selected_page" not in st.session_state:
-            st.session_state["selected_page"] = "Proyeksi Stand-Alone"
+            st.session_state["selected_page"] = "Kombinasi Strategi"
 
-        current_nav_idx = nav_pages.index(st.session_state["selected_page"]) if st.session_state["selected_page"] in nav_pages else 3
+        current_nav_idx = (
+            nav_pages.index(st.session_state["selected_page"])
+            if st.session_state["selected_page"] in nav_pages
+            else 0
+        )
 
         def _on_nav_change():
             st.session_state["selected_page"] = st.session_state["main_nav_radio"]
@@ -405,20 +415,21 @@ def main():
         st.markdown(f'<div style="color: #CBD5E1; font-size: 0.82rem; margin-bottom: 4px;"><strong>Decline Rate (d0):</strong> {ed["d0"]*100:.2f}%/thn</div>', unsafe_allow_html=True)
         st.markdown(f'<div style="color: #CBD5E1; font-size: 0.82rem; margin-bottom: 4px;"><strong>Sumur Aktif / Idle:</strong> {ed["n_active"]} / {ed["n_idle"]}</div>', unsafe_allow_html=True)
         st.markdown(f'<div style="color: #94A3B8; font-size: 0.80rem; margin-top: 8px;">⏱️ Waktu Hitung: <strong style="color: #FFFFFF;">{results["duration_sec"]:.3f} dtk</strong></div>', unsafe_allow_html=True)
-        st.markdown(f'<div style="color: #64748B; font-size: 0.74rem; margin-top: 4px; line-height: 1.3;">🛡️ <em>{FOOTNOTE_TEXT}</em></div>', unsafe_allow_html=True)
 
     # ==========================================================================
     # MAIN AREA: HEADER, STEPPER NAVIGASI, BANNER ASUMSI & KONTEN HALAMAN
     # ==========================================================================
-    header_html = (
-        '<div class="main-header">'
-        '<h1 class="main-title">🛢️ Athena Scenario Generator</h1>'
-        '<p class="main-subtitle">'
-        'Sistem Optimasi Portofolio Intervensi Sumur & Evaluasi Multi-Kriteria Lapangan Athena — '
-        '<strong style="color: #FFB300 !important; -webkit-text-fill-color: #FFB300 !important;">PetroAthena 2026 Business Case Competition</strong></p>'
-        '</div>'
-    )
-    st.markdown(header_html, unsafe_allow_html=True)
+    # Hero Banner hanya ditampilkan di halaman awal (Kombinasi Strategi)
+    if selected_page == "Kombinasi Strategi":
+        header_html = (
+            '<div class="main-header">'
+            '<h1 class="main-title">🛢️ Athena Scenario Generator</h1>'
+            '<p class="main-subtitle">'
+            'Sistem Optimasi Portofolio Intervensi Sumur & Evaluasi Multi-Kriteria Lapangan Athena — '
+            '<strong style="color: #FFB300 !important; -webkit-text-fill-color: #FFB300 !important;">PetroAthena 2026 Business Case Competition</strong></p>'
+            '</div>'
+        )
+        st.markdown(header_html, unsafe_allow_html=True)
 
     # Stepper Header Tipis Informatif (UIUX Guidelines §9.3)
     render_stage_stepper(selected_page)

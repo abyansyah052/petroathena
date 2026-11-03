@@ -55,8 +55,8 @@ def get_pool_display_name(cost_type: str, pool_code: str) -> str:
 
 
 def render_footnote():
-    """Renders the standard validated Python engine footnote."""
-    st.caption(f"ℹ️ *{FOOTNOTE_TEXT}*")
+    """Footnote dihapus sesuai permintaan user."""
+    pass
 
 
 def render_insight_callout(text: str):
