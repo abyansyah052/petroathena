@@ -46,13 +46,13 @@ def render_stage2_risk(engine_results: dict):
         best_full_name = best_risk["name"]
         short_best_name = (best_full_name[:38] + "..") if len(best_full_name) > 40 else best_full_name
         html_best = (
-            f'<div style="background: #FAFCF9; border-left: 4px solid #15803D; border-radius: 8px; '
+            f'<div class="athena-bw-card athena-bw-best" style="background: #FAFCF9; border-left: 4px solid #15803D; border-radius: 8px; '
             f'padding: 14px 18px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">'
             f'<div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #15803D; letter-spacing: 0.5px; margin-bottom: 4px;">'
             f'▍ RISIKO TERENDAH</div>'
             f'<div style="font-size: 1.02rem; font-weight: 700; color: #1B1F23; margin-bottom: 4px;" title="{best_full_name}">'
             f'#{best_risk["no"]} {short_best_name}</div>'
-            f'<div style="font-size: 1.45rem; font-weight: 700; color: #15803D; font-feature-settings: \'tnum\';">RPN Total: {j_min:,}</div>'
+            f'<div class="athena-bw-metric" style="font-size: 1.45rem; font-weight: 700; color: #15803D; font-feature-settings: \'tnum\';">RPN Total: {j_min:,}</div>'
             f'<div style="font-size: 0.82rem; color: #5A6A80; margin-top: 4px;">{best_risk["fm_critical"]} failure mode Critical, {best_risk["fm_high"]} High</div>'
             f'</div>'
         )
@@ -62,13 +62,13 @@ def render_stage2_risk(engine_results: dict):
         worst_full_name = worst_risk["name"]
         short_worst_name = (worst_full_name[:38] + "..") if len(worst_full_name) > 40 else worst_full_name
         html_worst = (
-            f'<div style="background: #FDF9F9; border-left: 4px solid #B91C1C; border-radius: 8px; '
+            f'<div class="athena-bw-card athena-bw-worst" style="background: #FDF9F9; border-left: 4px solid #B91C1C; border-radius: 8px; '
             f'padding: 14px 18px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">'
             f'<div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #B91C1C; letter-spacing: 0.5px; margin-bottom: 4px;">'
             f'▍ RISIKO TERTINGGI</div>'
             f'<div style="font-size: 1.02rem; font-weight: 700; color: #1B1F23; margin-bottom: 4px;" title="{worst_full_name}">'
             f'#{worst_risk["no"]} {short_worst_name}</div>'
-            f'<div style="font-size: 1.45rem; font-weight: 700; color: #B91C1C; font-feature-settings: \'tnum\';">RPN Total: {j_max:,}</div>'
+            f'<div class="athena-bw-metric" style="font-size: 1.45rem; font-weight: 700; color: #B91C1C; font-feature-settings: \'tnum\';">RPN Total: {j_max:,}</div>'
             f'<div style="font-size: 0.82rem; color: #5A6A80; margin-top: 4px;">{worst_risk["fm_critical"]} failure mode Critical, {worst_risk["fm_high"]} High</div>'
             f'</div>'
         )

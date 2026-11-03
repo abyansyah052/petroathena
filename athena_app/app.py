@@ -232,8 +232,8 @@ st.markdown(
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
     }
     div[data-testid="stTextInput"] div[data-baseweb="input"],
-    div[data-baseweb="input"],
-    div[data-testid="stTextInput"] > div {
+    div[data-testid="stTextInput"] div[data-baseweb="base-input"],
+    div[data-baseweb="input"] {
         background-color: #FFFFFF !important;
         border: 1.8px solid #94A3B8 !important;
         border-radius: 8px !important;
@@ -251,6 +251,8 @@ st.markdown(
         background-color: transparent !important;
         font-size: 1.0rem !important;
         padding: 10px 14px !important;
+        border: none !important;
+        outline: none !important;
     }
     div[data-testid="stTextInput"] input::placeholder,
     div[data-baseweb="input"] input::placeholder,
@@ -292,6 +294,242 @@ st.markdown(
         overflow: hidden;
         border: 1px solid #E2E8F0;
         background: #FFFFFF;
+    }
+
+    /* =========================================================================
+       RESPONSIVE & MOBILE-FRIENDLY SYSTEM (DESKTOP UI/UX 100% PRESERVED)
+       ========================================================================= */
+
+    /* Ensure horizontal smoothness and prevent accidental body x-scroll */
+    html, body {
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    /* Tablet Viewport (<= 992px) */
+    @media (max-width: 992px) {
+        .main-header, div.main-header {
+            padding: 20px 22px !important;
+        }
+        .main-header h1, h1.main-title, .main-title {
+            font-size: 1.75rem !important;
+        }
+    }
+
+    /* Mobile & Tablet Portrait Viewport (<= 768px) */
+    @media (max-width: 768px) {
+        /* 1. Page container padding optimization for mobile */
+        .block-container,
+        div.block-container,
+        section.main > div {
+            padding: 1.0rem 0.85rem 2.5rem 0.85rem !important;
+            max-width: 100vw !important;
+        }
+
+        /* 2. Executive Hero Banner Responsive */
+        .main-header, div.main-header {
+            padding: 16px 16px !important;
+            border-radius: 10px !important;
+            margin-bottom: 12px !important;
+        }
+        .main-header h1, h1.main-title, .main-title {
+            font-size: 1.40rem !important;
+            line-height: 1.3 !important;
+            letter-spacing: -0.3px !important;
+        }
+        .main-subtitle {
+            font-size: 0.85rem !important;
+            line-height: 1.4 !important;
+            margin-top: 6px !important;
+        }
+
+        /* 3. Stage Stepper Responsive Wrapping */
+        .athena-stepper {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            height: auto !important;
+            min-height: 28px !important;
+            padding: 6px 12px !important;
+            line-height: 1.3 !important;
+            gap: 6px !important;
+            max-width: 100% !important;
+        }
+        .athena-stepper-visual {
+            font-size: 0.95rem !important;
+            margin-right: 6px !important;
+        }
+        .athena-stepper-label {
+            font-size: 0.72rem !important;
+        }
+
+        /* 4. Intelligent Column Flow on Mobile */
+        div[data-testid="stHorizontalBlock"] {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 10px 8px !important;
+            width: 100% !important;
+        }
+
+        /* Default columns stack to 100% width on mobile (for charts, tables, forms, etc.) */
+        div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
+            flex: 1 1 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
+        }
+
+        /* EXCEPT when columns contain KPI Cards: 2x2 Grid Layout */
+        div[data-testid="stHorizontalBlock"]:has(> div[data-testid="column"] .athena-kpi-card) > div[data-testid="column"] {
+            flex: 1 1 calc(50% - 6px) !important;
+            min-width: calc(50% - 6px) !important;
+            max-width: calc(50% - 6px) !important;
+        }
+
+        /* EXCEPT when columns contain Best/Worst Highlight Cards: 2 columns on tablet, stack on phone */
+        div[data-testid="stHorizontalBlock"]:has(> div[data-testid="column"] .athena-bw-card) > div[data-testid="column"] {
+            flex: 1 1 calc(50% - 6px) !important;
+            min-width: calc(50% - 6px) !important;
+            max-width: calc(50% - 6px) !important;
+        }
+
+        /* KPI Card typography adjustments on mobile */
+        .athena-kpi-card {
+            padding: 12px 14px !important;
+            margin-bottom: 6px !important;
+        }
+        .athena-kpi-label {
+            font-size: 0.68rem !important;
+            letter-spacing: 0.3px !important;
+        }
+        .athena-kpi-val,
+        div[data-testid="stMetricValue"] {
+            font-size: 1.35rem !important;
+            line-height: 1.25 !important;
+        }
+        .athena-kpi-delta {
+            font-size: 0.75rem !important;
+        }
+
+        /* 5. Subtab Segmented Control Horizontal Scrolling */
+        div[data-testid="stSegmentedControl"] {
+            overflow-x: auto !important;
+            white-space: nowrap !important;
+            flex-wrap: nowrap !important;
+            -webkit-overflow-scrolling: touch !important;
+            padding-bottom: 6px !important;
+            scrollbar-width: thin !important;
+            gap: 6px !important;
+        }
+        div[data-testid="stSegmentedControl"] > div {
+            display: inline-flex !important;
+            flex-shrink: 0 !important;
+            flex-wrap: nowrap !important;
+        }
+        div[data-testid="stSegmentedControl"] button,
+        div[data-testid="stSegmentedControl"] label {
+            flex-shrink: 0 !important;
+            white-space: nowrap !important;
+            font-size: 0.82rem !important;
+            padding: 6px 12px !important;
+        }
+
+        /* 6. Mobile Plotly Charts & Modebar Handling */
+        .js-plotly-plot,
+        .plot-container {
+            max-width: 100% !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        .modebar-container,
+        .modebar {
+            display: none !important; /* Sembunyikan modebar mengambang di mobile agar tidak menabrak judul graf */
+        }
+
+        /* 7. Tables & Dataframes Mobile Touch Scroll */
+        div[data-testid="stDataFrame"],
+        div[data-testid="stTable"] {
+            max-width: 100% !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+
+        /* 8. Mobile Sidebar & Touch Targets */
+        section[data-testid="stSidebar"] {
+            max-width: 86vw !important;
+        }
+        section[data-testid="stSidebar"] div[role="radiogroup"] label {
+            padding: 10px 14px !important;
+            min-height: 42px !important;
+            display: flex !important;
+            align-items: center !important;
+            font-size: 0.90rem !important;
+            margin-bottom: 4px !important;
+        }
+
+        /* Mobile Sidebar Collapse Toggle Button */
+        button[data-testid="stSidebarCollapsedControl"],
+        [data-testid="stSidebarCollapseButton"] {
+            background-color: #0D1B2A !important;
+            color: #FFFFFF !important;
+            border: 1px solid rgba(255, 255, 255, 0.25) !important;
+            border-radius: 8px !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+            padding: 6px 8px !important;
+        }
+        button[data-testid="stSidebarCollapsedControl"] svg,
+        [data-testid="stSidebarCollapseButton"] svg {
+            fill: #FFFFFF !important;
+            color: #FFFFFF !important;
+        }
+
+        /* 9. Buttons Touch Targets on Mobile */
+        button[data-testid="stBaseButton-secondary"],
+        button[data-testid="stBaseButton-primary"],
+        div.stButton > button,
+        div.stDownloadButton > button {
+            min-height: 42px !important;
+            font-size: 0.88rem !important;
+            padding: 8px 14px !important;
+            width: 100% !important;
+        }
+
+        /* 10. Callouts & Insights on Mobile */
+        .athena-insight-callout {
+            padding: 10px 14px !important;
+            font-size: 0.88rem !important;
+            line-height: 1.4 !important;
+        }
+    }
+
+    /* Extra Narrow Mobile Screens (<= 480px) */
+    @media (max-width: 480px) {
+        .block-container,
+        div.block-container {
+            padding: 0.75rem 0.60rem 2.0rem 0.60rem !important;
+        }
+
+        .main-header h1, h1.main-title, .main-title {
+            font-size: 1.25rem !important;
+        }
+        .main-subtitle {
+            font-size: 0.80rem !important;
+        }
+
+        /* Stack Best/Worst cards on tiny screens */
+        div[data-testid="stHorizontalBlock"]:has(> div[data-testid="column"] .athena-bw-card) > div[data-testid="column"] {
+            flex: 1 1 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
+        }
+
+        /* In small screens, KPI card metric value */
+        .athena-kpi-val,
+        div[data-testid="stMetricValue"] {
+            font-size: 1.20rem !important;
+        }
+
+        .athena-kpi-card {
+            padding: 10px 12px !important;
+        }
     }
     </style>
     """,

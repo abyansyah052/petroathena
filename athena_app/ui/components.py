@@ -64,7 +64,7 @@ def render_insight_callout(text: str):
     Renders an automated, dynamic 1-2 sentence executive insight callout.
     """
     html = (
-        f'<div style="background: #EBF3FA; border-left: 4px solid #1E88E5; padding: 12px 18px; '
+        f'<div class="athena-insight-callout" style="background: #EBF3FA; border-left: 4px solid #1E88E5; padding: 12px 18px; '
         f'border-radius: 6px; margin: 12px 0 16px 0; color: #1B1F23; font-size: 0.95rem; '
         f'line-height: 1.45; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">'
         f'<span style="font-size: 1.15rem; margin-right: 6px;">💡</span>'
@@ -82,16 +82,17 @@ def render_kpi_card(
 ):
     """
     Renders a clean KPI card with high contrast, large numeric font, and clear label.
+    Includes semantic CSS class hooks for responsive mobile layouts.
     """
     gold_border = "border: 2px solid #FFB300;" if is_gold else "border: 1px solid #E2E8F0;"
     gold_bg = "background: #FFFDF5;" if is_gold else "background: #FFFFFF;"
-    delta_html = f'<div style="font-size: 0.8rem; color: #2E7D32; font-weight: 500; margin-top: 4px;">{delta}</div>' if delta else ""
+    delta_html = f'<div class="athena-kpi-delta" style="font-size: 0.8rem; color: #2E7D32; font-weight: 500; margin-top: 4px;">{delta}</div>' if delta else ""
     help_html = f' <span title="{help_text}" style="cursor: help; color: #757575; font-size: 0.8rem;">ⓘ</span>' if help_text else ""
 
     html = (
-        f'<div style="{gold_bg} {gold_border} border-radius: 8px; padding: 14px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); margin-bottom: 8px;">'
-        f'<div style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #5A6A80; margin-bottom: 4px;">{label}{help_html}</div>'
-        f'<div style="font-size: 1.65rem; font-weight: 700; color: #1B1F23; font-feature-settings: \'tnum\'; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{value}</div>'
+        f'<div class="athena-kpi-card" style="{gold_bg} {gold_border} border-radius: 8px; padding: 14px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); margin-bottom: 8px;">'
+        f'<div class="athena-kpi-label" style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #5A6A80; margin-bottom: 4px;">{label}{help_html}</div>'
+        f'<div class="athena-kpi-val" style="font-size: 1.65rem; font-weight: 700; color: #1B1F23; font-feature-settings: \'tnum\'; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{value}</div>'
         f'{delta_html}'
         f'</div>'
     )
@@ -112,15 +113,16 @@ def render_best_worst_cards(
     Renders two side-by-side highlight cards per PRD Addendum v4.1 §9.1:
     Left: Best (green background 8% opacity, green border).
     Right: Worst (red background 8% opacity, red border).
+    Includes responsive CSS hooks (.athena-bw-card, .athena-bw-best, .athena-bw-worst).
     """
     col1, col2 = st.columns(2)
     with col1:
         st.markdown(
             f"""
-            <div style="background: rgba(46, 125, 50, 0.08); border-left: 4px solid #2E7D32; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px;">
+            <div class="athena-bw-card athena-bw-best" style="background: rgba(46, 125, 50, 0.08); border-left: 4px solid #2E7D32; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px;">
                 <div style="font-size: 0.75rem; font-weight: 700; color: #1B5E20; text-transform: uppercase; letter-spacing: 0.5px;">🟢 {best_title}</div>
                 <div style="font-size: 1.05rem; font-weight: 700; color: #1B1F23; margin: 4px 0 2px 0;">{best_name}</div>
-                <div style="font-size: 1.25rem; font-weight: 700; color: #2E7D32;">{best_metric}</div>
+                <div class="athena-bw-metric" style="font-size: 1.25rem; font-weight: 700; color: #2E7D32;">{best_metric}</div>
                 <div style="font-size: 0.82rem; color: #2E7D32; margin-top: 2px;">{best_detail}</div>
             </div>
             """,
@@ -129,10 +131,10 @@ def render_best_worst_cards(
     with col2:
         st.markdown(
             f"""
-            <div style="background: rgba(198, 40, 40, 0.08); border-left: 4px solid #C62828; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px;">
+            <div class="athena-bw-card athena-bw-worst" style="background: rgba(198, 40, 40, 0.08); border-left: 4px solid #C62828; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px;">
                 <div style="font-size: 0.75rem; font-weight: 700; color: #B71C1C; text-transform: uppercase; letter-spacing: 0.5px;">🔴 {worst_title}</div>
                 <div style="font-size: 1.05rem; font-weight: 700; color: #1B1F23; margin: 4px 0 2px 0;">{worst_name}</div>
-                <div style="font-size: 1.25rem; font-weight: 700; color: #C62828;">{worst_metric}</div>
+                <div class="athena-bw-metric" style="font-size: 1.25rem; font-weight: 700; color: #C62828;">{worst_metric}</div>
                 <div style="font-size: 0.82rem; color: #C62828; margin-top: 2px;">{worst_detail}</div>
             </div>
             """,
@@ -145,7 +147,7 @@ def render_fmea_legend(b65: int = 200, b66: int = 100, b67: int = 50, b68: int =
     Renders risk class legend chips directly above the FMEA table (PRD §9.3).
     """
     html = f"""
-    <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 6px; padding: 10px 14px; margin-bottom: 12px; font-size: 0.83rem; line-height: 1.5; color: #1B1F23;">
+    <div class="athena-fmea-legend" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 6px; padding: 10px 14px; margin-bottom: 12px; font-size: 0.83rem; line-height: 1.5; color: #1B1F23;">
         <div style="font-weight: 600; margin-bottom: 4px; color: #334155;">
             Kelas risiko dihitung dari RPN = Severity × Occurrence × Detection (skala 1–1000):
         </div>
@@ -312,9 +314,9 @@ def render_stage_stepper(current_page: str = "Proyeksi Stand-Alone"):
     stepper_visual = '<span style="color:#CBD5E1;margin:0 3px;">──</span>'.join(dots)
 
     html = (
-        f'<div style="display:inline-flex;align-items:center;height:26px;padding:2px 14px;background:#FFFFFF;border-radius:14px;border:1px solid #E2E8F0;margin-bottom:12px;box-shadow:0 1px 2px rgba(0,0,0,0.02);">'
-        f'<span style="margin-right:10px;line-height:1;">{stepper_visual}</span>'
-        f'<span style="font-size:0.75rem;font-weight:600;color:#64748B;letter-spacing:0.3px;">{stage_label}</span>'
+        f'<div class="athena-stepper" style="display:inline-flex;align-items:center;min-height:26px;padding:3px 14px;background:#FFFFFF;border-radius:14px;border:1px solid #E2E8F0;margin-bottom:12px;box-shadow:0 1px 2px rgba(0,0,0,0.02);">'
+        f'<span class="athena-stepper-visual" style="margin-right:10px;line-height:1;">{stepper_visual}</span>'
+        f'<span class="athena-stepper-label" style="font-size:0.75rem;font-weight:600;color:#64748B;letter-spacing:0.3px;">{stage_label}</span>'
         f'</div>'
     )
     st.markdown(html, unsafe_allow_html=True)

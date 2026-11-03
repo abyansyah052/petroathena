@@ -225,7 +225,7 @@ def render_settings_page(engine_results: dict):
                 <div style="margin-bottom: 4px;"><strong>FUNGSI:</strong> {p_info.get('fungsi', '-')}</div>
                 <div style="margin-bottom: 4px;"><strong>KALAU DIUBAH:</strong> {p_info.get('kalau_diubah', '-')}</div>
                 <div style="margin-bottom: 4px;"><strong>TIDAK BERUBAH:</strong> {p_info.get('tidak_berubah', '-')}</div>
-                <div style="display: flex; gap: 12px; align-items: center; margin-top: 6px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-top: 6px;">
                     <div><strong>HALAMAN TERDAMPAK:</strong> <span style="background: #E0F2FE; color: #0369A1; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">{", ".join(p_info.get('halaman_terdampak', []))}</span></div>
                     <div><strong>WAKTU HITUNG:</strong> <span style="background: #FEF3C7; color: #92400E; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">{p_info.get('waktu_hitung', '-')}</span></div>
                 </div>
