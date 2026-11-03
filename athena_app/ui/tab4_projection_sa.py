@@ -40,9 +40,16 @@ def render_tab4(engine_results: dict):
     top10_sa = engine_results["top10_sa"]
 
     # Active price dari session_state sebagai single source of truth (Addendum §5.3)
-    active_price = int(st.session_state.get("selected_price", 80))
-    if active_price not in [64, 80, 117]:
-        active_price = 80
+    ed = engine_results.get("existing_data", {})
+    p_low = float(ed.get("price_low", 64.0))
+    p_base = float(ed.get("price_base", 80.0))
+    p_high = float(ed.get("price_high", 117.0))
+    valid_prices = [p_low, p_base, p_high]
+
+    active_price = float(st.session_state.get("selected_price", p_base))
+    if active_price not in valid_prices:
+        active_price = p_base
+        st.session_state["selected_price"] = active_price
 
     best_scenario = top10_sa[0]
     best_no = best_scenario["no"]
@@ -257,7 +264,7 @@ def render_tab4(engine_results: dict):
 
     col_t_price, col_t_sort = st.columns([1, 1])
     with col_t_price:
-        price_opts = [64, 80, 117]
+        price_opts = valid_prices
         p_idx = price_opts.index(active_price) if active_price in price_opts else 1
 
         def _on_tab4_price_change():
@@ -268,13 +275,13 @@ def render_tab4(engine_results: dict):
             options=price_opts,
             index=p_idx,
             horizontal=True,
-            format_func=lambda x: f"{x}$ USD/bbl (Acuan)",
+            format_func=lambda x: f"{x:.0f} USD/bbl (Acuan)",
             key="tab4_table_price",
             on_change=_on_tab4_price_change,
         )
         if tbl_price != active_price:
             st.session_state["selected_price"] = tbl_price
-            active_price = tbl_price
+            st.rerun()
 
     with col_t_sort:
         sort_by = st.selectbox("Urutan Baris:", ["RANK (1 = terbaik)", "Nomor Skenario (No)"], index=0, key="tab4_sort_order")

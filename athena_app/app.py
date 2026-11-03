@@ -32,6 +32,8 @@ from athena_app.ui.tab6_summary import render_tab6
 from athena_app.ui.stage2_environmental import render_stage2_environmental
 from athena_app.ui.stage2_risk import render_stage2_risk
 from athena_app.ui.stage2_technical import render_stage2_technical
+from athena_app.ui.stage2_secondary_recovery import render_stage2_secondary_recovery
+from athena_app.ui.stage2_contract_simulations import render_stage2_contract_simulations
 from athena_app.ui.stage3_topsis import render_stage3_topsis
 from athena_app.ui.page_settings import render_settings_page
 
@@ -58,7 +60,8 @@ st.markdown(
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     
     :root {
-        --bg-primary: #0D1B2A;
+        color-scheme: light !important;
+        --bg-primary: #FFFFFF;
         --bg-secondary: #F7F9FB;
         --accent-primary: #1E88E5;
         --accent-secondary: #00897B;
@@ -69,18 +72,21 @@ st.markdown(
 
     html, body, [class*="css"] {
         font-family: 'Inter', sans-serif;
+        color-scheme: light !important;
     }
 
     /* Background area kerja terang dan nyaman untuk membaca data finansial berjam-jam */
-    .stApp {
-        background-color: var(--bg-secondary);
-        color: var(--text-primary);
+    .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+        color-scheme: light !important;
+        background-color: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
     }
 
-    /* Sidebar Styling */
+    /* Sidebar Styling (Strict light per PRD §12 & UI/UX Guidelines §2, §9, §11) */
     section[data-testid="stSidebar"] {
-        background-color: var(--bg-primary);
-        color: #E0E1DD;
+        background-color: #F7F9FB !important;
+        border-right: 1px solid #E2E8F0 !important;
+        color: #1B1F23 !important;
     }
     section[data-testid="stSidebar"] h1, 
     section[data-testid="stSidebar"] h2, 
@@ -88,10 +94,10 @@ st.markdown(
     section[data-testid="stSidebar"] p, 
     section[data-testid="stSidebar"] span, 
     section[data-testid="stSidebar"] strong {
-        color: #E0E1DD !important;
+        color: #1B1F23 !important;
     }
     section[data-testid="stSidebar"] hr {
-        border-color: rgba(255, 255, 255, 0.15) !important;
+        border-color: #E2E8F0 !important;
     }
 
     /* Styling Navigasi Radio Bertahap di Sidebar (UIUX Guidelines §9.2) */
@@ -105,97 +111,115 @@ st.markdown(
         margin-bottom: 2px !important;
         transition: background-color 120ms ease !important;
         cursor: pointer !important;
-        color: #CBD5E1 !important;
+        color: #475569 !important;
+        background-color: transparent !important;
     }
     section[data-testid="stSidebar"] div[role="radiogroup"] label:hover {
-        background: rgba(30, 136, 229, 0.06) !important;
-        color: #FFFFFF !important;
+        background: rgba(30, 136, 229, 0.04) !important;
+        color: #1B1F23 !important;
     }
     section[data-testid="stSidebar"] div[role="radiogroup"] label:has(input:checked) {
-        background: rgba(30, 136, 229, 0.14) !important;
+        background: rgba(30, 136, 229, 0.08) !important;
         border-left-color: #1E88E5 !important;
         font-weight: 600 !important;
-        color: #FFFFFF !important;
+        color: #1E88E5 !important;
     }
-    /* Section Group Headers (0 / 1 / 2 / 3) */
-    section[data-testid="stSidebar"] div[role="radiogroup"] > label:nth-child(1)::before {
+    /* Section Group Headers (0 / 1 / 1 / 2 / 3) */
+    div[data-testid="stRadio"]:has(input[value*="Kombinasi Strategi"]) div[role="radiogroup"] > label:nth-child(1)::before,
+    div[role="radiogroup"][aria-label*="Navigasi"] > label:nth-child(1)::before {
         content: "0 · DATA & KOMBINASI";
         display: block;
         font-size: 11px;
         font-weight: 700;
         text-transform: uppercase;
-        color: #94A3B8;
+        color: #64748B;
         margin-bottom: 6px;
         letter-spacing: 0.5px;
         pointer-events: none;
     }
-    section[data-testid="stSidebar"] div[role="radiogroup"] > label:nth-child(4)::before {
+    div[data-testid="stRadio"]:has(input[value*="Kombinasi Strategi"]) div[role="radiogroup"] > label:nth-child(4)::before,
+    div[role="radiogroup"][aria-label*="Navigasi"] > label:nth-child(4)::before {
         content: "1 · MODEL FINANSIAL";
         display: block;
         font-size: 11px;
         font-weight: 700;
         text-transform: uppercase;
-        color: #94A3B8;
+        color: #64748B;
         margin-top: 14px;
         margin-bottom: 6px;
         letter-spacing: 0.5px;
         pointer-events: none;
     }
-    section[data-testid="stSidebar"] div[role="radiogroup"] > label:nth-child(7)::before {
-        content: "2 · MULTI-KRITERIA";
+    div[data-testid="stRadio"]:has(input[value*="Kombinasi Strategi"]) div[role="radiogroup"] > label:nth-child(7)::before,
+    div[role="radiogroup"][aria-label*="Navigasi"] > label:nth-child(7)::before {
+        content: "1 · MULTI-KRITERIA";
         display: block;
         font-size: 11px;
         font-weight: 700;
         text-transform: uppercase;
-        color: #94A3B8;
+        color: #64748B;
         margin-top: 14px;
         margin-bottom: 6px;
         letter-spacing: 0.5px;
         pointer-events: none;
     }
-    section[data-testid="stSidebar"] div[role="radiogroup"] > label:nth-child(10)::before {
+    div[data-testid="stRadio"]:has(input[value*="Kombinasi Strategi"]) div[role="radiogroup"] > label:nth-child(10)::before,
+    div[role="radiogroup"][aria-label*="Navigasi"] > label:nth-child(10)::before {
+        content: "2 · SIMULASI LANJUTAN";
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #64748B;
+        margin-top: 14px;
+        margin-bottom: 6px;
+        letter-spacing: 0.5px;
+        pointer-events: none;
+    }
+    div[data-testid="stRadio"]:has(input[value*="Kombinasi Strategi"]) div[role="radiogroup"] > label:nth-child(12)::before,
+    div[role="radiogroup"][aria-label*="Navigasi"] > label:nth-child(12)::before {
         content: "3 · KEPUTUSAN";
         display: block;
         font-size: 11px;
         font-weight: 700;
         text-transform: uppercase;
-        color: #94A3B8;
+        color: #64748B;
         margin-top: 14px;
         margin-bottom: 6px;
         letter-spacing: 0.5px;
         pointer-events: none;
     }
     /* Item Pengaturan Lanjutan dipisah garis tipis di atasnya */
-    section[data-testid="stSidebar"] div[role="radiogroup"] > label:nth-child(11) {
-        border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
-        margin-top: 8px !important;
-        padding-top: 8px !important;
+    div[data-testid="stRadio"]:has(input[value*="Kombinasi Strategi"]) div[role="radiogroup"] > label:nth-child(13),
+    div[role="radiogroup"][aria-label*="Navigasi"] > label:nth-child(13) {
+        border-top: 1px solid #E2E8F0 !important;
+        margin-top: 10px !important;
+        padding-top: 10px !important;
     }
 
-    /* Header Banner Eksekutif */
+    /* Header Banner Eksekutif Terang (UI/UX §2 & §11) */
     .main-header, div.main-header {
-        background: linear-gradient(135deg, #0D1B2A 0%, #1B263B 55%, #273A52 100%) !important;
-        padding: 24px 32px;
-        border-radius: 12px;
+        background: #FFFFFF !important;
+        padding: 20px 28px;
+        border-radius: 10px;
         margin-bottom: 14px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: 0 4px 20px rgba(13, 27, 42, 0.25);
+        border: 1px solid #E2E8F0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
     }
     .main-header h1, h1.main-title, .main-title {
-        color: #FFFFFF !important;
-        -webkit-text-fill-color: #FFFFFF !important;
-        font-size: 2.2rem !important;
+        color: #1B1F23 !important;
+        -webkit-text-fill-color: #1B1F23 !important;
+        font-size: 1.95rem !important;
         font-weight: 700 !important;
         margin: 0 !important;
         letter-spacing: -0.5px !important;
     }
     .main-subtitle {
-        color: #E0E1DD !important;
-        -webkit-text-fill-color: #E0E1DD !important;
-        font-size: 1.02rem;
+        color: #64748B !important;
+        -webkit-text-fill-color: #64748B !important;
+        font-size: 0.98rem;
         margin-top: 6px;
         margin-bottom: 0;
-        opacity: 0.95;
     }
 
     /* Metric card value & styling */
@@ -256,7 +280,7 @@ def main():
     # ==========================================================================
     with st.sidebar:
         st.markdown(
-            '<div style="font-size: 1.25rem; font-weight: 700; color: #FFFFFF !important; margin-bottom: 2px;">'
+            '<div style="font-size: 1.25rem; font-weight: 700; color: #1B1F23 !important; margin-bottom: 2px;">'
             '🛢️ Athena Scenario Generator</div>',
             unsafe_allow_html=True,
         )
@@ -265,7 +289,7 @@ def main():
         st.markdown("---")
         # Global Control Tunggal: Radio ICP (Addendum §11)
         st.markdown(
-            '<div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: #94A3B8; margin-bottom: 4px;">'
+            '<div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: #64748B; margin-bottom: 4px;">'
             'Harga Minyak Acuan (ICP)</div>',
             unsafe_allow_html=True,
         )
@@ -295,7 +319,7 @@ def main():
 
         st.markdown("---")
 
-        # Navigasi 11 Halaman Berjenjang (Tahap 0 / 1 / 2 / 3) + Pengaturan Lanjutan
+        # Navigasi 12 Halaman Berjenjang (Tahap 0 / 1 / 2 / 3) + Pengaturan Lanjutan
         nav_pages = [
             "Kombinasi Strategi",
             "Hard Constraint & Kompatibilitas",
@@ -306,8 +330,10 @@ def main():
             "Dampak Lingkungan",
             "Risiko (FMEA)",
             "Implementasi Teknis",
+            "Secondary Recovery",
+            "Simulasi Kontrak",
             "AHP & TOPSIS",
-            "Pengaturan Lanjutan",
+            "🔒 Pengaturan Lanjutan",
         ]
 
         if "selected_page" not in st.session_state:
@@ -340,11 +366,11 @@ def main():
     # MAIN AREA: HEADER, STEPPER NAVIGASI, BANNER ASUMSI & KONTEN HALAMAN
     # ==========================================================================
     header_html = (
-        '<div class="main-header" style="background: linear-gradient(135deg, #0D1B2A 0%, #1B263B 55%, #273A52 100%) !important; padding: 22px 28px; border-radius: 12px; margin-bottom: 14px; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 4px 20px rgba(13, 27, 42, 0.25);">'
-        '<h1 class="main-title" style="color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; font-size: 2.1rem; font-weight: 700; margin: 0; letter-spacing: -0.5px;">🛢️ Athena Scenario Generator</h1>'
-        '<p class="main-subtitle" style="color: #E0E1DD !important; -webkit-text-fill-color: #E0E1DD !important; font-size: 0.98rem; margin-top: 5px; margin-bottom: 0;">'
+        '<div class="main-header">'
+        '<h1 class="main-title">🛢️ Athena Scenario Generator</h1>'
+        '<p class="main-subtitle">'
         'Sistem Optimasi Portofolio Intervensi Sumur & Evaluasi Multi-Kriteria Lapangan Athena — '
-        '<strong style="color: #FFB300 !important; -webkit-text-fill-color: #FFB300 !important;">PetroAthena 2026 Business Case Competition</strong></p>'
+        '<strong style="color: #1E88E5 !important; -webkit-text-fill-color: #1E88E5 !important;">PetroAthena 2026 Business Case Competition</strong></p>'
         '</div>'
     )
     st.markdown(header_html, unsafe_allow_html=True)
@@ -366,7 +392,7 @@ def main():
         render_tab4(results)
     elif selected_page == "Skenario Farm-In":
         render_tab5(results)
-    elif selected_page == "Ringkasan SA vs FI":
+    elif selected_page in ["Ringkasan SA vs FI", "Ringkasan SA vs Farm-In"]:
         render_tab6(results)
     elif selected_page == "Dampak Lingkungan":
         render_stage2_environmental(results)
@@ -374,9 +400,13 @@ def main():
         render_stage2_risk(results)
     elif selected_page == "Implementasi Teknis":
         render_stage2_technical(results)
+    elif selected_page == "Secondary Recovery":
+        render_stage2_secondary_recovery(results)
+    elif selected_page == "Simulasi Kontrak":
+        render_stage2_contract_simulations(results)
     elif selected_page == "AHP & TOPSIS":
         render_stage3_topsis(results)
-    elif selected_page == "Pengaturan Lanjutan":
+    elif selected_page in ["Pengaturan Lanjutan", "🔒 Pengaturan Lanjutan"]:
         render_settings_page(results)
 
 

@@ -173,10 +173,11 @@ def calculate_all_environmental(
         res["delta_total_vs_bau"] = (res["scope123_kt"] - bau_env["scope123_kt"]) / bau_env["scope123_kt"]
         strategies_env.append(res)
 
-    # Env. rank (kolom Q): RANK(intensitas_S1+2, Q5:Q14, 1) -> ascending (makin rendah makin baik)
-    sorted_by_int = sorted(strategies_env, key=lambda x: x["int_s12"])
-    for rank_e, item in enumerate(sorted_by_int, start=1):
-        item["env_rank"] = rank_e
+    # Env. rank (kolom Q): RANK(intensitas_S1+2, Q6:Q15, 1) -> ascending (makin rendah makin baik, tie sama)
+    all_ints = [s["int_s12"] for s in strategies_env]
+    for item in strategies_env:
+        # Excel RANK ascending: jumlah nilai yang lebih kecil + 1
+        item["env_rank"] = sum(1 for v in all_ints if v < item["int_s12"] - 1e-9) + 1
 
     return {
         "bau": bau_env,

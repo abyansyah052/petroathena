@@ -26,6 +26,7 @@ V6_SHEET_NAMES: Dict[str, str] = {
     "contract_simulations": "2.Contract Simulations",
     "topsis": "3.TOPSIS",
     "implementation_plan": "3.Implementation Plan",
+    "chosen_scenario": "3. Chosen Scenario",  # Spasi setelah titik persis seperti di Excel V6_1!
 }
 
 # Nama sheet V5 (Legacy)

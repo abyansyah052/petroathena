@@ -9,10 +9,20 @@ import warnings
 from typing import Dict, Any, List, Tuple
 from athena_app.config.v5_cell_map import (
     EXISTING_DATA_MAP,
+    V5_EXISTING_DATA_MAP,
+    V6_EXISTING_DATA_MAP,
     CONTOH_PERHITUNGAN_MAP,
+    V5_CONTOH_PERHITUNGAN_MAP,
+    V6_CONTOH_PERHITUNGAN_MAP,
     ICP_CELLS,
+    V5_ICP_CELLS,
+    V6_ICP_CELLS,
     PRICE_CELLS,
+    V5_PRICE_CELLS,
+    V6_PRICE_CELLS,
     OPEX_BAU_ITEMS,
+    V5_OPEX_BAU_ITEMS,
+    V6_OPEX_BAU_ITEMS,
     COMB_DRIVE_RANGE,
     COMB_HETERO_RANGE,
     COMB_REASON_AQUIFER_RANGE,
@@ -34,6 +44,8 @@ from athena_app.config.v5_cell_map import (
     BREAKDOWN_ROW_START,
     BREAKDOWN_ROW_END,
     REACTIVATION_ROW,
+    V6_BREAKDOWN_ROW_END,
+    V6_REACTIVATION_ROW,
     METHOD_MAPPINGS,
     NAME_TO_OLD_ID,
     OLD_ID_TO_NAME,
@@ -51,6 +63,7 @@ class V5DataLoader:
         self.excel_path = excel_path
         self.wb = openpyxl.load_workbook(excel_path, data_only=False)
         self.sheets = get_sheet_names_for_wb(self.wb)
+        self.is_v6 = ("0.Existing Data" in self.sheets.values() or "0.Introduction" in self.sheets.values())
         self.warnings: List[str] = []
 
     def _warn_if_diff(self, name: str, actual: Any, expected: Any, tol: float = 1e-6):
@@ -70,7 +83,8 @@ class V5DataLoader:
         ws = self.wb[self.sheets["existing_data"]]
         data: Dict[str, Any] = {}
 
-        for key, info in EXISTING_DATA_MAP.items():
+        cell_map = V6_EXISTING_DATA_MAP if self.is_v6 else V5_EXISTING_DATA_MAP
+        for key, info in cell_map.items():
             cell_val = ws[info["cell"]].value
             val = float(cell_val) if isinstance(cell_val, (int, float)) else cell_val
             data[key] = val
@@ -80,18 +94,20 @@ class V5DataLoader:
         data["reserve_2p"] = data["reserve_2p_mmbbl"] * 1_000_000
 
         # ICP price points
+        icp_cells = V6_ICP_CELLS if self.is_v6 else V5_ICP_CELLS
         data["icp_prices"] = {}
-        for year, cell in ICP_CELLS.items():
+        for year, cell in icp_cells.items():
             data["icp_prices"][year] = float(ws[cell].value)
 
         # Price low, base, high
-        data["price_low"] = float(ws[ICP_CELLS["2016"]].value)   # 64
-        data["price_base"] = float(ws[ICP_CELLS["2024"]].value)  # 80
-        data["price_high"] = float(ws[ICP_CELLS["2019"]].value)  # 117
+        data["price_low"] = float(ws[icp_cells["2016"]].value)   # 64
+        data["price_base"] = float(ws[icp_cells["2024"]].value)  # 80
+        data["price_high"] = float(ws[icp_cells["2019"]].value)  # 117
         data["split_g"] = 1.0 - data["split_c"]                  # 0.45
 
-        # OPEX BAU = SUM(C59:C63)
-        opex_bau_sum = sum(float(ws[c].value) for c in OPEX_BAU_ITEMS)
+        # OPEX BAU
+        opex_items = V6_OPEX_BAU_ITEMS if self.is_v6 else V5_OPEX_BAU_ITEMS
+        opex_bau_sum = sum(float(ws[c].value) for c in opex_items)
         data["opex_bau"] = opex_bau_sum
         self._warn_if_diff("opex_bau", opex_bau_sum, 4_000_000.0)
 
@@ -103,9 +119,10 @@ class V5DataLoader:
         data["wc_idle0"] = data["wc0"]
         data["q_idle"] = data["q0"] / data["n_active"]
 
-        # Reactivation cost from CAPEX OPEX Breakdown C188
+        # Reactivation cost from CAPEX OPEX Breakdown
         ws_brk = self.wb[self.sheets["capex_opex_breakdown"]]
-        data["react_cost"] = float(ws_brk[f"C{REACTIVATION_ROW}"].value)
+        react_row = V6_REACTIVATION_ROW if self.is_v6 else REACTIVATION_ROW
+        data["react_cost"] = float(ws_brk[f"C{react_row}"].value)
         self._warn_if_diff("react_cost", data["react_cost"], 159_279.0)
 
         return data
@@ -113,7 +130,8 @@ class V5DataLoader:
     def load_contoh_perhitungan(self) -> Dict[str, Any]:
         ws = self.wb[self.sheets["contoh_perhitungan"]]
         data: Dict[str, Any] = {}
-        for key, info in CONTOH_PERHITUNGAN_MAP.items():
+        cp_map = V6_CONTOH_PERHITUNGAN_MAP if self.is_v6 else V5_CONTOH_PERHITUNGAN_MAP
+        for key, info in cp_map.items():
             val = float(ws[info["cell"]].value)
             data[key] = val
             self._warn_if_diff(key, val, info["expected"])
@@ -136,9 +154,10 @@ class V5DataLoader:
                 "name": name,
             })
 
-        # Combination flags and reasons
+        # Combination flags and reasons (+1 shift for V6_1)
+        comb_start = 7 if self.is_v6 else 6
         for i, m in enumerate(methods_18):
-            r = i + 6
+            r = i + comb_start
             drive = int(ws_comb[f"G{r}"].value)
             hetero = int(ws_comb[f"H{r}"].value)
             alasan_aq = ws_comb[f"M{r}"].value
@@ -154,7 +173,7 @@ class V5DataLoader:
         # Compatibility matrix 18x18
         # Cols V to AM -> 22 to 39
         compat_matrix: List[List[Any]] = []
-        for r in range(6, 24):
+        for r in range(comb_start, comb_start + 18):
             row_vals = []
             for c in range(22, 40):
                 val = ws_comb.cell(r, c).value
@@ -214,7 +233,8 @@ class V5DataLoader:
         ws = self.wb[self.sheets["capex_opex_breakdown"]]
         items: List[Dict[str, Any]] = []
 
-        for r in range(BREAKDOWN_ROW_START, BREAKDOWN_ROW_END + 1):
+        end_row = V6_BREAKDOWN_ROW_END if self.is_v6 else BREAKDOWN_ROW_END
+        for r in range(BREAKDOWN_ROW_START, end_row + 1):
             cost_type = ws.cell(r, 12).value  # L
             if cost_type in ["CAPEX", "OPEX"]:
                 raw_id = ws.cell(r, 11).value  # K

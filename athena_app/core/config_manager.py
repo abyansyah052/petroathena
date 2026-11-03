@@ -66,6 +66,45 @@ def get_saaty_text(val: float, item_a: str, item_b: str) -> str:
     return f"{item_b} {desc} dibanding {item_a}"
 
 
+DEFAULT_AHP_LEVEL1: np.ndarray = np.array([
+    [1.0, 0.5, 1/3, 1/3],
+    [2.0, 1.0, 0.5, 0.5],
+    [3.0, 2.0, 1.0, 1.0],
+    [3.0, 2.0, 1.0, 1.0],
+], dtype=float)
+
+DEFAULT_AHP_LEVEL2: Dict[str, np.ndarray] = {
+    "Environmental": np.array([
+        [1.0, 5.0, 1.0, 3.0, 5.0],
+        [0.2, 1.0, 0.2, 1/3, 1.0],
+        [1.0, 5.0, 1.0, 3.0, 5.0],
+        [1/3, 3.0, 1/3, 1.0, 2.0],
+        [0.2, 1.0, 0.2, 0.5, 1.0],
+    ], dtype=float),
+    "Technical": np.array([
+        [1.0, 3.0, 3.0, 2.0, 3.0],
+        [1/3, 1.0, 1.0, 0.5, 1.0],
+        [1/3, 1.0, 1.0, 0.5, 1.0],
+        [0.5, 2.0, 2.0, 1.0, 2.0],
+        [1/3, 1.0, 1.0, 0.5, 1.0],
+    ], dtype=float),
+    "Risk": np.array([
+        [1.0, 2.0, 2.0, 1.0, 3.0],
+        [0.5, 1.0, 1.0, 0.5, 2.0],
+        [0.5, 1.0, 1.0, 0.5, 2.0],
+        [1.0, 2.0, 2.0, 1.0, 3.0],
+        [1/3, 0.5, 0.5, 1/3, 1.0],
+    ], dtype=float),
+    "Financial": np.array([
+        [1.0, 3.0, 3.0, 4.0, 3.0],
+        [1/3, 1.0, 1.0, 2.0, 2.0],
+        [1/3, 1.0, 1.0, 2.0, 2.0],
+        [0.25, 0.5, 0.5, 1.0, 1.0],
+        [1/3, 0.5, 0.5, 1.0, 1.0],
+    ], dtype=float),
+}
+
+
 def calculate_ahp_matrix(pairwise_matrix: np.ndarray) -> Tuple[np.ndarray, float, float, float, bool]:
     """
     Menghitung bobot AHP dan CR menggunakan METODE YANG SAMA DENGAN EXCEL (Addendum §2.2 & §10.4):
@@ -305,3 +344,28 @@ class ConfigManager:
         if "full_overrides" in data:
             return data["full_overrides"]
         return data
+
+
+LOCKED_CELLS: Dict[str, str] = {
+    "B39": "Periode evaluasi dikunci 15 tahun sesuai PRD §10.6.",
+    "eval_period": "Periode evaluasi dikunci 15 tahun sesuai PRD §10.6.",
+    "B21": "Sumur aktif di-treat dikunci 10 sumur (Contoh Perhitungan!B21).",
+}
+
+
+def validate_existing_data(ed_dict: Dict[str, Any]) -> List[str]:
+    """
+    Validates Existing Data inputs against business rules (PRD §10.6 & §13 T18).
+    """
+    errors = []
+    if "n_total" in ed_dict and "n_active" in ed_dict and "n_idle" in ed_dict:
+        if ed_dict["n_active"] + ed_dict["n_idle"] != ed_dict["n_total"]:
+            errors.append(f"Jumlah sumur aktif ({ed_dict['n_active']}) + idle ({ed_dict['n_idle']}) harus sama dengan total sumur ({ed_dict['n_total']}).")
+    if "price_low" in ed_dict and "price_base" in ed_dict and "price_high" in ed_dict:
+        if not (ed_dict["price_low"] <= ed_dict["price_base"] <= ed_dict["price_high"]):
+            errors.append("Harga minyak harus berurutan: Low <= Base <= High.")
+    if "dr_low" in ed_dict and "dr_base" in ed_dict and "dr_high" in ed_dict:
+        if not (ed_dict["dr_low"] <= ed_dict["dr_base"] <= ed_dict["dr_high"]):
+            errors.append("Discount rate harus berurutan: Low <= Base <= High.")
+    return errors
+

@@ -1,19 +1,57 @@
 """
-Module ui/components.py: Reusable UI components according to UI/UX guidelines (uiux.md).
-- KPI Cards with clean typography and optional delta/tooltip (single-line HTML to avoid Markdown indentation bugs)
+Module ui/components.py: Reusable UI components according to UI/UX guidelines and PRD Addendum v4.1.
+- KPI Cards with clean typography and optional delta/tooltip
 - Compact Table with "Tampilkan semua kolom" toggle and full CSV download
 - Dynamic Insight Callout (💡)
-- Global Scenario Picker synced to st.session_state['selected_scenario']
-- Stepper navigation indicator (① -> ⑦)
+- Best vs Worst Highlight Cards (§9.1)
+- Risk Class Legend Chips (§9.3)
+- Pool Biaya display names mapping (cost_type, pool_code) (§5.1)
+- Stage Stepper indicator (Stage 0 to Stage 3)
 - Standardized footnote
 """
 
 import streamlit as st
 import pandas as pd
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Tuple
 
 
-FOOTNOTE_TEXT = "Seluruh nilai dihitung dengan implementasi Python yang divalidasi 100% cocok terhadap 5 kombinasi pertama."
+FOOTNOTE_TEXT = "Seluruh nilai dihitung dengan implementasi Python yang divalidasi 100% cocok terhadap cache Excel V6_1."
+
+
+POOL_DISPLAY_NAMES: Dict[Tuple[str, str], str] = {
+    ("CAPEX", "DIAG"): "Diagnosis & Desain",
+    ("CAPEX", "SPEC"): "Material & Peralatan Khusus Metode",
+    ("OPEX", "SPEC"): "Inspeksi & Servis Komplesi",
+    ("CAPEX", "EXEC"): "Eksekusi & Intervensi Sumur",
+    ("CAPEX", "TEST"): "Pengujian",
+    ("OPEX", "TEST"): "Pengujian",
+    ("CAPEX", "CONT"): "Kontinjensi",
+    ("CAPEX", "REAK"): "Reaktivasi Sumur Idle",
+    ("OPEX", "SURV"): "Surveilans Produksi & Water Cut",
+    ("OPEX", "LAB"): "Laboratorium",
+    ("OPEX", "REVIEW"): "Tinjauan Engineering",
+}
+
+POOL_FILTER_CAPTION = (
+    "Pool Biaya mengelompokkan item menurut jenis pekerjaan. "
+    "Item 'Sekali' dalam pool yang sama hanya dihitung satu kali per kombinasi "
+    "(diambil yang termahal antar metode), karena sumber dayanya dipakai bersama — "
+    "misalnya satu mobilisasi rig. Item 'Jumlah' dihitung untuk setiap metode."
+)
+
+ATURAN_FILTER_CAPTION = (
+    "'Sekali' = biaya pool dihitung satu kali untuk seluruh kombinasi "
+    "(nilai maksimum antar metode, karena fasilitas/sumber daya bisa dipakai bersama). "
+    "'Jumlah' = biaya dijumlah penuh untuk setiap metode dalam kombinasi. "
+    "Aturan ini selalu sama untuk semua item dalam satu pool."
+)
+
+
+def get_pool_display_name(cost_type: str, pool_code: str) -> str:
+    """Mengembalikan nama tampilan pool biaya berdasarkan pasangan (tipe_biaya, kode_pool)."""
+    ctype = cost_type.upper().strip() if cost_type else "CAPEX"
+    pcode = pool_code.upper().strip() if pool_code else ""
+    return POOL_DISPLAY_NAMES.get((ctype, pcode), f"{pcode} ({ctype})")
 
 
 def render_footnote():
@@ -24,11 +62,10 @@ def render_footnote():
 def render_insight_callout(text: str):
     """
     Renders an automated, dynamic 1-2 sentence executive insight callout.
-    Uses single-line HTML to prevent Markdown parser from treating indented text as code blocks.
     """
     html = (
         f'<div style="background: #EBF3FA; border-left: 4px solid #1E88E5; padding: 12px 18px; '
-        f'border-radius: 6px; margin: 12px 0 16px 0; color: #0D1B2A; font-size: 0.95rem; '
+        f'border-radius: 6px; margin: 12px 0 16px 0; color: #1B1F23; font-size: 0.95rem; '
         f'line-height: 1.45; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">'
         f'<span style="font-size: 1.15rem; margin-right: 6px;">💡</span>'
         f'<strong>Insight Eksekutif:</strong> {text}</div>'
@@ -45,7 +82,6 @@ def render_kpi_card(
 ):
     """
     Renders a clean KPI card with high contrast, large numeric font, and clear label.
-    Uses single-line HTML to ensure zero leading indentation.
     """
     gold_border = "border: 2px solid #FFB300;" if is_gold else "border: 1px solid #E2E8F0;"
     gold_bg = "background: #FFFDF5;" if is_gold else "background: #FFFFFF;"
@@ -55,10 +91,82 @@ def render_kpi_card(
     html = (
         f'<div style="{gold_bg} {gold_border} border-radius: 8px; padding: 14px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); margin-bottom: 8px;">'
         f'<div style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #5A6A80; margin-bottom: 4px;">{label}{help_html}</div>'
-        f'<div style="font-size: 1.65rem; font-weight: 700; color: #0D1B2A; font-feature-settings: \'tnum\'; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{value}</div>'
+        f'<div style="font-size: 1.65rem; font-weight: 700; color: #1B1F23; font-feature-settings: \'tnum\'; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{value}</div>'
         f'{delta_html}'
         f'</div>'
     )
+    st.markdown(html, unsafe_allow_html=True)
+
+
+def render_best_worst_cards(
+    best_title: str,
+    best_name: str,
+    best_metric: str,
+    best_detail: str,
+    worst_title: str,
+    worst_name: str,
+    worst_metric: str,
+    worst_detail: str,
+):
+    """
+    Renders two side-by-side highlight cards per PRD Addendum v4.1 §9.1:
+    Left: Best (green background 8% opacity, green border).
+    Right: Worst (red background 8% opacity, red border).
+    """
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown(
+            f"""
+            <div style="background: rgba(46, 125, 50, 0.08); border-left: 4px solid #2E7D32; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px;">
+                <div style="font-size: 0.75rem; font-weight: 700; color: #1B5E20; text-transform: uppercase; letter-spacing: 0.5px;">🟢 {best_title}</div>
+                <div style="font-size: 1.05rem; font-weight: 700; color: #1B1F23; margin: 4px 0 2px 0;">{best_name}</div>
+                <div style="font-size: 1.25rem; font-weight: 700; color: #2E7D32;">{best_metric}</div>
+                <div style="font-size: 0.82rem; color: #2E7D32; margin-top: 2px;">{best_detail}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with col2:
+        st.markdown(
+            f"""
+            <div style="background: rgba(198, 40, 40, 0.08); border-left: 4px solid #C62828; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px;">
+                <div style="font-size: 0.75rem; font-weight: 700; color: #B71C1C; text-transform: uppercase; letter-spacing: 0.5px;">🔴 {worst_title}</div>
+                <div style="font-size: 1.05rem; font-weight: 700; color: #1B1F23; margin: 4px 0 2px 0;">{worst_name}</div>
+                <div style="font-size: 1.25rem; font-weight: 700; color: #C62828;">{worst_metric}</div>
+                <div style="font-size: 0.82rem; color: #C62828; margin-top: 2px;">{worst_detail}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+
+def render_fmea_legend(b65: int = 200, b66: int = 100, b67: int = 50, b68: int = 0, b69: int = 9):
+    """
+    Renders risk class legend chips directly above the FMEA table (PRD §9.3).
+    """
+    html = f"""
+    <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 6px; padding: 10px 14px; margin-bottom: 12px; font-size: 0.83rem; line-height: 1.5; color: #1B1F23;">
+        <div style="font-weight: 600; margin-bottom: 4px; color: #334155;">
+            Kelas risiko dihitung dari RPN = Severity × Occurrence × Detection (skala 1–1000):
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px;">
+            <span style="background: #FEE2E2; color: #991B1B; padding: 2px 8px; border-radius: 4px; font-weight: 600;">Critical &ge; {b65}</span>
+            <span style="color: #64748B;">Perlu mitigasi wajib sebelum eksekusi</span>
+            <span style="color: #CBD5E1;">·</span>
+            <span style="background: #FFEDD5; color: #9A3412; padding: 2px 8px; border-radius: 4px; font-weight: 600;">High {b66}&ndash;{b65-1}</span>
+            <span style="color: #64748B;">Perlu rencana mitigasi & pemilik risiko</span>
+            <span style="color: #CBD5E1;">·</span>
+            <span style="background: #FEF9C3; color: #854D0E; padding: 2px 8px; border-radius: 4px; font-weight: 600;">Medium {b67}&ndash;{b66-1}</span>
+            <span style="color: #64748B;">Dipantau prosedur standar</span>
+            <span style="color: #CBD5E1;">·</span>
+            <span style="background: #DCFCE7; color: #166534; padding: 2px 8px; border-radius: 4px; font-weight: 600;">Low &lt; {b67}</span>
+            <span style="color: #64748B;">Diterima tanpa tindakan</span>
+        </div>
+        <div style="font-size: 0.76rem; color: #64748B; font-style: italic;">
+            Severity &ge; {b69} ditandai khusus walau RPN rendah (potensi well control / HSE).
+        </div>
+    </div>
+    """
     st.markdown(html, unsafe_allow_html=True)
 
 
@@ -74,7 +182,6 @@ def render_compact_table(
     """
     Renders a compact table showing core_cols by default (<= 12 cols).
     Includes a 'Tampilkan semua kolom' checkbox to reveal all_cols.
-    Download CSV ALWAYS exports the full all_cols.
     """
     col_ctrl, col_dl = st.columns([1, 1])
     with col_ctrl:
@@ -84,7 +191,6 @@ def render_compact_table(
             key=f"{key_prefix}_show_all",
         )
     with col_dl:
-        # Full CSV download
         full_df = df[all_cols] if all(c in df.columns for c in all_cols) else df
         csv_data = full_df.to_csv(index=False).encode("utf-8")
         st.download_button(
@@ -99,7 +205,6 @@ def render_compact_table(
     cols_to_display = [c for c in all_cols if c in df.columns] if show_all else [c for c in core_cols if c in df.columns]
     view_df = df[cols_to_display].copy()
 
-    # Formatter
     if format_dict:
         active_fmt = {k: v for k, v in format_dict.items() if k in view_df.columns}
         styled_df = view_df.style.format(active_fmt, na_rep="")
@@ -119,7 +224,7 @@ def init_session_state():
     if "selected_scenario" not in st.session_state:
         st.session_state["selected_scenario"] = 60
     if "selected_price" not in st.session_state:
-        st.session_state["selected_price"] = 80
+        st.session_state["selected_price"] = 80.0
 
 
 def get_selected_scenario() -> int:
@@ -137,11 +242,11 @@ def render_scenario_picker(
     options: List[int],
     label_map: Dict[int, str],
     key: str,
-    label: str = "Pilih Skenario Fokus:",
-    help_text: str = "Pilihan skenario ini tersinkronisasi otomatis di Tab 4, Tab 5, dan Tab 7.",
+    label: str = "Pilih Skenario Fokus Analisis:",
+    help_text: str = "Pilihan skenario untuk grafik detail dan worked example.",
 ) -> int:
     """
-    Renders a unified scenario picker connected to st.session_state['selected_scenario'].
+    Renders an in-page scenario picker synced to st.session_state['selected_scenario'].
     """
     init_session_state()
     current_val = st.session_state["selected_scenario"]
@@ -168,24 +273,35 @@ def render_scenario_picker(
 
 def render_stage_stepper(current_page: str = "Proyeksi Stand-Alone"):
     """
-    Renders a slim, non-clickable horizontal stage stepper (UI/UX Guidelines §9.3).
-    Example: ○──●──○──○  Tahap 1 dari 3 · Model Finansial
+    Renders horizontal stage stepper according to PRD §5.6 & UI/UX Guidelines §9.
+    Stages:
+      0 · DATA & KOMBINASI
+      1 · MODEL FINANSIAL & MULTI-KRITERIA
+      2 · SIMULASI LANJUTAN
+      3 · KEPUTUSAN
     """
     stage_map = {
-        "Kombinasi Strategi": (0, "Tahap 0 dari 3 · Data & Kombinasi"),
-        "Hard Constraint": (0, "Tahap 0 dari 3 · Data & Kombinasi"),
-        "Hard Constraint & Kompatibilitas": (0, "Tahap 0 dari 3 · Data & Kombinasi"),
-        "Variabel Inti": (0, "Tahap 0 dari 3 · Data & Kombinasi"),
-        "Proyeksi Stand-Alone": (1, "Tahap 1 dari 3 · Model Finansial"),
-        "Skenario Farm-In": (1, "Tahap 1 dari 3 · Model Finansial"),
-        "Ringkasan SA vs FI": (1, "Tahap 1 dari 3 · Model Finansial"),
-        "Dampak Lingkungan": (2, "Tahap 2 dari 3 · Multi-Kriteria"),
-        "Risiko (FMEA)": (2, "Tahap 2 dari 3 · Multi-Kriteria"),
-        "Implementasi Teknis": (2, "Tahap 2 dari 3 · Multi-Kriteria"),
-        "AHP & TOPSIS": (3, "Tahap 3 dari 3 · Keputusan"),
-        "Pengaturan Lanjutan": (3, "Tahap 3 dari 3 · Generator Asumsi"),
+        # Stage 0
+        "Kombinasi Strategi": (0, "Tahap 0 · Data & Kombinasi"),
+        "Hard Constraint & Kompatibilitas": (0, "Tahap 0 · Data & Kombinasi"),
+        "Variabel Inti": (0, "Tahap 0 · Data & Kombinasi"),
+        # Stage 1
+        "Proyeksi Stand-Alone": (1, "Tahap 1 · Model Finansial"),
+        "Skenario Farm-In": (1, "Tahap 1 · Model Finansial"),
+        "Ringkasan SA vs Farm-In": (1, "Tahap 1 · Model Finansial"),
+        "Ringkasan SA vs FI": (1, "Tahap 1 · Model Finansial"),
+        "Dampak Lingkungan": (1, "Tahap 1 · Multi-Kriteria"),
+        "Risiko (FMEA)": (1, "Tahap 1 · Multi-Kriteria"),
+        "Implementasi Teknis": (1, "Tahap 1 · Multi-Kriteria"),
+        # Stage 2
+        "Secondary Recovery": (2, "Tahap 2 · Simulasi Lanjutan"),
+        "Simulasi Kontrak": (2, "Tahap 2 · Simulasi Lanjutan"),
+        # Stage 3
+        "AHP & TOPSIS": (3, "Tahap 3 · Keputusan"),
+        "Pengaturan Lanjutan": (3, "Pengaturan Asumsi Lanjutan"),
+        "🔒 Pengaturan Lanjutan": (3, "Pengaturan Asumsi Lanjutan"),
     }
-    stage_idx, stage_label = stage_map.get(current_page, (1, "Tahap 1 dari 3 · Model Finansial"))
+    stage_idx, stage_label = stage_map.get(current_page, (1, "Tahap 1 · Model Finansial"))
 
     dots = []
     for i in range(4):
@@ -206,23 +322,20 @@ def render_stage_stepper(current_page: str = "Proyeksi Stand-Alone"):
 
 def render_assumption_banner(diff_count: int):
     """
-    Renders subtle orange banner at the top of content area (under stepper)
-    ONLY when custom assumptions are active (UIUX Guidelines §10.5).
+    Renders subtle orange banner at top of content area when custom assumptions are active (§10.8).
     """
     if diff_count <= 0:
         return
     html = (
         f'<div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 6px; '
         f'padding: 6px 14px; margin-bottom: 12px; font-size: 0.8rem; color: #92400E; display: flex; align-items: center; justify-content: space-between;">'
-        f'<span>[PERHATIAN] <strong>Asumsi Kustom Aktif:</strong> Hasil di halaman ini memakai {diff_count} parameter yang disesuaikan dari acuan Excel V6.</span>'
-        f'<span style="font-size: 0.75rem; color: #B45309;">(Lihat / Reset di menu Pengaturan Lanjutan)</span>'
+        f'<span>⚠️ <strong>Hasil di halaman ini memakai asumsi KUSTOM ({diff_count} parameter diubah)</strong></span>'
+        f'<span style="font-size: 0.75rem; color: #B45309;">(Lihat / Reset di menu 🔒 Pengaturan Lanjutan)</span>'
         f'</div>'
     )
     st.markdown(html, unsafe_allow_html=True)
 
 
-
 def render_stepper(current_page: str = "Proyeksi Stand-Alone"):
     """Backward compatible alias."""
     render_stage_stepper(current_page)
-

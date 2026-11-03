@@ -193,7 +193,6 @@ class AthenaEngine:
         for fi in top10_fi:
             row = {
                 "No": fi["rank_sa"],
-                "No kombinasi": fi["no_kombinasi"],
                 "Kombinasi": fi["kombinasi"],
                 "Contingency Rate": fi["contingency_rate"],
                 "Total Production": fi["total_prod"],
@@ -220,6 +219,7 @@ class AthenaEngine:
 
             row["RANK (1 = terbaik)"] = fi["rank_fi"]
             row["Rata-rata rank"] = fi["skor_fi"]
+            row["No kombinasi"] = fi["no_kombinasi"]
             fi_table_rows.append(row)
 
         df_tab5 = pd.DataFrame(fi_table_rows)

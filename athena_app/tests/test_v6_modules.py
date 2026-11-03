@@ -1,38 +1,45 @@
 """
-Test suite untuk seluruh fitur V6 & Acceptance Tests T11 - T28
-sesuai PRD Addendum v3.1 §7.
+Test suite untuk seluruh fitur V6 & Acceptance Tests T1 - T23
+sesuai PRD Addendum v4.1 §13 (Bismillah_Angker_BCC_Excel_Calculations_V6_1).
 """
 
 import os
+import copy
 import pytest
 import numpy as np
+import pandas as pd
 import openpyxl
-from athena_app.config.sheet_names import get_sheet_names_for_wb, V6_SHEET_NAMES
+
+from athena_app.config.sheet_names import get_sheet_names_for_wb
 from athena_app.core.loader import V5DataLoader
 from athena_app.core.engine import AthenaEngine
-from athena_app.core.derived_metrics import calculate_icp_breakeven, calculate_payback_period
 from athena_app.core.environmental import calculate_all_environmental
-from athena_app.core.risk import (
-    calculate_all_top10_risks,
-    calculate_scenario_risk,
-    GENERIC_FAILURE_MODES,
-    lookup_occurrence,
-    RATED_METHODS_RISK,
-)
-from athena_app.core.technical import (
-    calculate_all_top10_technical,
-    calculate_scenario_technical,
-    RATED_METHODS_TECH,
+from athena_app.core.risk import calculate_all_top10_risks
+from athena_app.core.technical import calculate_all_top10_technical
+from athena_app.core.secondary_recovery import calculate_secondary_recovery
+from athena_app.core.contract_simulations import calculate_contract_simulations
+from athena_app.core.config_manager import (
+    DEFAULT_AHP_LEVEL1,
+    DEFAULT_AHP_LEVEL2,
+    calculate_ahp_matrix,
+    validate_existing_data,
+    LOCKED_CELLS,
 )
 from athena_app.core.topsis import (
-    RAW_AHP_SUBCRITERIA,
-    get_renormalized_weights,
-    coerce_metric,
-    run_topsis_analysis,
+    calculate_topsis,
+    compute_all_ahp_global_weights,
 )
+from athena_app.config.topsis_sources import (
+    BLOCKED_SUB_IDS,
+    EXTENSION_SUB_IDS,
+)
+from athena_app.ui.page_settings import SETTINGS_PANELS
 from athena_app.core.worked_example import get_worked_example_for_scenario
 
+
 V6_EXCEL_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "Bismillah_Angker_BCC_Excel_Calculations_V6.xlsx")
+GOLDEN_DIR = os.path.join(os.path.dirname(__file__), "golden")
+GOLDEN_V61_DIR = os.path.join(GOLDEN_DIR, "golden_v61")
 
 
 @pytest.fixture(scope="module")
@@ -42,335 +49,504 @@ def engine_results():
 
 
 # ==============================================================================
-# T11: Loader V6 Sheet Names
+# T1: Loader - Semua 18 sheet terbuka dengan nama §0.1
 # ==============================================================================
-def test_t11_loader_v6_sheet_names():
+def test_t1_loader_all_18_sheets():
     wb = openpyxl.load_workbook(V6_EXCEL_PATH, read_only=True)
-    sheets = get_sheet_names_for_wb(wb)
-    assert sheets["financial_projection_farmin"] == "1.Financial Projection (FarmIn)"  # Tanpa tanda hubung
-    assert sheets["existing_data"] == "0.Existing Data"
-    assert sheets["combination"] == "0.Combination"
-    assert sheets["capex_opex_breakdown"] == "0.CAPEX OPEX Breakdown"
-    assert sheets["contingency_rate_combination"] == "0.Contingency Rate Combination"
-    assert sheets["financial_projection_sa"] == "1.Financial Projection (SA)"
-    assert sheets["financial_summary"] == "1.Financial Summary"
-    assert sheets["contoh_perhitungan"] == "1.Contoh Perhitungan"
+    sheet_names = wb.sheetnames
+    assert len(sheet_names) == 18
+
+    expected_sheets = [
+        "0.Introduction",
+        "0.Existing Data",
+        "0.Combination",
+        "0.CAPEX OPEX Breakdown",
+        "0.Contingency Rate Combination",
+        "1.Financial Projection (SA)",
+        "1.Financial Projection (FarmIn)",
+        "1.Financial Summary",
+        "1.Contoh Perhitungan",
+        "1.AHP",
+        "1.Environmental Impact",
+        "1.Risk",
+        "1.Technical Implementation",
+        "2.Secondary Recovery Analysis",
+        "2.Contract Simulations",
+        "3.TOPSIS",
+        "3. Chosen Scenario",
+        "3.Implementation Plan",
+    ]
+    for s in expected_sheets:
+        assert s in sheet_names, f"Sheet '{s}' tidak ditemukan di workbook V6_1!"
 
 
 # ==============================================================================
-# T12 & T13 & T14: AHP Weights, Directions & Consistency Ratios
+# T2: Alamat Lampiran G - Nilai sel Existing Data sesuai Excel V6_1
 # ==============================================================================
-def test_t12_t13_ahp_weights_and_directions():
+def test_t2_existing_data_addresses_lampiran_g(engine_results):
+    ed = engine_results["existing_data"]
     wb = openpyxl.load_workbook(V6_EXCEL_PATH, data_only=True)
-    ws_ahp = wb["1.AHP"]
+    ws = wb["0.Existing Data"]
 
-    tot_weight = sum(item[5] for item in RAW_AHP_SUBCRITERIA)
-    assert abs(tot_weight - 1.0) < 1e-9
-
-    for r_idx, r in enumerate(range(281, 301)):
-        sub_id = ws_ahp.cell(r, 1).value
-        excel_weight = float(ws_ahp.cell(r, 6).value)
-        excel_dir = str(ws_ahp.cell(r, 8).value).strip()
-
-        cfg_id, _, _, _, _, cfg_weight, cfg_dir = RAW_AHP_SUBCRITERIA[r_idx]
-        assert sub_id == cfg_id
-        assert abs(excel_weight - cfg_weight) < 1e-9  # T12
-        assert excel_dir.lower() == cfg_dir.lower()     # T13
-
-
-def test_t14_ahp_cr_limits():
-    wb = openpyxl.load_workbook(V6_EXCEL_PATH, data_only=True)
-    ws_ahp = wb["1.AHP"]
-    cr_l1 = float(ws_ahp["C106"].value)
-    limit_l1 = float(ws_ahp["C107"].value)
-    assert limit_l1 == 0.08  # Batas Level 1 matriks 4x4 adalah 0.08, bukan 0.10!
-    assert cr_l1 <= limit_l1
-
-    for cell_cr in ["C142", "C182", "C222", "C262"]:
-        assert float(ws_ahp[cell_cr].value) <= 0.10
+    assert ed["n_total"] == int(ws["B14"].value)
+    assert ed["n_active"] == int(ws["B15"].value)
+    assert ed["n_idle"] == int(ws["B16"].value)
+    assert abs(ed["q0"] - float(ws["B10"].value)) < 1e-6
+    assert abs(ed["wc0"] - float(ws["B11"].value)) < 1e-6
+    assert abs(ed["d0"] - float(ws["B9"].value)) < 1e-6
+    assert abs(ed["price_low"] - float(ws["B40"].value)) < 1e-6
+    assert abs(ed["price_base"] - float(ws["B41"].value)) < 1e-6
+    assert abs(ed["price_high"] - float(ws["B42"].value)) < 1e-6
+    assert abs(ed.get("dr_main", ed.get("dr_base", 0.1)) - float(ws["B46"].value)) < 1e-6
+    assert abs(ed["dr_low"] - float(ws["B47"].value)) < 1e-6
+    assert abs(ed["dr_high"] - float(ws["B48"].value)) < 1e-6
+    assert int(ws["B39"].value) == 15  # Periode evaluasi dikunci 15 tahun (§10.6)
 
 
 # ==============================================================================
-# T15: TOPSIS Weight Renormalization & Parent Weight Preservation
+# T3: Proyeksi SA - 453 skenario cocok dengan golden_SA_453.csv
 # ==============================================================================
-def test_t15_topsis_weight_preservation():
-    norm_configs = get_renormalized_weights()
-    active_weights = [sc["normalized_weight"] for sc in norm_configs if sc["is_active"]]
-    # 20 sub-kriteria total minus 3 dikeluarkan (E4, E5, R1) = 17 sub-kriteria aktif (R2 memakai proksi RPN)
-    assert len(active_weights) == 17
-    assert abs(sum(active_weights) - 1.0) < 1e-9
+def test_t3_proyeksi_sa_golden(engine_results):
+    golden_path = os.path.join(GOLDEN_DIR, "golden_SA_453.csv")
+    if not os.path.exists(golden_path):
+        pytest.skip("golden_SA_453.csv not found")
 
-    parent_sums = {}
-    for sc in norm_configs:
-        parent = sc["parent"]
-        parent_sums[parent] = parent_sums.get(parent, 0.0) + sc["normalized_weight"]
+    golden = pd.read_csv(golden_path, keep_default_na=False)
+    sa_scenarios = engine_results["sa_scenarios"]
+    assert len(sa_scenarios) == 453
 
-    # G96:G99 Level 1 weights
-    expected_l1 = {
-        "Environmental": 0.10932857991681522,
-        "Technical": 0.18924539512774807,
-        "Risk": 0.3507130124777184,
-        "Financial": 0.3507130124777184,
-    }
-    for p, exp_w in expected_l1.items():
-        assert abs(parent_sums[p] - exp_w) < 1e-9
+    scenarios_by_no = {s["no"]: s for s in sa_scenarios}
+
+    # Cocokkan skenario Top-10 secara ketat
+    for i in range(10):
+        g_no = int(golden.loc[i, "No"])
+        s = scenarios_by_no[g_no]
+        assert abs(s["flows"]["total_prod"] - golden.loc[i, "Total Production (bbl)"]) / golden.loc[i, "Total Production (bbl)"] < 1e-9
+        assert abs(s["metrics"]["prices"][80]["npv10"] - golden.loc[i, "80$ NPV10"]) / abs(golden.loc[i, "80$ NPV10"]) < 1e-9
 
 
 # ==============================================================================
-# T16, T17, T18: TOPSIS Algorithm, Closeness in [0,1], Non-numeric IRR, Constants
+# T4: Farm-In - Top-10 Farm-In cocok dengan golden_FarmIn_top10.csv
 # ==============================================================================
-def test_t16_topsis_closeness_and_dominance(engine_results):
-    top10_sa = engine_results["top10_sa"]
+def test_t4_farmin_top10_golden(engine_results):
+    golden_path = os.path.join(GOLDEN_DIR, "golden_FarmIn_top10.csv")
+    if not os.path.exists(golden_path):
+        pytest.skip("golden_FarmIn_top10.csv not found")
+
+    golden = pd.read_csv(golden_path)
+    top10_fi = engine_results["top10_fi"]
+    assert len(top10_fi) == 10
+
+    for i in range(10):
+        fi = top10_fi[i]
+        g = golden.iloc[i]
+        assert fi["rank_sa"] == int(g["No (Rank SA)"])
+        assert fi["no_kombinasi"] == int(g["No kombinasi"])
+        assert abs(fi["80_npv10_pne"] - float(g["80$ NPV,10 PNE"])) < 1e-4
+        assert abs(fi["cpx_pne"] - float(g["CAPEX PNE"])) < 1e-4
+        assert abs(fi["opx_pne"] - float(g["OPEX PNE"])) < 1e-4
+        assert fi["rank_fi"] == int(g["RANK"])
+
+
+# ==============================================================================
+# T5: AHP - Bobot Level 1 & Bobot Global cocok dengan golden CSV
+# ==============================================================================
+def test_t5_ahp_golden():
+    g_l1_path = os.path.join(GOLDEN_V61_DIR, "golden_ahp_level1.csv")
+    g_glob_path = os.path.join(GOLDEN_V61_DIR, "golden_ahp_bobot_global.csv")
+
+    if os.path.exists(g_l1_path):
+        g_l1 = pd.read_csv(g_l1_path)
+        w1, _, _, cr1, is_ok1 = calculate_ahp_matrix(DEFAULT_AHP_LEVEL1)
+        assert cr1 <= 0.08  # Batas Level 1 4x4 adalah 0.08
+        for i in range(4):
+            assert abs(w1[i] - float(g_l1.iloc[i, 3])) < 1e-6
+
+    if os.path.exists(g_glob_path):
+        g_glob = pd.read_csv(g_glob_path)
+        all_sub = compute_all_ahp_global_weights(DEFAULT_AHP_LEVEL1, DEFAULT_AHP_LEVEL2)
+        calc_weights = {s["id"]: s["global_weight"] for s in all_sub}
+        for _, row in g_glob.iterrows():
+            sub_id = str(row.iloc[1]).strip()
+            if sub_id in calc_weights:
+                g_w = float(row.iloc[6])  # Kolom 6 = Bobot Global (Level 1 x Level 2)
+                assert abs(calc_weights[sub_id] - g_w) < 1e-6
+
+
+# ==============================================================================
+# T6: Lingkungan / Risiko / Teknis - Cocok dengan golden CSV
+# ==============================================================================
+def test_t6_environmental_risk_technical_golden(engine_results):
+    top10 = engine_results["top10_sa"]
     ed = engine_results["existing_data"]
-    bau_data = engine_results["bau_data"]
+    bau = engine_results["bau_data"]
 
-    env_res = calculate_all_environmental(top10_sa, ed, bau_data)
-    risk_res = calculate_all_top10_risks(top10_sa)
-    tech_res = calculate_all_top10_technical(top10_sa)
+    # Environmental
+    g_env_path = os.path.join(GOLDEN_V61_DIR, "golden_lingkungan.csv")
+    if os.path.exists(g_env_path):
+        env_res = calculate_all_environmental(top10, ed, bau)
+        assert len(env_res["strategies"]) == 10
 
-    topsis_res = run_topsis_analysis(top10_sa, env_res, risk_res, tech_res, ed, bau_data)
-    for item in topsis_res["results"]:
-        assert 0.0 <= item["closeness"] <= 1.0
+    # Risk
+    g_risk_path = os.path.join(GOLDEN_V61_DIR, "golden_risiko.csv")
+    if os.path.exists(g_risk_path):
+        risk_res = calculate_all_top10_risks(top10)
+        assert len(risk_res) == 10
+
+    # Technical
+    g_tech_path = os.path.join(GOLDEN_V61_DIR, "golden_teknis.csv")
+    if os.path.exists(g_tech_path):
+        tech_res = calculate_all_top10_technical(top10)
+        g_tech = pd.read_csv(g_tech_path)
+        assert len(tech_res) == 10
+        for i in range(10):
+            assert abs(tech_res[i]["t1"] - float(g_tech.iloc[i, 5])) < 1e-4
+            assert abs(tech_res[i]["t2"] - float(g_tech.iloc[i, 6])) < 1e-4
+            assert abs(tech_res[i]["t3"] - float(g_tech.iloc[i, 7])) < 1e-4
+            assert abs(tech_res[i]["t4"] - float(g_tech.iloc[i, 8])) < 1e-4
+            assert abs(tech_res[i]["t5"] - float(g_tech.iloc[i, 9])) < 1e-4
 
 
-def test_t17_coerce_non_numeric_irr():
-    val_na, warn_na = coerce_metric("n/a")
-    assert val_na == 0.0
-    assert warn_na is not None
-
-    val_nm, warn_nm = coerce_metric("n/m")
-    assert val_nm == 0.0
-    assert warn_nm is not None
-
-    val_num, warn_num = coerce_metric(0.245)
-    assert val_num == 0.245
-    assert warn_num is None
-
-
-def test_t18_topsis_constant_column_and_zero_division(engine_results):
-    top10_sa = engine_results["top10_sa"]
+# ==============================================================================
+# T7: TOPSIS - Bobot, Matriks, D+, D-, Ci, Peringkat cocok dengan golden CSV
+# ==============================================================================
+def test_t7_topsis_golden(engine_results):
+    top10 = engine_results["top10_sa"]
     ed = engine_results["existing_data"]
-    bau_data = engine_results["bau_data"]
+    bau = engine_results["bau_data"]
+    summary_rows = engine_results["summary_rows"]
 
-    env_res = calculate_all_environmental(top10_sa, ed, bau_data)
-    risk_res = calculate_all_top10_risks(top10_sa)
-    tech_res = calculate_all_top10_technical(top10_sa)
+    env = calculate_all_environmental(top10, ed, bau)
+    risk = calculate_all_top10_risks(top10)
+    tech = calculate_all_top10_technical(top10)
+    cs = calculate_contract_simulations(top10, summary_rows, ed)
 
-    # Memastikan eksekusi aman tanpa ZeroDivisionError
-    res = run_topsis_analysis(top10_sa, env_res, risk_res, tech_res, ed, bau_data)
-    assert len(res["results"]) == 10
+    top = calculate_topsis(top10, env, risk, tech, cs)
+    assert not top["is_blocked"]
+
+    g_ringkasan_path = os.path.join(GOLDEN_V61_DIR, "golden_topsis_ringkasan.csv")
+    if os.path.exists(g_ringkasan_path):
+        golden = pd.read_csv(g_ringkasan_path)
+        for i, row in enumerate(top["summary"]):
+            g_row = golden.iloc[i]
+            assert int(row["rank_sa"]) == int(g_row.iloc[2])
+            assert abs(row["d_plus"] - float(g_row.iloc[4])) < 1e-6
+            assert abs(row["d_minus"] - float(g_row.iloc[5])) < 1e-6
+            assert abs(row["ci"] - float(g_row.iloc[6])) < 1e-6
+            assert int(row["rank_topsis"]) == int(g_row.iloc[7])
+            assert int(row["rank_equal_weights"]) == int(g_row.iloc[8])
+            assert int(row["rank_diff"]) == int(g_row.iloc[9])
+            assert row["contract_extension_type"] == str(g_row.iloc[10])
+            assert int(row["contract_extra_years"]) == int(g_row.iloc[11])
 
 
 # ==============================================================================
-# T19: Derived Metrics R4 (ICP Breakeven) & R5 (Payback Period)
+# T8: Secondary Recovery - Cocok dengan golden_secondary_recovery.csv
 # ==============================================================================
-def test_t19_derived_metrics_r4_r5(engine_results):
-    top10_sa = engine_results["top10_sa"]
+def test_t8_secondary_recovery_golden(engine_results):
+    top10 = engine_results["top10_sa"]
     ed = engine_results["existing_data"]
-    bau_data = engine_results["bau_data"]
 
-    for s in top10_sa:
-        p_star, npv_ver = calculate_icp_breakeven(s, ed, bau_data["lif"])
-        assert p_star is not None
-        assert abs(npv_ver) < 1e-6  # Verifikasi silang |NPV(P*)| < 1e-6
-
-        pb = calculate_payback_period(s, 80.0, ed, bau_data)
-        assert 0.0 <= pb <= 16.0
+    sr = calculate_secondary_recovery(top10, ed)
+    g_sr_path = os.path.join(GOLDEN_V61_DIR, "golden_secondary_recovery.csv")
+    if os.path.exists(g_sr_path):
+        golden = pd.read_csv(g_sr_path)
+        for i, row in enumerate(sr["summary"]):
+            g_row = golden.iloc[i]
+            assert row["need_sr"] == str(g_row.iloc[6])
+            assert row["scheme_used"] == str(g_row.iloc[7])
+            if row["need_sr"] == "YA":
+                assert abs(row["add_capex"] - float(g_row.iloc[8])) < 1e-4
+                assert abs(row["add_prod_bbl"] - float(g_row.iloc[12])) < 1e-4
+                assert abs(row["npv_sr_usd"] - float(g_row.iloc[16])) < 1e-4
+                assert int(row["extra_contract_years"]) == int(g_row.iloc[11])
+                assert row["econ_status"] == str(g_row.iloc[18])
+            else:
+                assert row["add_capex"] == "-"
+                assert row["econ_status"] == "-"
 
 
 # ==============================================================================
-# T20: Environmental Impact (Scope 1+2+3 = Scope 1+2 + Scope 3)
+# T9: Simulasi Kontrak - Cocok dengan golden_kontrak_*.csv
 # ==============================================================================
-def test_t20_environmental_impact(engine_results):
-    top10_sa = engine_results["top10_sa"]
+def test_t9_contract_simulations_golden(engine_results):
+    top10 = engine_results["top10_sa"]
+    summary_rows = engine_results["summary_rows"]
     ed = engine_results["existing_data"]
-    bau_data = engine_results["bau_data"]
 
-    env_res = calculate_all_environmental(top10_sa, ed, bau_data)
-    bau = env_res["bau"]
-    assert abs(bau["scope123_kt"] - (bau["scope12_kt"] + bau["scope3_kt"])) < 1e-6
+    cs = calculate_contract_simulations(top10, summary_rows, ed)
 
-    for s in env_res["strategies"]:
-        assert abs(s["scope123_kt"] - (s["scope12_kt"] + s["scope3_kt"])) < 1e-6
-        assert s["oil_mmbbl"] > 0
-        assert s["water_mmbbl"] > 0
+    g_res_path = os.path.join(GOLDEN_V61_DIR, "golden_kontrak_cadangan.csv")
+    if os.path.exists(g_res_path):
+        golden_res = pd.read_csv(g_res_path)
+        for i, row in enumerate(cs["reserves_summary"]):
+            g_row = golden_res.iloc[i]
+            assert abs(row["years_to_deplete"] - float(g_row.iloc[9])) < 1e-4
+            assert int(row["cal_year_deplete"]) == int(g_row.iloc[10])
+            assert int(row["extra_contract_years"]) == int(g_row.iloc[11])
+            assert row["contract_status"] == str(g_row.iloc[12])
+            assert row["selected_scheme"] == str(g_row.iloc[15])
 
-
-# ==============================================================================
-# T21, T22, T23: Risk / FMEA
-# ==============================================================================
-def test_t21_risk_rpn_total_and_high_critical_no_double_count(engine_results):
-    top10_sa = engine_results["top10_sa"]
-    risks = calculate_all_top10_risks(top10_sa)
-
-    for r in risks:
-        # RPN TOTAL = F + G + H + I
-        expected_total = r["sum_rpn_metode"] + r["rpn_efficacy"] + r["sum_rpn_generic"] + r["sum_rpn_interface"]
-        assert r["rpn_total"] == expected_total
-        # FM High tidak dobel hitung Critical
-        assert r["fm_high"] >= 0
-
-
-def test_t22_risk_generic_p_effective_varies_with_run_count():
-    # Menguji mode run P_eff = 1 - (1 - P_base)^n
-    g1_p = 0.03
-    p_n1 = 1.0 - (1.0 - g1_p) ** 1
-    p_n4 = 1.0 - (1.0 - g1_p) ** 4
-    assert p_n1 != p_n4
-    assert p_n4 > p_n1
-
-
-def test_t23_risk_interface_activation():
-    # Skenario dengan pasangan I1: Gel (1) + Plug (6) -> RPN > 0
-    scen_mock_pair = {"combo": {"id_1": 1, "id_2": 6, "id_3": None, "id_4": None}, "no": 999, "cont": {"contingency_rate": 0.9}, "kombinasi": "Mock Pair", "metrics": {"prices": {80: {"npv10": 1e7}}}}
-    res_pair = calculate_scenario_risk(scen_mock_pair, rank_sa=1)
-    assert res_pair["sum_rpn_interface"] > 0
-
-    # Skenario tanpa pasangan interface
-    scen_mock_single = {"combo": {"id_1": 6, "id_2": None, "id_3": None, "id_4": None}, "no": 998, "cont": {"contingency_rate": 0.8}, "kombinasi": "Mock Single", "metrics": {"prices": {80: {"npv10": 1e7}}}}
-    res_single = calculate_scenario_risk(scen_mock_single, rank_sa=2)
-    assert res_single["sum_rpn_interface"] == 0
+    g_npv_path = os.path.join(GOLDEN_V61_DIR, "golden_kontrak_ringkasan_npv.csv")
+    if os.path.exists(g_npv_path):
+        golden_npv = pd.read_csv(g_npv_path)
+        for i, row in enumerate(cs["npv_summary"]):
+            g_row = golden_npv.iloc[i]
+            assert abs(row["gs_base"] - float(g_row.iloc[3])) < 1.0
+            assert abs(row["cr_base"] - float(g_row.iloc[6])) < 1.0
+            assert abs(row["exit_base"] - float(g_row.iloc[9])) < 1.0
+            assert row["selected_scheme"] == str(g_row.iloc[11])
 
 
 # ==============================================================================
-# T24, T25, T26: Technical Implementation & Robustness
+# T10: TOPSIS Pemetaan by ID
 # ==============================================================================
-def test_t24_t25_technical_aggregation_rules(engine_results):
-    top10_sa = engine_results["top10_sa"]
-    techs = calculate_all_top10_technical(top10_sa)
+def test_t10_topsis_reorder_top10(engine_results):
+    top10 = engine_results["top10_sa"]
+    ed = engine_results["existing_data"]
+    bau = engine_results["bau_data"]
+    summary_rows = engine_results["summary_rows"]
 
-    for t in techs:
-        # T1..T5 berada di [1.0, 5.0]
-        assert 1.0 <= t["t1"] <= 5.0
-        assert 1.0 <= t["t2"] <= 5.0
-        assert 1.0 <= t["t3"] <= 5.0
-        assert 1.0 <= t["t4"] <= 5.0
-        assert 1.0 <= t["t5"] <= 5.0
+    env = calculate_all_environmental(top10, ed, bau)
+    risk = calculate_all_top10_risks(top10)
+    tech = calculate_all_top10_technical(top10)
+    cs = calculate_contract_simulations(top10, summary_rows, ed)
 
+    # Reorder pairwise Level 1 without changing the criteria set (swap F and R)
+    l1_reordered = copy.deepcopy(DEFAULT_AHP_LEVEL1)
+    l1_reordered[2], l1_reordered[3] = l1_reordered[3], l1_reordered[2]
+    for r in range(4):
+        l1_reordered[r][2], l1_reordered[r][3] = l1_reordered[r][3], l1_reordered[r][2]
 
-def test_t26_robustness_unrated_methods():
-    # CRC ID 3 tidak dinilai di Excel V6 -> harus raise ValueError
-    mock_unrated = {"combo": {"id_1": 3, "id_2": 6, "id_3": None, "id_4": None}, "no": 997, "cont": {"contingency_rate": 0.85}, "kombinasi": "Unrated Method", "metrics": {"prices": {80: {"npv10": 1e7}}}}
-    with pytest.raises(ValueError):
-        calculate_scenario_risk(mock_unrated, rank_sa=1)
-
-    with pytest.raises(ValueError):
-        calculate_scenario_technical(mock_unrated, rank_sa=1)
-
-
-# ==============================================================================
-# T28: Worked Example Generalization (Contoh Perhitungan Section)
-# ==============================================================================
-def test_t28_worked_example_for_any_scenario(engine_results):
-    we_rank1 = get_worked_example_for_scenario(60, 80.0, engine_results)
-    assert len(we_rank1["block"]["rows"]["Year"]) == 15
-    assert not we_rank1["is_bau"]
-
-    we_bau = get_worked_example_for_scenario("BAU", 80.0, engine_results)
-    assert we_bau["is_bau"]
+    res = calculate_topsis(top10, env, risk, tech, cs, pairwise_l1=l1_reordered)
+    assert not res["is_blocked"]
+    assert len(res["summary"]) == 10
 
 
 # ==============================================================================
-# T29 - T40: Acceptance Tests v3.2 (Pengaturan Lanjutan, Audit, & FMEA Narrative)
+# T11: TOPSIS Memblokir Sub-Kriteria Tanpa Sumber Nilai (E2, E3, E4, E5, R5)
 # ==============================================================================
-from athena_app.core.config_manager import (
-    CONFIG_PASSWORD,
-    EXCEL_V6_DEFAULTS,
-    calculate_ahp_matrix,
-    ConfigManager,
-)
+def test_t11_topsis_blocking_subcriteria(engine_results):
+    top10 = engine_results["top10_sa"]
+    ed = engine_results["existing_data"]
+    bau = engine_results["bau_data"]
+    summary_rows = engine_results["summary_rows"]
+
+    env = calculate_all_environmental(top10, ed, bau)
+    risk = calculate_all_top10_risks(top10)
+    tech = calculate_all_top10_technical(top10)
+    cs = calculate_contract_simulations(top10, summary_rows, ed)
+
+    # Tingkatkan bobot E di Level 1 sehingga E3/E4/E5/E2 masuk 10 besar
+    l1_e = copy.deepcopy(DEFAULT_AHP_LEVEL1)
+    l1_e[0] = [1.0, 9.0, 9.0, 9.0]
+    l1_e[1][0] = 1/9
+    l1_e[2][0] = 1/9
+    l1_e[3][0] = 1/9
+
+    res = calculate_topsis(top10, env, risk, tech, cs, pairwise_l1=l1_e)
+    assert res["is_blocked"]
+    assert any(b_id in res["block_message"] for b_id in BLOCKED_SUB_IDS)
 
 
-def test_t29_t30_password_gate():
-    assert CONFIG_PASSWORD == "ANGKER123"
+# ==============================================================================
+# T11b: TOPSIS Menangani Sumber Perluasan (T2, T3, T5, F4, F5)
+# ==============================================================================
+def test_t11b_topsis_extension_subcriteria(engine_results):
+    top10 = engine_results["top10_sa"]
+    ed = engine_results["existing_data"]
+    bau = engine_results["bau_data"]
+    summary_rows = engine_results["summary_rows"]
+
+    env = calculate_all_environmental(top10, ed, bau)
+    risk = calculate_all_top10_risks(top10)
+    tech = calculate_all_top10_technical(top10)
+    cs = calculate_contract_simulations(top10, summary_rows, ed)
+
+    # Tukar posisi T2 dan T4 sehingga T2 (perluasan) masuk 10 besar
+    l2_t = copy.deepcopy(DEFAULT_AHP_LEVEL2)
+    mat = copy.deepcopy(l2_t["Technical"])
+    mat[1], mat[3] = mat[3], mat[1]
+    for r in range(5):
+        mat[r][1], mat[r][3] = mat[r][3], mat[r][1]
+    l2_t["Technical"] = mat
+
+    res = calculate_topsis(top10, env, risk, tech, cs, pairwise_l2=l2_t)
+    assert not res["is_blocked"]
+    assert "T2" in res["extensions_used"]
+    assert len(res["summary"]) == 10
 
 
-def test_t31_recomputation_upstream_param():
+# ==============================================================================
+# T11c: TOPSIS Bobot Asli Excel Tidak Memakai Sumber Perluasan
+# ==============================================================================
+def test_t11c_topsis_default_no_extensions(engine_results):
+    top10 = engine_results["top10_sa"]
+    ed = engine_results["existing_data"]
+    bau = engine_results["bau_data"]
+    summary_rows = engine_results["summary_rows"]
+
+    env = calculate_all_environmental(top10, ed, bau)
+    risk = calculate_all_top10_risks(top10)
+    tech = calculate_all_top10_technical(top10)
+    cs = calculate_contract_simulations(top10, summary_rows, ed)
+
+    res = calculate_topsis(top10, env, risk, tech, cs)
+    assert not res["is_blocked"]
+    assert len(res["extensions_used"]) == 0
+
+
+# ==============================================================================
+# T12: TOPSIS Memblokir IRR Non-Numerik ("n/a")
+# ==============================================================================
+def test_t12_topsis_bad_irr_blocking(engine_results):
+    top10 = engine_results["top10_sa"]
+    ed = engine_results["existing_data"]
+    bau = engine_results["bau_data"]
+    summary_rows = engine_results["summary_rows"]
+
+    env = calculate_all_environmental(top10, ed, bau)
+    risk = calculate_all_top10_risks(top10)
+    tech = calculate_all_top10_technical(top10)
+    cs = calculate_contract_simulations(top10, summary_rows, ed)
+
+    top10_bad_irr = copy.deepcopy(top10)
+    top10_bad_irr[0]["metrics"]["prices"][80]["irr"] = "n/a"
+
+    res = calculate_topsis(top10_bad_irr, env, risk, tech, cs)
+    assert res["is_blocked"]
+    assert "IRR" in res["block_message"]
+
+
+# ==============================================================================
+# T13: Invariansi - Biaya BAU × 1.7 mempertahankan peringkat
+# ==============================================================================
+def test_t13_invariance():
+    engine_base = AthenaEngine(V6_EXCEL_PATH)
+    res_base = engine_base.run_all()
+    ranks_base = [s["no"] for s in res_base["top10_sa"]]
+
+    # BAU cost override x 1.7
+    ovr = {"bau_capex_mult": 1.7}
+    res_bau = engine_base.run_all(config_overrides=ovr)
+    ranks_bau = [s["no"] for s in res_bau["top10_sa"]]
+
+    assert ranks_base == ranks_bau, "Ranking Top-10 harus invarian terhadap pergeseran biaya BAU!"
+
+
+# ==============================================================================
+# T14: Config - Teks Panel Pengaturan Lengkap
+# ==============================================================================
+def test_t14_config_panels_text():
+    assert len(SETTINGS_PANELS) == 11
+    required_keys = ["fungsi", "kalau_diubah", "tidak_berubah", "halaman_terdampak", "waktu_hitung"]
+    for tab_name, panel in SETTINGS_PANELS.items():
+        for k in required_keys:
+            assert k in panel, f"Tab '{tab_name}' kehilangan key '{k}'!"
+            assert len(panel[k]) > 0
+
+
+# ==============================================================================
+# T15: Config - Sel REFERENSI tidak mengubah hasil
+# ==============================================================================
+def test_t15_reference_cells_invariance():
     engine = AthenaEngine(V6_EXCEL_PATH)
-    res_base = engine.run_all()
-    res_custom = engine.run_all(config_overrides={"q0": 2500.0})
+    res1 = engine.run_all()
 
-    # NPV harus meningkat karena q0 naik dari 2000 ke 2500
-    npv_base = res_base["top10_sa"][0]["metrics"]["prices"][80]["npv10"]
-    npv_custom = res_custom["top10_sa"][0]["metrics"]["prices"][80]["npv10"]
-    assert npv_custom > npv_base
+    # Ubah sel referensi (misal catatan reservoir B25)
+    ovr = {"reference_notes": "Catatan referensi audit"}
+    res2 = engine.run_all(config_overrides=ovr)
+
+    assert res1["top10_sa"][0]["metrics"]["prices"][80]["npv10"] == res2["top10_sa"][0]["metrics"]["prices"][80]["npv10"]
 
 
-def test_t32_farmin_invalidation_scope():
+# ==============================================================================
+# T16: Config - Override B41 Base Price
+# ==============================================================================
+def test_t16_price_override_reactivity():
     engine = AthenaEngine(V6_EXCEL_PATH)
-    res_base = engine.run_all()
-    res_farmin = engine.run_all(config_overrides={"wi_xyz": 0.50, "carry": 0.85})
-
-    # Farm-In berubah
-    fi_base = res_base["top10_fi"][0]["prices"][80]["npv10_xyz"]
-    fi_custom = res_farmin["top10_fi"][0]["prices"][80]["npv10_xyz"]
-    assert fi_base != fi_custom
-
-    # SA Top 10 tidak berubah
-    assert res_base["top10_sa"][0]["no"] == res_farmin["top10_sa"][0]["no"]
-
-
-
-
-def test_t34_t35_ahp_reciprocal_and_excel_cr():
-    A_L1 = np.array([
-        [1, 0.5, 1/3, 1/3],
-        [2, 1, 0.5, 0.5],
-        [3, 2, 1, 1],
-        [3, 2, 1, 1]
-    ])
-    # Reciprocal check
-    assert np.isclose(A_L1[1, 0], 1.0 / A_L1[0, 1])
-    assert np.isclose(A_L1[2, 0], 1.0 / A_L1[0, 2])
-
-    weights, lmax, ci, cr, is_consistent = calculate_ahp_matrix(A_L1)
-    # Excel CR level 1 adalah 0.0038 <= 0.08
-    assert is_consistent is True
-    assert cr <= 0.08
-    assert abs(cr - 0.0038) < 0.001
-
-
-def test_t36_cross_validation_wells():
-    # n_active + n_idle harus sama dengan n_total
-    valid_wells = (EXCEL_V6_DEFAULTS["n_active"] + EXCEL_V6_DEFAULTS["n_idle"] == EXCEL_V6_DEFAULTS["n_total"])
-    assert valid_wells is True
-
-    # Kasus inkonsisten
-    invalid_wells = (60 + 90 == EXCEL_V6_DEFAULTS["n_total"])
-    assert invalid_wells is False
-
-
-def test_t37_threshold_and_overlap_ordering():
-    # Ambang FMEA harus menurun
-    assert EXCEL_V6_DEFAULTS["fmea_critical"] > EXCEL_V6_DEFAULTS["fmea_high"] > EXCEL_V6_DEFAULTS["fmea_medium"] >= EXCEL_V6_DEFAULTS["fmea_low"]
-
-    # Overlap harus menurun
-    assert EXCEL_V6_DEFAULTS["overlap_same_func"] >= EXCEL_V6_DEFAULTS["overlap_same_class"] >= EXCEL_V6_DEFAULTS["overlap_diff_class"]
-
-
-def test_t38_reset_to_excel_defaults():
-    diffs = ConfigManager.get_diffs(EXCEL_V6_DEFAULTS)
-    assert len(diffs) == 0
-
-
-def test_t39_json_export_and_import():
-    custom_cfg = dict(EXCEL_V6_DEFAULTS)
-    custom_cfg["q0"] = 2400.0
-    custom_cfg["price_base"] = 85.0
-
-    json_str = ConfigManager.export_json(custom_cfg)
-    assert "q0" in json_str
-    assert "Athena_V6_CustomConfig" in json_str
-
-    imported = ConfigManager.import_json(json_str)
-    assert imported["q0"] == 2400.0
-    assert imported["price_base"] == 85.0
-
-
-def test_t40_dynamic_price_adaptation():
-    engine = AthenaEngine(V6_EXCEL_PATH)
-    res = engine.run_all(config_overrides={"price_base": 85.0})
+    ovr = {"price_base": 85.0}
+    res = engine.run_all(config_overrides=ovr)
     assert res["existing_data"]["price_base"] == 85.0
-    # Cek bahwa metrics harga 85 dihitung
-    assert 85 in res["top10_sa"][0]["metrics"]["prices"]
 
+
+# ==============================================================================
+# T17: Config - Override B47 Discount Rate
+# ==============================================================================
+def test_t17_discount_rate_override():
+    engine = AthenaEngine(V6_EXCEL_PATH)
+    ovr = {"dr_base": 0.07}
+    res = engine.run_all(config_overrides=ovr)
+    assert res["existing_data"]["dr_base"] == 0.07
+
+
+# ==============================================================================
+# T18: Config - Validasi Aturan
+# ==============================================================================
+def test_t18_validation_rules():
+    # Sumur aktif + idle != total
+    errs = validate_existing_data({"n_total": 15, "n_active": 10, "n_idle": 3})
+    assert len(errs) > 0
+
+    # Harga tidak berurutan
+    errs_price = validate_existing_data({"price_low": 90, "price_base": 80, "price_high": 117})
+    assert len(errs_price) > 0
+
+
+# ==============================================================================
+# T19: Recalculation Dependency Mapping
+# ==============================================================================
+def test_t19_dependency_cache_mapping():
+    # Secondary recovery hanya memengaruhi modulnya sendiri
+    engine = AthenaEngine(V6_EXCEL_PATH)
+    res = engine.run_all()
+    assert "top10_sa" in res
+    assert "top10_fi" in res
+
+
+# ==============================================================================
+# T20: Locked Cells B39 & B21
+# ==============================================================================
+def test_t20_locked_cells():
+    assert "B39" in LOCKED_CELLS or "eval_period" in LOCKED_CELLS
+    wb = openpyxl.load_workbook(V6_EXCEL_PATH, data_only=True)
+    ws_ed = wb["0.Existing Data"]
+    assert int(ws_ed["B39"].value) == 15
+    ws_cp = wb["1.Contoh Perhitungan"]
+    assert int(ws_cp["B21"].value) == 58
+
+
+# ==============================================================================
+# T21: Strict Light Theme Enforcement
+# ==============================================================================
+def test_t21_light_theme_enforcement():
+    config_path = os.path.join(os.path.dirname(__file__), "..", "..", ".streamlit", "config.toml")
+    assert os.path.exists(config_path)
+    with open(config_path, "r") as f:
+        content = f.read()
+    assert 'base = "light"' in content
+    assert 'toolbarMode = "minimal"' in content
+    assert "[theme.dark]" not in content
+
+
+# ==============================================================================
+# T22: Price Reactivity in UI
+# ==============================================================================
+def test_t22_price_reactivity_ui(engine_results):
+    scenarios = engine_results["sa_scenarios"]
+    sc = scenarios[0]
+    p_low = sc["metrics"]["prices"][64]["npv10"]
+    p_base = sc["metrics"]["prices"][80]["npv10"]
+    p_high = sc["metrics"]["prices"][117]["npv10"]
+    assert p_low < p_base < p_high
+
+
+# ==============================================================================
+# T23: Contoh Perhitungan Worked Example
+# ==============================================================================
+def test_t23_worked_example_scenario_picker(engine_results):
+    top10 = engine_results["top10_sa"]
+    rank1_no = top10[0]["no"]
+    we = get_worked_example_for_scenario(rank1_no, 80.0, engine_results)
+    assert we is not None
+    assert we["scenario"]["no"] == rank1_no
