@@ -82,11 +82,11 @@ st.markdown(
         color: var(--text-primary) !important;
     }
 
-    /* Sidebar Styling (Strict light per PRD §12 & UI/UX Guidelines §2, §9, §11) */
+    /* Sidebar Styling (Executive Petrol Dark Navbar dengan kontras tinggi) */
     section[data-testid="stSidebar"] {
-        background-color: #F7F9FB !important;
-        border-right: 1px solid #E2E8F0 !important;
-        color: #1B1F23 !important;
+        background-color: #0D1B2A !important;
+        border-right: 1px solid #1E293B !important;
+        color: #F8FAFC !important;
     }
     section[data-testid="stSidebar"] h1, 
     section[data-testid="stSidebar"] h2, 
@@ -94,47 +94,47 @@ st.markdown(
     section[data-testid="stSidebar"] p, 
     section[data-testid="stSidebar"] span, 
     section[data-testid="stSidebar"] strong {
-        color: #1B1F23 !important;
+        color: #F8FAFC !important;
     }
     section[data-testid="stSidebar"] hr {
-        border-color: #E2E8F0 !important;
+        border-color: rgba(255, 255, 255, 0.15) !important;
     }
 
-    /* Styling Navigasi Radio Bertahap di Sidebar (UIUX Guidelines §9.2) */
+    /* Styling Navigasi Radio Bertahap di Sidebar (UIUX Guidelines §9.2 - High Contrast) */
     section[data-testid="stSidebar"] div[role="radiogroup"] input {
         display: none !important;
     }
     section[data-testid="stSidebar"] div[role="radiogroup"] label {
-        padding: 6px 12px !important;
+        padding: 7px 12px !important;
         border-radius: 6px !important;
         border-left: 3px solid transparent !important;
-        margin-bottom: 2px !important;
+        margin-bottom: 3px !important;
         transition: background-color 120ms ease !important;
         cursor: pointer !important;
-        color: #475569 !important;
+        color: #CBD5E1 !important;
         background-color: transparent !important;
     }
     section[data-testid="stSidebar"] div[role="radiogroup"] label:hover {
-        background: rgba(30, 136, 229, 0.04) !important;
-        color: #1B1F23 !important;
+        background: rgba(30, 136, 229, 0.18) !important;
+        color: #FFFFFF !important;
     }
     section[data-testid="stSidebar"] div[role="radiogroup"] label:has(input:checked) {
-        background: rgba(30, 136, 229, 0.08) !important;
-        border-left-color: #1E88E5 !important;
-        font-weight: 600 !important;
-        color: #1E88E5 !important;
+        background: rgba(30, 136, 229, 0.30) !important;
+        border-left-color: #38BDF8 !important;
+        font-weight: 700 !important;
+        color: #FFFFFF !important;
     }
-    /* Section Group Headers (0 / 1 / 1 / 2 / 3) */
+    /* Section Group Headers (0 / 1 / 1 / 2 / 3) dengan warna cerah kontras tinggi */
     div[data-testid="stRadio"]:has(input[value*="Kombinasi Strategi"]) div[role="radiogroup"] > label:nth-child(1)::before,
     div[role="radiogroup"][aria-label*="Navigasi"] > label:nth-child(1)::before {
         content: "0 · DATA & KOMBINASI";
         display: block;
         font-size: 11px;
-        font-weight: 700;
+        font-weight: 800;
         text-transform: uppercase;
-        color: #64748B;
+        color: #38BDF8 !important;
         margin-bottom: 6px;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.6px;
         pointer-events: none;
     }
     div[data-testid="stRadio"]:has(input[value*="Kombinasi Strategi"]) div[role="radiogroup"] > label:nth-child(4)::before,
@@ -142,12 +142,12 @@ st.markdown(
         content: "1 · MODEL FINANSIAL";
         display: block;
         font-size: 11px;
-        font-weight: 700;
+        font-weight: 800;
         text-transform: uppercase;
-        color: #64748B;
+        color: #38BDF8 !important;
         margin-top: 14px;
         margin-bottom: 6px;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.6px;
         pointer-events: none;
     }
     div[data-testid="stRadio"]:has(input[value*="Kombinasi Strategi"]) div[role="radiogroup"] > label:nth-child(7)::before,
@@ -155,12 +155,12 @@ st.markdown(
         content: "1 · MULTI-KRITERIA";
         display: block;
         font-size: 11px;
-        font-weight: 700;
+        font-weight: 800;
         text-transform: uppercase;
-        color: #64748B;
+        color: #38BDF8 !important;
         margin-top: 14px;
         margin-bottom: 6px;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.6px;
         pointer-events: none;
     }
     div[data-testid="stRadio"]:has(input[value*="Kombinasi Strategi"]) div[role="radiogroup"] > label:nth-child(10)::before,
@@ -168,12 +168,12 @@ st.markdown(
         content: "2 · SIMULASI LANJUTAN";
         display: block;
         font-size: 11px;
-        font-weight: 700;
+        font-weight: 800;
         text-transform: uppercase;
-        color: #64748B;
+        color: #38BDF8 !important;
         margin-top: 14px;
         margin-bottom: 6px;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.6px;
         pointer-events: none;
     }
     div[data-testid="stRadio"]:has(input[value*="Kombinasi Strategi"]) div[role="radiogroup"] > label:nth-child(12)::before,
@@ -181,45 +181,86 @@ st.markdown(
         content: "3 · KEPUTUSAN";
         display: block;
         font-size: 11px;
-        font-weight: 700;
+        font-weight: 800;
         text-transform: uppercase;
-        color: #64748B;
+        color: #38BDF8 !important;
         margin-top: 14px;
         margin-bottom: 6px;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.6px;
         pointer-events: none;
     }
     /* Item Pengaturan Lanjutan dipisah garis tipis di atasnya */
     div[data-testid="stRadio"]:has(input[value*="Kombinasi Strategi"]) div[role="radiogroup"] > label:nth-child(13),
     div[role="radiogroup"][aria-label*="Navigasi"] > label:nth-child(13) {
-        border-top: 1px solid #E2E8F0 !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
         margin-top: 10px !important;
         padding-top: 10px !important;
     }
 
-    /* Header Banner Eksekutif Terang (UI/UX §2 & §11) */
+    /* Header Banner Eksekutif Berwarna Elegan dengan Kontras Maksimal */
     .main-header, div.main-header {
-        background: #FFFFFF !important;
-        padding: 20px 28px;
-        border-radius: 10px;
-        margin-bottom: 14px;
-        border: 1px solid #E2E8F0;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        background: linear-gradient(135deg, #0A192F 0%, #112240 50%, #1B3A5A 100%) !important;
+        padding: 24px 30px !important;
+        border-radius: 12px !important;
+        margin-bottom: 14px !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        box-shadow: 0 4px 20px rgba(10, 25, 47, 0.3) !important;
     }
     .main-header h1, h1.main-title, .main-title {
-        color: #1B1F23 !important;
-        -webkit-text-fill-color: #1B1F23 !important;
-        font-size: 1.95rem !important;
-        font-weight: 700 !important;
+        color: #FFFFFF !important;
+        -webkit-text-fill-color: #FFFFFF !important;
+        font-size: 2.15rem !important;
+        font-weight: 800 !important;
         margin: 0 !important;
         letter-spacing: -0.5px !important;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4) !important;
     }
     .main-subtitle {
-        color: #64748B !important;
-        -webkit-text-fill-color: #64748B !important;
-        font-size: 0.98rem;
-        margin-top: 6px;
-        margin-bottom: 0;
+        color: #E2E8F0 !important;
+        -webkit-text-fill-color: #E2E8F0 !important;
+        font-size: 1.0rem !important;
+        margin-top: 6px !important;
+        margin-bottom: 0 !important;
+        opacity: 0.95 !important;
+    }
+
+    /* Penegasan Visual Input Box & Form (Mencegah Input Box Tidak Terlihat) */
+    div[data-testid="stForm"] {
+        background-color: #FFFFFF !important;
+        border: 1.5px solid #CBD5E1 !important;
+        border-radius: 10px !important;
+        padding: 20px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    }
+    div[data-testid="stTextInput"] div[data-baseweb="input"],
+    div[data-baseweb="input"],
+    div[data-testid="stTextInput"] > div {
+        background-color: #FFFFFF !important;
+        border: 1.8px solid #94A3B8 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) inset !important;
+        transition: border-color 150ms ease, box-shadow 150ms ease !important;
+    }
+    div[data-testid="stTextInput"] div[data-baseweb="input"]:focus-within,
+    div[data-baseweb="input"]:focus-within {
+        border-color: #1E88E5 !important;
+        box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.25) !important;
+    }
+    div[data-testid="stTextInput"] input {
+        color: #0F172A !important;
+        -webkit-text-fill-color: #0F172A !important;
+        background-color: transparent !important;
+        font-size: 1.0rem !important;
+        padding: 10px 14px !important;
+    }
+    div[data-testid="stTextInput"] label {
+        color: #0F172A !important;
+        font-weight: 600 !important;
+        font-size: 0.95rem !important;
+        margin-bottom: 6px !important;
+    }
+    div[data-testid="stTextInput"] svg {
+        fill: #475569 !important;
     }
 
     /* Metric card value & styling */
@@ -280,16 +321,20 @@ def main():
     # ==========================================================================
     with st.sidebar:
         st.markdown(
-            '<div style="font-size: 1.25rem; font-weight: 700; color: #1B1F23 !important; margin-bottom: 2px;">'
+            '<div style="font-size: 1.25rem; font-weight: 800; color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; margin-bottom: 2px; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">'
             '🛢️ Athena Scenario Generator</div>',
             unsafe_allow_html=True,
         )
-        st.caption("PetroAthena 2026 Business Case Competition")
+        st.markdown(
+            '<div style="color: #94A3B8 !important; font-size: 0.82rem; margin-bottom: 10px;">'
+            'PetroAthena 2026 Business Case Competition</div>',
+            unsafe_allow_html=True,
+        )
 
         st.markdown("---")
         # Global Control Tunggal: Radio ICP (Addendum §11)
         st.markdown(
-            '<div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: #64748B; margin-bottom: 4px;">'
+            '<div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: #38BDF8 !important; margin-bottom: 4px; letter-spacing: 0.6px;">'
             'Harga Minyak Acuan (ICP)</div>',
             unsafe_allow_html=True,
         )
@@ -354,13 +399,13 @@ def main():
         )
 
         st.markdown("---")
-        # Parameter Lapangan Ringkas
-        st.caption(f"**Produksi Awal (q0):** {ed['q0']:,.0f} bopd")
-        st.caption(f"**Water Cut Awal (wc0):** {ed['wc0']*100:.1f}%")
-        st.caption(f"**Decline Rate (d0):** {ed['d0']*100:.2f}%/thn")
-        st.caption(f"**Sumur Aktif / Idle:** {ed['n_active']} / {ed['n_idle']}")
-        st.caption(f"⏱️ Waktu Hitung: **{results['duration_sec']:.3f} dtk**")
-        st.caption(f"🛡️ *{FOOTNOTE_TEXT}*")
+        # Parameter Lapangan Ringkas (High Contrast pada Background Gelap)
+        st.markdown(f'<div style="color: #CBD5E1; font-size: 0.82rem; margin-bottom: 4px;"><strong>Produksi Awal (q0):</strong> {ed["q0"]:,.0f} bopd</div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="color: #CBD5E1; font-size: 0.82rem; margin-bottom: 4px;"><strong>Water Cut Awal (wc0):</strong> {ed["wc0"]*100:.1f}%</div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="color: #CBD5E1; font-size: 0.82rem; margin-bottom: 4px;"><strong>Decline Rate (d0):</strong> {ed["d0"]*100:.2f}%/thn</div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="color: #CBD5E1; font-size: 0.82rem; margin-bottom: 4px;"><strong>Sumur Aktif / Idle:</strong> {ed["n_active"]} / {ed["n_idle"]}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="color: #94A3B8; font-size: 0.80rem; margin-top: 8px;">⏱️ Waktu Hitung: <strong style="color: #FFFFFF;">{results["duration_sec"]:.3f} dtk</strong></div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="color: #64748B; font-size: 0.74rem; margin-top: 4px; line-height: 1.3;">🛡️ <em>{FOOTNOTE_TEXT}</em></div>', unsafe_allow_html=True)
 
     # ==========================================================================
     # MAIN AREA: HEADER, STEPPER NAVIGASI, BANNER ASUMSI & KONTEN HALAMAN
@@ -370,7 +415,7 @@ def main():
         '<h1 class="main-title">🛢️ Athena Scenario Generator</h1>'
         '<p class="main-subtitle">'
         'Sistem Optimasi Portofolio Intervensi Sumur & Evaluasi Multi-Kriteria Lapangan Athena — '
-        '<strong style="color: #1E88E5 !important; -webkit-text-fill-color: #1E88E5 !important;">PetroAthena 2026 Business Case Competition</strong></p>'
+        '<strong style="color: #FFB300 !important; -webkit-text-fill-color: #FFB300 !important;">PetroAthena 2026 Business Case Competition</strong></p>'
         '</div>'
     )
     st.markdown(header_html, unsafe_allow_html=True)

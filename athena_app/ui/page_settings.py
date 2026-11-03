@@ -169,19 +169,27 @@ def render_settings_page(engine_results: dict):
 
     # 1. GATE PASSWORD (PRD §10.9)
     if not st.session_state["config_unlocked"]:
-        col_gate, _ = st.columns([1.2, 2])
+        col_gate, _ = st.columns([1.3, 1.7])
         with col_gate:
-            st.info("Akses pengaturan generator skenario kustom dilindungi kata sandi.")
+            st.info("🔒 Akses pengaturan generator skenario kustom dilindungi kata sandi.")
             with st.form("config_unlock_form"):
-                pwd_input = st.text_input("Masukkan Kata Sandi:", type="password", key="pwd_field")
-                submit_unlock = st.form_submit_button("Buka Kunci Pengaturan", use_container_width=True)
+                st.markdown("**Masukkan Kata Sandi:**")
+                pwd_input = st.text_input(
+                    "Kata Sandi Pengaturan",
+                    type="password",
+                    key="pwd_field",
+                    placeholder="Ketik kata sandi (mis. ANGKER123)...",
+                    help="Masukkan kata sandi 'ANGKER123' untuk membuka akses penuh.",
+                    label_visibility="collapsed",
+                )
+                submit_unlock = st.form_submit_button("🔓 Buka Kunci Pengaturan", use_container_width=True)
                 if submit_unlock:
                     if pwd_input == CONFIG_PASSWORD:
                         st.session_state["config_unlocked"] = True
                         st.success("Kata sandi benar. Membuka akses pengaturan...")
                         st.rerun()
                     else:
-                        st.error("Kata sandi salah.")
+                        st.error("Kata sandi salah. Silakan coba lagi.")
         return
 
     # 2. STATUS ASUMSI AKTIF & AUDIT BANNER (§10.8)

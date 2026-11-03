@@ -19,6 +19,8 @@ EXCEL_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "Angker_BCC_E
 
 @pytest.fixture(scope="module")
 def lampiran_e_data():
+    if not os.path.exists(PRD_PATH):
+        pytest.skip("Athena Scenario Generator v2.md tidak ditemukan di root direktori")
     with open(PRD_PATH, "r") as f:
         prd_text = f.read()
 
