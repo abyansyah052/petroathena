@@ -1,0 +1,33 @@
+sel_awal,A,B,C,D
+A281,Harga minyak terpilih,80,USD/bbl,Mengikuti pilihan skenario harga di bagian D (B117)
+A282,Discount rate utama,0.1,%,
+A283,NPV SA (100% WI),384524969.58694714,USD,"NPV,10 SA pada harga terpilih, 2026-2045"
+A284,CAPEX program t = 0,39812273,USD,Dibagi menurut carry (porsi XYZ = carry)
+A285,CAPEX total 2026-2045,99812273,USD,Termasuk CAPEX BAU dan perpanjangan
+A286,CAPEX setelah t = 0 (BAU + perpanjangan),60000000,USD,Dibagi menurut WI
+A287,Pajak penghasilan kontraktor,0.4,%,
+A288,Capital Constraint for PNE,60000000,USD,Dari 0.Existing Data (kolam capex korporat PNE)
+A289,NPV minimum XYZ agar mau Farm-In,0,USD,Input asumsi; 0 = XYZ break-even (batas atas negosiasi untuk PNE)
+A290,WI XYZ kasus dasar,0.4,%,Pusat grid sensitivity
+A291,Carry XYZ kasus dasar (porsi CAPEX t = 0),0.7,%,Pusat grid sensitivity
+A292,Langkah WI XYZ,0.05,%,Input
+A293,Langkah carry XYZ,0.05,%,Input
+A294,"WI XYZ minimum (floor negosiasi, batas kewajaran pasar)",0.25,%,"INPUT. Floor WI XYZ pada Opsi 1. Alasan: pada carry minimum (constraint modal PNE), WI 25% = promote 2,7x, di bawah plafon 3x. Lihat kotak penjelasan di kanan."
+A295,Plafon promote pasar (porsi biaya XYZ / porsi WI XYZ),3,x,"INPUT. Asumsi tim: promote di atas 3x di luar kebiasaan farm-in (contoh pasar 1,4x; ground floor 1x). Penilaian, bukan data publik."
+A296,WI XYZ minimum implisit dari plafon promote,0.22187348851742628,%,Carry minimum (B367) dibagi plafon promote (B295). Floor B294 harus >= angka ini.
+A297,Batas atas WI XYZ (operator PSC wajib tetap mayoritas),0.5,%,INPUT. Kontraktor wajib mempertahankan mayoritas dan operatorship; cek ketentuan generasi PSC Athena.
+A298,WI XYZ impas vs ACCEPT (di atas ini NPV PNE lebih buruk dari ACCEPT),0.3978269250421377,%,WI saat NPV PNE (carry minimum) sama dengan NPV PNE penawaran ACCEPT.
+A299,"Status floor: OK (dalam batas pasar, di bawah 50%, dan lebih baik dari ACCEPT)",,,
+A300,B. TITIK OPTIMUM NEGOSIASI (SOLUSI ANALITIS),Nilai,Satuan,Keterangan
+A301,WI XYZ minimum agar CAPEX PNE <= constraint,0.05375045201367401,%,Batas bawah dari capital constraint (carry pada batas penerimaan XYZ)
+A302,WI XYZ minimum agar XYZ layak pada carry 0%,0,%,Batas bawah dari sisi XYZ
+A303,WI XYZ optimum,0.25,%,"Terbesar dari: batas capital constraint, batas XYZ layak, dan floor pasar (B294)"
+A304,WI PNE optimum,0.75,%,
+A305,Carry XYZ optimum (porsi CAPEX t = 0 ditanggung XYZ),0.75,%,"Carry maksimum yang masih diterima XYZ, dibatasi plafon promote (B295 x WI)"
+A306,NPV PNE (FI),300337409.0902103,USD,NPV SA dikurangi NPV XYZ pada WI dan carry optimum
+A307,NPV XYZ (FI),84187560.49673678,USD,
+A308,CAPEX PNE total 2026-2045 (FI),54953068.25,USD,Dibandingkan dengan capital constraint
+A309,Status titik optimum,LAYAK,,
+A310,CAPEX PNE bila SA (100% WI),99812273,USD,"Melebihi constraint: SA tidak terdanai, Farm-In diperlukan"
+A311,NPV PNE (FI) kasus dasar,237881190.89216825,USD,Pembanding: WI/carry di 1.Contoh Perhitungan
+A312,CAPEX PNE total (FI) kasus dasar,47943681.900000006,USD,

@@ -223,7 +223,7 @@ st.markdown(
         opacity: 0.95 !important;
     }
 
-    /* Penegasan Visual Input Box & Form (Mencegah Input Box Tidak Terlihat) */
+    /* Penegasan Visual Input Box & Form (Mencegah Input Box Tidak Terlihat di semua versi Streamlit) */
     div[data-testid="stForm"] {
         background-color: #FFFFFF !important;
         border: 1.5px solid #CBD5E1 !important;
@@ -231,21 +231,31 @@ st.markdown(
         padding: 20px !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
     }
+    div[data-testid="stTextInputRootElement"],
+    div[data-testid="stTextInput"] div[data-testid="stTextInputRootElement"],
     div[data-testid="stTextInput"] div[data-baseweb="input"],
     div[data-testid="stTextInput"] div[data-baseweb="base-input"],
-    div[data-baseweb="input"] {
+    div[data-baseweb="input"],
+    div[data-baseweb="base-input"],
+    .stTextInput > div > div {
         background-color: #FFFFFF !important;
-        border: 1.8px solid #94A3B8 !important;
+        border: 2px solid #64748B !important;
         border-radius: 8px !important;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) inset !important;
         transition: border-color 150ms ease, box-shadow 150ms ease !important;
     }
+    div[data-testid="stTextInputRootElement"]:focus-within,
+    div[data-testid="stTextInput"] div[data-testid="stTextInputRootElement"]:focus-within,
     div[data-testid="stTextInput"] div[data-baseweb="input"]:focus-within,
-    div[data-baseweb="input"]:focus-within {
+    div[data-baseweb="input"]:focus-within,
+    div[data-baseweb="base-input"]:focus-within,
+    .stTextInput > div > div:focus-within {
         border-color: #1E88E5 !important;
         box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.25) !important;
     }
-    div[data-testid="stTextInput"] input {
+    input[data-testid="stTextInputField"],
+    div[data-testid="stTextInput"] input,
+    .stTextInput input {
         color: #0F172A !important;
         -webkit-text-fill-color: #0F172A !important;
         background-color: transparent !important;
@@ -254,6 +264,7 @@ st.markdown(
         border: none !important;
         outline: none !important;
     }
+    input[data-testid="stTextInputField"]::placeholder,
     div[data-testid="stTextInput"] input::placeholder,
     div[data-baseweb="input"] input::placeholder,
     input::placeholder {
@@ -267,8 +278,10 @@ st.markdown(
         font-size: 0.95rem !important;
         margin-bottom: 6px !important;
     }
-    div[data-testid="stTextInput"] svg {
+    div[data-testid="stTextInput"] svg,
+    div[data-testid="stTextInput"] button {
         fill: #475569 !important;
+        color: #475569 !important;
     }
 
     /* Metric card value & styling */

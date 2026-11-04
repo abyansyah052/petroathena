@@ -172,6 +172,50 @@ def render_settings_page(engine_results: dict):
         col_gate, _ = st.columns([1.3, 1.7])
         with col_gate:
             st.info("🔒 Akses pengaturan generator skenario kustom dilindungi kata sandi.")
+            st.markdown(
+                """
+                <style>
+                div[data-testid="stTextInputRootElement"],
+                div[data-testid="stTextInput"] div[data-testid="stTextInputRootElement"],
+                div[data-testid="stTextInput"] div[data-baseweb="input"],
+                div[data-testid="stTextInput"] div[data-baseweb="base-input"],
+                div[data-baseweb="input"],
+                div[data-baseweb="base-input"],
+                .stTextInput > div > div {
+                    background-color: #FFFFFF !important;
+                    border: 2px solid #64748B !important;
+                    border-radius: 8px !important;
+                    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) inset !important;
+                }
+                div[data-testid="stTextInputRootElement"]:focus-within,
+                div[data-testid="stTextInput"] div[data-testid="stTextInputRootElement"]:focus-within,
+                div[data-baseweb="base-input"]:focus-within {
+                    border-color: #1E88E5 !important;
+                    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.25) !important;
+                }
+                input[data-testid="stTextInputField"],
+                div[data-testid="stTextInput"] input {
+                    color: #0F172A !important;
+                    -webkit-text-fill-color: #0F172A !important;
+                    background-color: transparent !important;
+                    font-size: 1.0rem !important;
+                    padding: 8px 12px !important;
+                }
+                input[data-testid="stTextInputField"]::placeholder,
+                div[data-testid="stTextInput"] input::placeholder {
+                    color: #64748B !important;
+                    -webkit-text-fill-color: #64748B !important;
+                    opacity: 0.70 !important;
+                }
+                div[data-testid="stTextInput"] svg,
+                div[data-testid="stTextInput"] button {
+                    fill: #475569 !important;
+                    color: #475569 !important;
+                }
+                </style>
+                """,
+                unsafe_allow_html=True,
+            )
             with st.form("config_unlock_form"):
                 st.markdown("**Masukkan Kata Sandi:**")
                 pwd_input = st.text_input(

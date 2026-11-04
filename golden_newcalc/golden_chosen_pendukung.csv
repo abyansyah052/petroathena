@@ -1,0 +1,13 @@
+sel_awal,A,B,C,D
+A416,Diskon 8%,0.08,22273993.257514797,262518323.8844422
+A417,Diskon 10%,0.1,19984780.738820508,238455403.1965237
+A418,Diskon 12%,0.12,18079559.999270946,218772746.00222588
+A420,Parameter,Nilai,Satuan,
+A421,Bagian kontraktor (gross split),0.55,%,
+A422,Pajak penghasilan kontraktor,0.4,%,
+A423,Working Interest PNE (FI),0.75,%,
+A424,Working Interest XYZ (FI),0.25,%,
+A425,Porsi CAPEX Program ditanggung XYZ (carry),0.6656204655522788,%,
+A426,CAPEX t = 0,39812273,USD,
+A427,Total production 2026-2045,38000000,bbl,
+A428,Total biaya 2026-2045 (CAPEX + OPEX + lifting),436506326.17318606,USD,

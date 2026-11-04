@@ -1,0 +1,21 @@
+sel_awal,A,B,C,D,E,F,G,H,I,J,K
+A282,E1,GHG operasional (Scope 1 + 2),Environmental,0.10932857991681522,0.3610324461907233,0.03947116464592578,10,Cost,Model tim,10,Environmental Model: Scope 1 + 2
+A283,E2,GHG rantai nilai (Scope 3),Environmental,0.10932857991681522,0.06539797859984679,0.007149868129751521,20,Cost,Model tim,20,Environmental Model: Scope 3 per bbl
+A284,E3,Air terproduksi: volume dan pengelolaan,Environmental,0.10932857991681522,0.3610324461907233,0.03947116464592578,10,Cost,Model tim,11,Environmental Model: air terproduksi
+A285,E4,Penggunaan dan toksisitas bahan kimia,Environmental,0.10932857991681522,0.1428838312699236,0.015621286365814583,18,Cost,Kualitatif,18,Skor kualitatif tim
+A286,E5,"Tumpahan, limbah B3, dan jejak lahan",Environmental,0.10932857991681522,0.06965329774878296,0.007615096129397543,19,Cost,Kualitatif,19,Skor kualitatif tim
+A287,T1,Kecocokan reservoir dan masalah air,Technical,0.18924539512774807,0.39388888888888884,0.07454165841420743,4,Benefit,Kualitatif,4,Skor kualitatif tim
+A288,T2,Kematangan teknologi dan rekam jejak lokal,Technical,0.18924539512774807,0.1238888888888889,0.023445401729715456,15,Benefit,Kualitatif,15,Skor kualitatif tim
+A289,T3,Kompleksitas operasional dan ketersediaan sumber daya,Technical,0.18924539512774807,0.1238888888888889,0.023445401729715456,15,Benefit,Kualitatif,16,Skor kualitatif tim
+A290,T4,Durabilitas terhadap umur fasilitas,Technical,0.18924539512774807,0.2344444444444444,0.04436753152439426,9,Benefit,Data tim,9,Estimasi umur perlakuan vs 5 tahun
+A291,T5,Skalabilitas lintas sumur dan interaksi kombinasi,Technical,0.18924539512774807,0.1238888888888889,0.023445401729715456,15,Benefit,Data tim,17,Jumlah sumur terjangkau dan interaksi kombinasi
+A292,R1,Ketidakpastian bawah permukaan dan kinerja,Risk,0.3507130124777184,0.29762237762237764,0.10438004063672515,2,Cost,Kualitatif,2,Skor kualitatif tim
+A293,R2,"Risiko teknis dan eksekusi (integritas sumur, jadwal, HSE)",Risk,0.3507130124777184,0.15790209790209792,0.05537832043179638,7,Cost,Kualitatif,7,Skor kualitatif tim
+A294,R3,Eksposur capex dan pembengkakan biaya,Risk,0.3507130124777184,0.15790209790209792,0.05537832043179638,7,Cost,Model tim,8,Financial Projection: capex
+A295,R4,Risiko pasar dan harga minyak,Risk,0.3507130124777184,0.29762237762237764,0.10438004063672515,2,Cost,Model tim,3,Financial Projection: ICP breakeven
+A296,R5,"Risiko regulasi, kontrak, dan tenor",Risk,0.3507130124777184,0.08895104895104895,0.03119629034067537,14,Cost,Data tim,14,Financial Projection: payback
+A297,F1,NPV 10% pada ICP 80 USD/bbl,Financial,0.3507130124777184,0.4355555555555556,0.15275500099029515,1,Benefit,Model tim,1,"1.Financial Projection (SA): NPV,10 pada ICP 80 USD"
+A298,F2,IRR proyek pada ICP 80 USD/bbl,Financial,0.3507130124777184,0.1807407407407407,0.06338812966263946,5,Benefit,Model tim,5,1.Financial Projection (SA): IRR pada ICP 80 USD
+A299,F3,PNE Take pada ICP 80 USD/bbl,Financial,0.3507130124777184,0.1807407407407407,0.06338812966263946,5,Benefit,Model tim,6,1.Financial Projection (SA): PNE Take pada ICP 80 USD
+A300,F4,Total OPEX 15 tahun,Financial,0.3507130124777184,0.09777777777777777,0.034291938997821354,13,Cost,Model tim,13,1.Financial Projection (SA): Total OPEX
+A301,F5,Produksi minyak kumulatif 15 tahun,Financial,0.3507130124777184,0.10518518518518519,0.03688981316432297,12,Benefit,Model tim,12,1.Financial Projection (SA): Total Production

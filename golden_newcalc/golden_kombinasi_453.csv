@@ -1,0 +1,454 @@
+no,nama_0.Combination!R,id_crc_1,id_crc_2,id_crc_3,id_crc_4,ukuran
+1,Polymer/Cross-linked Bulk Gel Treatment,1,,,,1
+2,Preformed Particle Gel (PPG),2,,,,1
+3,Gel + Cement Combination Squeeze,3,,,,1
+4,Straddle Packer (termasuk HEX type),4,,,,1
+5,Swellable/Inflatable Packer,5,,,,1
+6,Bridge Plug (mechanical/cast-iron),6,,,,1
+7,Combined Mechanical Isolation + Gel Injection,7,,,,1
+8,AS-1 Packer + CIBP,8,,,,1
+9,Inflow Control Device (ICD),9,,,,1
+10,Autonomous Inflow Control Device/Valve (AICD/AICV),10,,,,1
+11,Targeted Re-perforation (Zona Baru/Bypassed),11,,,,1
+12,Selective Re-completion Guided by PLT,12,,,,1
+13,Selective Re-completion Guided by Saturation Log (RST/PNN),13,,,,1
+14,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG),1,2,,,2
+15,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type),1,4,,,2
+16,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer,1,5,,,2
+17,Polymer/Cross-linked Bulk Gel Treatment + Bridge Plug (mechanical/cast-iron),1,6,,,2
+18,Polymer/Cross-linked Bulk Gel Treatment + AS-1 Packer + CIBP,1,8,,,2
+19,Polymer/Cross-linked Bulk Gel Treatment + Inflow Control Device (ICD),1,9,,,2
+20,Polymer/Cross-linked Bulk Gel Treatment + Autonomous Inflow Control Device/Valve (AICD/AICV),1,10,,,2
+21,Polymer/Cross-linked Bulk Gel Treatment + Targeted Re-perforation (Zona Baru/Bypassed),1,11,,,2
+22,Polymer/Cross-linked Bulk Gel Treatment + Selective Re-completion Guided by PLT,1,12,,,2
+23,Polymer/Cross-linked Bulk Gel Treatment + Selective Re-completion Guided by Saturation Log (RST/PNN),1,13,,,2
+24,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze,2,3,,,2
+25,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type),2,4,,,2
+26,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer,2,5,,,2
+27,Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron),2,6,,,2
+28,Preformed Particle Gel (PPG) + Combined Mechanical Isolation + Gel Injection,2,7,,,2
+29,Preformed Particle Gel (PPG) + AS-1 Packer + CIBP,2,8,,,2
+30,Preformed Particle Gel (PPG) + Inflow Control Device (ICD),2,9,,,2
+31,Preformed Particle Gel (PPG) + Autonomous Inflow Control Device/Valve (AICD/AICV),2,10,,,2
+32,Preformed Particle Gel (PPG) + Targeted Re-perforation (Zona Baru/Bypassed),2,11,,,2
+33,Preformed Particle Gel (PPG) + Selective Re-completion Guided by PLT,2,12,,,2
+34,Preformed Particle Gel (PPG) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,13,,,2
+35,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type),3,4,,,2
+36,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer,3,5,,,2
+37,Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron),3,6,,,2
+38,Gel + Cement Combination Squeeze + AS-1 Packer + CIBP,3,8,,,2
+39,Gel + Cement Combination Squeeze + Inflow Control Device (ICD),3,9,,,2
+40,Gel + Cement Combination Squeeze + Autonomous Inflow Control Device/Valve (AICD/AICV),3,10,,,2
+41,Gel + Cement Combination Squeeze + Targeted Re-perforation (Zona Baru/Bypassed),3,11,,,2
+42,Gel + Cement Combination Squeeze + Selective Re-completion Guided by PLT,3,12,,,2
+43,Gel + Cement Combination Squeeze + Selective Re-completion Guided by Saturation Log (RST/PNN),3,13,,,2
+44,Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer,4,5,,,2
+45,Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron),4,6,,,2
+46,Straddle Packer (termasuk HEX type) + Inflow Control Device (ICD),4,9,,,2
+47,Straddle Packer (termasuk HEX type) + Autonomous Inflow Control Device/Valve (AICD/AICV),4,10,,,2
+48,Straddle Packer (termasuk HEX type) + Targeted Re-perforation (Zona Baru/Bypassed),4,11,,,2
+49,Straddle Packer (termasuk HEX type) + Selective Re-completion Guided by PLT,4,12,,,2
+50,Straddle Packer (termasuk HEX type) + Selective Re-completion Guided by Saturation Log (RST/PNN),4,13,,,2
+51,Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron),5,6,,,2
+52,Swellable/Inflatable Packer + Combined Mechanical Isolation + Gel Injection,5,7,,,2
+53,Swellable/Inflatable Packer + AS-1 Packer + CIBP,5,8,,,2
+54,Swellable/Inflatable Packer + Inflow Control Device (ICD),5,9,,,2
+55,Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV),5,10,,,2
+56,Swellable/Inflatable Packer + Selective Re-completion Guided by PLT,5,12,,,2
+57,Swellable/Inflatable Packer + Selective Re-completion Guided by Saturation Log (RST/PNN),5,13,,,2
+58,Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),6,9,,,2
+59,Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),6,10,,,2
+60,Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed),6,11,,,2
+61,Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,6,12,,,2
+62,Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),6,13,,,2
+63,Combined Mechanical Isolation + Gel Injection + Inflow Control Device (ICD),7,9,,,2
+64,Combined Mechanical Isolation + Gel Injection + Autonomous Inflow Control Device/Valve (AICD/AICV),7,10,,,2
+65,Combined Mechanical Isolation + Gel Injection + Targeted Re-perforation (Zona Baru/Bypassed),7,11,,,2
+66,Combined Mechanical Isolation + Gel Injection + Selective Re-completion Guided by PLT,7,12,,,2
+67,Combined Mechanical Isolation + Gel Injection + Selective Re-completion Guided by Saturation Log (RST/PNN),7,13,,,2
+68,AS-1 Packer + CIBP + Inflow Control Device (ICD),8,9,,,2
+69,AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV),8,10,,,2
+70,AS-1 Packer + CIBP + Targeted Re-perforation (Zona Baru/Bypassed),8,11,,,2
+71,AS-1 Packer + CIBP + Selective Re-completion Guided by PLT,8,12,,,2
+72,AS-1 Packer + CIBP + Selective Re-completion Guided by Saturation Log (RST/PNN),8,13,,,2
+73,Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,9,12,,,2
+74,Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),9,13,,,2
+75,Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,10,12,,,2
+76,Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),10,13,,,2
+77,Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,11,12,,,2
+78,Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),11,13,,,2
+79,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type),1,2,4,,3
+80,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Swellable/Inflatable Packer,1,2,5,,3
+81,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron),1,2,6,,3
+82,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + AS-1 Packer + CIBP,1,2,8,,3
+83,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Inflow Control Device (ICD),1,2,9,,3
+84,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Autonomous Inflow Control Device/Valve (AICD/AICV),1,2,10,,3
+85,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Targeted Re-perforation (Zona Baru/Bypassed),1,2,11,,3
+86,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Selective Re-completion Guided by PLT,1,2,12,,3
+87,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,2,13,,3
+88,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer,1,4,5,,3
+89,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron),1,4,6,,3
+90,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Inflow Control Device (ICD),1,4,9,,3
+91,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Autonomous Inflow Control Device/Valve (AICD/AICV),1,4,10,,3
+92,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Targeted Re-perforation (Zona Baru/Bypassed),1,4,11,,3
+93,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Selective Re-completion Guided by PLT,1,4,12,,3
+94,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,4,13,,3
+95,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron),1,5,6,,3
+96,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + AS-1 Packer + CIBP,1,5,8,,3
+97,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + Inflow Control Device (ICD),1,5,9,,3
+98,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV),1,5,10,,3
+99,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + Selective Re-completion Guided by PLT,1,5,12,,3
+100,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + Selective Re-completion Guided by Saturation Log (RST/PNN),1,5,13,,3
+101,Polymer/Cross-linked Bulk Gel Treatment + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),1,6,9,,3
+102,Polymer/Cross-linked Bulk Gel Treatment + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),1,6,10,,3
+103,Polymer/Cross-linked Bulk Gel Treatment + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed),1,6,11,,3
+104,Polymer/Cross-linked Bulk Gel Treatment + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,1,6,12,,3
+105,Polymer/Cross-linked Bulk Gel Treatment + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,6,13,,3
+106,Polymer/Cross-linked Bulk Gel Treatment + AS-1 Packer + CIBP + Inflow Control Device (ICD),1,8,9,,3
+107,Polymer/Cross-linked Bulk Gel Treatment + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV),1,8,10,,3
+108,Polymer/Cross-linked Bulk Gel Treatment + AS-1 Packer + CIBP + Targeted Re-perforation (Zona Baru/Bypassed),1,8,11,,3
+109,Polymer/Cross-linked Bulk Gel Treatment + AS-1 Packer + CIBP + Selective Re-completion Guided by PLT,1,8,12,,3
+110,Polymer/Cross-linked Bulk Gel Treatment + AS-1 Packer + CIBP + Selective Re-completion Guided by Saturation Log (RST/PNN),1,8,13,,3
+111,Polymer/Cross-linked Bulk Gel Treatment + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,1,9,12,,3
+112,Polymer/Cross-linked Bulk Gel Treatment + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,9,13,,3
+113,Polymer/Cross-linked Bulk Gel Treatment + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,1,10,12,,3
+114,Polymer/Cross-linked Bulk Gel Treatment + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,10,13,,3
+115,Polymer/Cross-linked Bulk Gel Treatment + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,1,11,12,,3
+116,Polymer/Cross-linked Bulk Gel Treatment + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,11,13,,3
+117,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type),2,3,4,,3
+118,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Swellable/Inflatable Packer,2,3,5,,3
+119,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron),2,3,6,,3
+120,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + AS-1 Packer + CIBP,2,3,8,,3
+121,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Inflow Control Device (ICD),2,3,9,,3
+122,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Autonomous Inflow Control Device/Valve (AICD/AICV),2,3,10,,3
+123,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Targeted Re-perforation (Zona Baru/Bypassed),2,3,11,,3
+124,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Selective Re-completion Guided by PLT,2,3,12,,3
+125,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Selective Re-completion Guided by Saturation Log (RST/PNN),2,3,13,,3
+126,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer,2,4,5,,3
+127,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron),2,4,6,,3
+128,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Inflow Control Device (ICD),2,4,9,,3
+129,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Autonomous Inflow Control Device/Valve (AICD/AICV),2,4,10,,3
+130,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Targeted Re-perforation (Zona Baru/Bypassed),2,4,11,,3
+131,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Selective Re-completion Guided by PLT,2,4,12,,3
+132,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,4,13,,3
+133,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron),2,5,6,,3
+134,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Combined Mechanical Isolation + Gel Injection,2,5,7,,3
+135,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + AS-1 Packer + CIBP,2,5,8,,3
+136,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Inflow Control Device (ICD),2,5,9,,3
+137,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV),2,5,10,,3
+138,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Selective Re-completion Guided by PLT,2,5,12,,3
+139,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Selective Re-completion Guided by Saturation Log (RST/PNN),2,5,13,,3
+140,Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),2,6,9,,3
+141,Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),2,6,10,,3
+142,Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed),2,6,11,,3
+143,Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,2,6,12,,3
+144,Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,6,13,,3
+145,Preformed Particle Gel (PPG) + Combined Mechanical Isolation + Gel Injection + Inflow Control Device (ICD),2,7,9,,3
+146,Preformed Particle Gel (PPG) + Combined Mechanical Isolation + Gel Injection + Autonomous Inflow Control Device/Valve (AICD/AICV),2,7,10,,3
+147,Preformed Particle Gel (PPG) + Combined Mechanical Isolation + Gel Injection + Targeted Re-perforation (Zona Baru/Bypassed),2,7,11,,3
+148,Preformed Particle Gel (PPG) + Combined Mechanical Isolation + Gel Injection + Selective Re-completion Guided by PLT,2,7,12,,3
+149,Preformed Particle Gel (PPG) + Combined Mechanical Isolation + Gel Injection + Selective Re-completion Guided by Saturation Log (RST/PNN),2,7,13,,3
+150,Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Inflow Control Device (ICD),2,8,9,,3
+151,Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV),2,8,10,,3
+152,Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Targeted Re-perforation (Zona Baru/Bypassed),2,8,11,,3
+153,Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Selective Re-completion Guided by PLT,2,8,12,,3
+154,Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Selective Re-completion Guided by Saturation Log (RST/PNN),2,8,13,,3
+155,Preformed Particle Gel (PPG) + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,2,9,12,,3
+156,Preformed Particle Gel (PPG) + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,9,13,,3
+157,Preformed Particle Gel (PPG) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,2,10,12,,3
+158,Preformed Particle Gel (PPG) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,10,13,,3
+159,Preformed Particle Gel (PPG) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,2,11,12,,3
+160,Preformed Particle Gel (PPG) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,11,13,,3
+161,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer,3,4,5,,3
+162,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron),3,4,6,,3
+163,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Inflow Control Device (ICD),3,4,9,,3
+164,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Autonomous Inflow Control Device/Valve (AICD/AICV),3,4,10,,3
+165,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Targeted Re-perforation (Zona Baru/Bypassed),3,4,11,,3
+166,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Selective Re-completion Guided by PLT,3,4,12,,3
+167,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,4,13,,3
+168,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron),3,5,6,,3
+169,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + AS-1 Packer + CIBP,3,5,8,,3
+170,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Inflow Control Device (ICD),3,5,9,,3
+171,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV),3,5,10,,3
+172,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Selective Re-completion Guided by PLT,3,5,12,,3
+173,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Selective Re-completion Guided by Saturation Log (RST/PNN),3,5,13,,3
+174,Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),3,6,9,,3
+175,Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),3,6,10,,3
+176,Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed),3,6,11,,3
+177,Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,3,6,12,,3
+178,Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,6,13,,3
+179,Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Inflow Control Device (ICD),3,8,9,,3
+180,Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV),3,8,10,,3
+181,Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Targeted Re-perforation (Zona Baru/Bypassed),3,8,11,,3
+182,Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Selective Re-completion Guided by PLT,3,8,12,,3
+183,Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Selective Re-completion Guided by Saturation Log (RST/PNN),3,8,13,,3
+184,Gel + Cement Combination Squeeze + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,3,9,12,,3
+185,Gel + Cement Combination Squeeze + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,9,13,,3
+186,Gel + Cement Combination Squeeze + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,3,10,12,,3
+187,Gel + Cement Combination Squeeze + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,10,13,,3
+188,Gel + Cement Combination Squeeze + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,3,11,12,,3
+189,Gel + Cement Combination Squeeze + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,11,13,,3
+190,Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron),4,5,6,,3
+191,Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Inflow Control Device (ICD),4,5,9,,3
+192,Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV),4,5,10,,3
+193,Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Selective Re-completion Guided by PLT,4,5,12,,3
+194,Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Selective Re-completion Guided by Saturation Log (RST/PNN),4,5,13,,3
+195,Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),4,6,9,,3
+196,Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),4,6,10,,3
+197,Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed),4,6,11,,3
+198,Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,4,6,12,,3
+199,Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),4,6,13,,3
+200,Straddle Packer (termasuk HEX type) + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,4,9,12,,3
+201,Straddle Packer (termasuk HEX type) + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),4,9,13,,3
+202,Straddle Packer (termasuk HEX type) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,4,10,12,,3
+203,Straddle Packer (termasuk HEX type) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),4,10,13,,3
+204,Straddle Packer (termasuk HEX type) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,4,11,12,,3
+205,Straddle Packer (termasuk HEX type) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),4,11,13,,3
+206,Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),5,6,9,,3
+207,Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),5,6,10,,3
+208,Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,5,6,12,,3
+209,Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),5,6,13,,3
+210,Swellable/Inflatable Packer + Combined Mechanical Isolation + Gel Injection + Inflow Control Device (ICD),5,7,9,,3
+211,Swellable/Inflatable Packer + Combined Mechanical Isolation + Gel Injection + Autonomous Inflow Control Device/Valve (AICD/AICV),5,7,10,,3
+212,Swellable/Inflatable Packer + Combined Mechanical Isolation + Gel Injection + Selective Re-completion Guided by PLT,5,7,12,,3
+213,Swellable/Inflatable Packer + Combined Mechanical Isolation + Gel Injection + Selective Re-completion Guided by Saturation Log (RST/PNN),5,7,13,,3
+214,Swellable/Inflatable Packer + AS-1 Packer + CIBP + Inflow Control Device (ICD),5,8,9,,3
+215,Swellable/Inflatable Packer + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV),5,8,10,,3
+216,Swellable/Inflatable Packer + AS-1 Packer + CIBP + Selective Re-completion Guided by PLT,5,8,12,,3
+217,Swellable/Inflatable Packer + AS-1 Packer + CIBP + Selective Re-completion Guided by Saturation Log (RST/PNN),5,8,13,,3
+218,Swellable/Inflatable Packer + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,5,9,12,,3
+219,Swellable/Inflatable Packer + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),5,9,13,,3
+220,Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,5,10,12,,3
+221,Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),5,10,13,,3
+222,Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,6,9,12,,3
+223,Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),6,9,13,,3
+224,Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,6,10,12,,3
+225,Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),6,10,13,,3
+226,Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,6,11,12,,3
+227,Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),6,11,13,,3
+228,Combined Mechanical Isolation + Gel Injection + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,7,9,12,,3
+229,Combined Mechanical Isolation + Gel Injection + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),7,9,13,,3
+230,Combined Mechanical Isolation + Gel Injection + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,7,10,12,,3
+231,Combined Mechanical Isolation + Gel Injection + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),7,10,13,,3
+232,Combined Mechanical Isolation + Gel Injection + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,7,11,12,,3
+233,Combined Mechanical Isolation + Gel Injection + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),7,11,13,,3
+234,AS-1 Packer + CIBP + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,8,9,12,,3
+235,AS-1 Packer + CIBP + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),8,9,13,,3
+236,AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,8,10,12,,3
+237,AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),8,10,13,,3
+238,AS-1 Packer + CIBP + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,8,11,12,,3
+239,AS-1 Packer + CIBP + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),8,11,13,,3
+240,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer,1,2,4,5,4
+241,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron),1,2,4,6,4
+242,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Inflow Control Device (ICD),1,2,4,9,4
+243,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Autonomous Inflow Control Device/Valve (AICD/AICV),1,2,4,10,4
+244,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Targeted Re-perforation (Zona Baru/Bypassed),1,2,4,11,4
+245,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Selective Re-completion Guided by PLT,1,2,4,12,4
+246,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,2,4,13,4
+247,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron),1,2,5,6,4
+248,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + AS-1 Packer + CIBP,1,2,5,8,4
+249,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Inflow Control Device (ICD),1,2,5,9,4
+250,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV),1,2,5,10,4
+251,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Selective Re-completion Guided by PLT,1,2,5,12,4
+252,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Selective Re-completion Guided by Saturation Log (RST/PNN),1,2,5,13,4
+253,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),1,2,6,9,4
+254,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),1,2,6,10,4
+255,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed),1,2,6,11,4
+256,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,1,2,6,12,4
+257,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,2,6,13,4
+258,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Inflow Control Device (ICD),1,2,8,9,4
+259,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV),1,2,8,10,4
+260,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Targeted Re-perforation (Zona Baru/Bypassed),1,2,8,11,4
+261,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Selective Re-completion Guided by PLT,1,2,8,12,4
+262,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Selective Re-completion Guided by Saturation Log (RST/PNN),1,2,8,13,4
+263,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,1,2,9,12,4
+264,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,2,9,13,4
+265,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,1,2,10,12,4
+266,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,2,10,13,4
+267,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,1,2,11,12,4
+268,Polymer/Cross-linked Bulk Gel Treatment + Preformed Particle Gel (PPG) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,2,11,13,4
+269,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron),1,4,5,6,4
+270,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Inflow Control Device (ICD),1,4,5,9,4
+271,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV),1,4,5,10,4
+272,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Selective Re-completion Guided by PLT,1,4,5,12,4
+273,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Selective Re-completion Guided by Saturation Log (RST/PNN),1,4,5,13,4
+274,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),1,4,6,9,4
+275,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),1,4,6,10,4
+276,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed),1,4,6,11,4
+277,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,1,4,6,12,4
+278,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,4,6,13,4
+279,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,1,4,9,12,4
+280,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,4,9,13,4
+281,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,1,4,10,12,4
+282,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,4,10,13,4
+283,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,1,4,11,12,4
+284,Polymer/Cross-linked Bulk Gel Treatment + Straddle Packer (termasuk HEX type) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,4,11,13,4
+285,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),1,5,6,9,4
+286,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),1,5,6,10,4
+287,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,1,5,6,12,4
+288,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,5,6,13,4
+289,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + AS-1 Packer + CIBP + Inflow Control Device (ICD),1,5,8,9,4
+290,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV),1,5,8,10,4
+291,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + AS-1 Packer + CIBP + Selective Re-completion Guided by PLT,1,5,8,12,4
+292,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + AS-1 Packer + CIBP + Selective Re-completion Guided by Saturation Log (RST/PNN),1,5,8,13,4
+293,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,1,5,9,12,4
+294,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,5,9,13,4
+295,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,1,5,10,12,4
+296,Polymer/Cross-linked Bulk Gel Treatment + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,5,10,13,4
+297,Polymer/Cross-linked Bulk Gel Treatment + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,1,6,9,12,4
+298,Polymer/Cross-linked Bulk Gel Treatment + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,6,9,13,4
+299,Polymer/Cross-linked Bulk Gel Treatment + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,1,6,10,12,4
+300,Polymer/Cross-linked Bulk Gel Treatment + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,6,10,13,4
+301,Polymer/Cross-linked Bulk Gel Treatment + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,1,6,11,12,4
+302,Polymer/Cross-linked Bulk Gel Treatment + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,6,11,13,4
+303,Polymer/Cross-linked Bulk Gel Treatment + AS-1 Packer + CIBP + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,1,8,9,12,4
+304,Polymer/Cross-linked Bulk Gel Treatment + AS-1 Packer + CIBP + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,8,9,13,4
+305,Polymer/Cross-linked Bulk Gel Treatment + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,1,8,10,12,4
+306,Polymer/Cross-linked Bulk Gel Treatment + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,8,10,13,4
+307,Polymer/Cross-linked Bulk Gel Treatment + AS-1 Packer + CIBP + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,1,8,11,12,4
+308,Polymer/Cross-linked Bulk Gel Treatment + AS-1 Packer + CIBP + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),1,8,11,13,4
+309,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer,2,3,4,5,4
+310,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron),2,3,4,6,4
+311,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Inflow Control Device (ICD),2,3,4,9,4
+312,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Autonomous Inflow Control Device/Valve (AICD/AICV),2,3,4,10,4
+313,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Targeted Re-perforation (Zona Baru/Bypassed),2,3,4,11,4
+314,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Selective Re-completion Guided by PLT,2,3,4,12,4
+315,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,3,4,13,4
+316,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron),2,3,5,6,4
+317,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + AS-1 Packer + CIBP,2,3,5,8,4
+318,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Inflow Control Device (ICD),2,3,5,9,4
+319,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV),2,3,5,10,4
+320,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Selective Re-completion Guided by PLT,2,3,5,12,4
+321,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Selective Re-completion Guided by Saturation Log (RST/PNN),2,3,5,13,4
+322,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),2,3,6,9,4
+323,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),2,3,6,10,4
+324,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed),2,3,6,11,4
+325,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,2,3,6,12,4
+326,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,3,6,13,4
+327,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Inflow Control Device (ICD),2,3,8,9,4
+328,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV),2,3,8,10,4
+329,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Targeted Re-perforation (Zona Baru/Bypassed),2,3,8,11,4
+330,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Selective Re-completion Guided by PLT,2,3,8,12,4
+331,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Selective Re-completion Guided by Saturation Log (RST/PNN),2,3,8,13,4
+332,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,2,3,9,12,4
+333,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,3,9,13,4
+334,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,2,3,10,12,4
+335,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,3,10,13,4
+336,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,2,3,11,12,4
+337,Preformed Particle Gel (PPG) + Gel + Cement Combination Squeeze + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,3,11,13,4
+338,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron),2,4,5,6,4
+339,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Inflow Control Device (ICD),2,4,5,9,4
+340,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV),2,4,5,10,4
+341,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Selective Re-completion Guided by PLT,2,4,5,12,4
+342,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Selective Re-completion Guided by Saturation Log (RST/PNN),2,4,5,13,4
+343,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),2,4,6,9,4
+344,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),2,4,6,10,4
+345,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed),2,4,6,11,4
+346,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,2,4,6,12,4
+347,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,4,6,13,4
+348,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,2,4,9,12,4
+349,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,4,9,13,4
+350,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,2,4,10,12,4
+351,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,4,10,13,4
+352,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,2,4,11,12,4
+353,Preformed Particle Gel (PPG) + Straddle Packer (termasuk HEX type) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,4,11,13,4
+354,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),2,5,6,9,4
+355,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),2,5,6,10,4
+356,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,2,5,6,12,4
+357,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,5,6,13,4
+358,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Combined Mechanical Isolation + Gel Injection + Inflow Control Device (ICD),2,5,7,9,4
+359,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Combined Mechanical Isolation + Gel Injection + Autonomous Inflow Control Device/Valve (AICD/AICV),2,5,7,10,4
+360,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Combined Mechanical Isolation + Gel Injection + Selective Re-completion Guided by PLT,2,5,7,12,4
+361,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Combined Mechanical Isolation + Gel Injection + Selective Re-completion Guided by Saturation Log (RST/PNN),2,5,7,13,4
+362,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + AS-1 Packer + CIBP + Inflow Control Device (ICD),2,5,8,9,4
+363,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV),2,5,8,10,4
+364,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + AS-1 Packer + CIBP + Selective Re-completion Guided by PLT,2,5,8,12,4
+365,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + AS-1 Packer + CIBP + Selective Re-completion Guided by Saturation Log (RST/PNN),2,5,8,13,4
+366,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,2,5,9,12,4
+367,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,5,9,13,4
+368,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,2,5,10,12,4
+369,Preformed Particle Gel (PPG) + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,5,10,13,4
+370,Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,2,6,9,12,4
+371,Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,6,9,13,4
+372,Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,2,6,10,12,4
+373,Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,6,10,13,4
+374,Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,2,6,11,12,4
+375,Preformed Particle Gel (PPG) + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,6,11,13,4
+376,Preformed Particle Gel (PPG) + Combined Mechanical Isolation + Gel Injection + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,2,7,9,12,4
+377,Preformed Particle Gel (PPG) + Combined Mechanical Isolation + Gel Injection + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,7,9,13,4
+378,Preformed Particle Gel (PPG) + Combined Mechanical Isolation + Gel Injection + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,2,7,10,12,4
+379,Preformed Particle Gel (PPG) + Combined Mechanical Isolation + Gel Injection + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,7,10,13,4
+380,Preformed Particle Gel (PPG) + Combined Mechanical Isolation + Gel Injection + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,2,7,11,12,4
+381,Preformed Particle Gel (PPG) + Combined Mechanical Isolation + Gel Injection + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,7,11,13,4
+382,Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,2,8,9,12,4
+383,Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,8,9,13,4
+384,Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,2,8,10,12,4
+385,Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,8,10,13,4
+386,Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,2,8,11,12,4
+387,Preformed Particle Gel (PPG) + AS-1 Packer + CIBP + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),2,8,11,13,4
+388,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron),3,4,5,6,4
+389,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Inflow Control Device (ICD),3,4,5,9,4
+390,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV),3,4,5,10,4
+391,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Selective Re-completion Guided by PLT,3,4,5,12,4
+392,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Selective Re-completion Guided by Saturation Log (RST/PNN),3,4,5,13,4
+393,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),3,4,6,9,4
+394,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),3,4,6,10,4
+395,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed),3,4,6,11,4
+396,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,3,4,6,12,4
+397,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,4,6,13,4
+398,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,3,4,9,12,4
+399,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,4,9,13,4
+400,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,3,4,10,12,4
+401,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,4,10,13,4
+402,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,3,4,11,12,4
+403,Gel + Cement Combination Squeeze + Straddle Packer (termasuk HEX type) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,4,11,13,4
+404,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),3,5,6,9,4
+405,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),3,5,6,10,4
+406,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,3,5,6,12,4
+407,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,5,6,13,4
+408,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + AS-1 Packer + CIBP + Inflow Control Device (ICD),3,5,8,9,4
+409,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV),3,5,8,10,4
+410,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + AS-1 Packer + CIBP + Selective Re-completion Guided by PLT,3,5,8,12,4
+411,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + AS-1 Packer + CIBP + Selective Re-completion Guided by Saturation Log (RST/PNN),3,5,8,13,4
+412,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,3,5,9,12,4
+413,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,5,9,13,4
+414,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,3,5,10,12,4
+415,Gel + Cement Combination Squeeze + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,5,10,13,4
+416,Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,3,6,9,12,4
+417,Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,6,9,13,4
+418,Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,3,6,10,12,4
+419,Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,6,10,13,4
+420,Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,3,6,11,12,4
+421,Gel + Cement Combination Squeeze + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,6,11,13,4
+422,Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,3,8,9,12,4
+423,Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,8,9,13,4
+424,Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,3,8,10,12,4
+425,Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,8,10,13,4
+426,Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,3,8,11,12,4
+427,Gel + Cement Combination Squeeze + AS-1 Packer + CIBP + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),3,8,11,13,4
+428,Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD),4,5,6,9,4
+429,Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV),4,5,6,10,4
+430,Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by PLT,4,5,6,12,4
+431,Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Selective Re-completion Guided by Saturation Log (RST/PNN),4,5,6,13,4
+432,Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,4,5,9,12,4
+433,Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),4,5,9,13,4
+434,Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,4,5,10,12,4
+435,Straddle Packer (termasuk HEX type) + Swellable/Inflatable Packer + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),4,5,10,13,4
+436,Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,4,6,9,12,4
+437,Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),4,6,9,13,4
+438,Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,4,6,10,12,4
+439,Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),4,6,10,13,4
+440,Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by PLT,4,6,11,12,4
+441,Straddle Packer (termasuk HEX type) + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed) + Selective Re-completion Guided by Saturation Log (RST/PNN),4,6,11,13,4
+442,Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,5,6,9,12,4
+443,Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),5,6,9,13,4
+444,Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,5,6,10,12,4
+445,Swellable/Inflatable Packer + Bridge Plug (mechanical/cast-iron) + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),5,6,10,13,4
+446,Swellable/Inflatable Packer + Combined Mechanical Isolation + Gel Injection + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,5,7,9,12,4
+447,Swellable/Inflatable Packer + Combined Mechanical Isolation + Gel Injection + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),5,7,9,13,4
+448,Swellable/Inflatable Packer + Combined Mechanical Isolation + Gel Injection + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,5,7,10,12,4
+449,Swellable/Inflatable Packer + Combined Mechanical Isolation + Gel Injection + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),5,7,10,13,4
+450,Swellable/Inflatable Packer + AS-1 Packer + CIBP + Inflow Control Device (ICD) + Selective Re-completion Guided by PLT,5,8,9,12,4
+451,Swellable/Inflatable Packer + AS-1 Packer + CIBP + Inflow Control Device (ICD) + Selective Re-completion Guided by Saturation Log (RST/PNN),5,8,9,13,4
+452,Swellable/Inflatable Packer + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by PLT,5,8,10,12,4
+453,Swellable/Inflatable Packer + AS-1 Packer + CIBP + Autonomous Inflow Control Device/Valve (AICD/AICV) + Selective Re-completion Guided by Saturation Log (RST/PNN),5,8,10,13,4

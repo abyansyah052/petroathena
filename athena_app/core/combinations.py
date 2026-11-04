@@ -52,10 +52,10 @@ def filter_compatibility(
     name_to_new_id: Dict[str, int],
 ) -> List[Dict[str, Any]]:
     """
-    Langkah 2: Kompatibilitas antar pasangan metode (Combination!V6:AM23).
+    Langkah 2: Kompatibilitas antar pasangan metode (Combination!V7:AM24).
     Kombinasi diterima iff untuk SETIAP pasangan (a, b) dalam kombinasi: compat[a][b] > 0.
     Kombinasi ukuran 1 otomatis diterima.
-    Menghasilkan tepat 453 kombinasi lolos (13 / 65 / 161 / 214).
+    Menghasilkan tepat 453 kombinasi lolos (13 / 65 / 161 / 214) berurutan leksikografis ID (Q3, T26).
     """
     passed_combos = []
     no = 1
@@ -69,7 +69,8 @@ def filter_compatibility(
                 idx_a = name_to_old_id[m_a["name"]] - 1
                 idx_b = name_to_old_id[m_b["name"]] - 1
                 val = compat_matrix[idx_a][idx_b]
-                if val == 0 or val == "-":
+                # Kompatibel jika bernilai 1 atau 2; tidak kompatibel jika 0
+                if val == 0:
                     is_valid = False
                     break
 

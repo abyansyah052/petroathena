@@ -1,0 +1,37 @@
+sel_awal,A,B,C,D
+A203,Production rate 2026 (t = 0),2000,bopd,Bagian D
+A204,Production rate akhir kontrak awal (t = 14),4682.323457937845,bopd,Bagian D
+A205,Production rate rata-rata 15 tahun,6053.08417997187,bopd,Bagian D
+A206,Production rate puncak,8323.320773952617,bopd,Bagian D
+A207,Total production 15 tahun (kontrak awal),33140635.88534598,bbl,Bagian D
+A208,Cadangan 2P tersisa,38000000,bbl,1.Contoh Perhitungan B20
+A209,Sisa 2P setelah kontrak awal,4859364.1146540195,bbl,2P - production 15 tahun
+A210,Porsi 2P yang terambil dalam kontrak awal,0.8721219969827889,%,
+A211,Production rate akhir perpanjangan kontrak (2045),0,bopd,Bagian D
+A212,PERPANJANGAN KONTRAK (dari 2.Contract Simulations),,,
+A213,2P habis dalam kontrak awal?,TIDAK,,Sisa 2P di atas
+A214,Tahun sampai 2P habis,18.11413728852697,tahun,2.Contract Simulations kolom I
+A215,Tahun kalender 2P habis,2044,tahun,2.Contract Simulations kolom J
+A216,Perlu perpanjangan kontrak?,YA,,
+A217,Tambah kontrak di luar kontrak awal,4,tahun,2.Contract Simulations kolom K
+A218,Jenis perpanjangan terpilih (NPV Base tertinggi),Gross Split,,2.Contract Simulations kolom O
+A219,"NPV Cont. Take jenis terpilih, harga Base",419935109.40069187,USD,2.Contract Simulations bagian G
+A220,NPV Cont. Take per skema (diskon utama),Low,Base,High
+A221,Gross Split,319998230.5073152,419935109.40069187,651039141.8416252
+A222,Cost Recovery,193555999.12041885,248423794.88044244,374687083.7025879
+A223,Exit (nilai jual 2P),64600000,129200000,258400000
+A224,SECONDARY RECOVERY / EOR (dari 2.Secondary Recovery Analysis),,,
+A225,Perlu secondary recovery / EOR?,YA,,2.Secondary Recovery Analysis kolom F
+A226,Jenis yang dipakai,Infill,,
+A227,Additional CAPEX,48000000,USD,
+A228,Additional OPEX tetap + variabel,3200000,USD,
+A229,Lifting cost tambahan,261038614.03769433,USD,
+A230,Tambah kontrak karena secondary recovery,8,tahun,
+A231,Produksi tambahan,4859364.1146540195,bbl,
+A232,Total produksi akhir,38000000,bbl,
+A233,Sisa oil setelah secondary recovery,0,bbl,
+A234,NPV awal 15 tahun,366735913.07332575,USD,Harga: Base | Kasus RF: Mid
+A235,NPV tambahan secondary recovery,-12921248.678899588,USD,
+A236,New NPV total (NPV awal + NPV tambahan),353814664.39442617,USD,
+A237,Ekonomi tambahan secondary recovery,Tidak layak,,
+A238,Kesimpulan,"Perlu Infill; tambah kontrak 8 tahun; New NPV total 353,814,664 USD (Tidak layak)",,

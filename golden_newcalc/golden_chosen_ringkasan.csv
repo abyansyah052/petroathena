@@ -1,0 +1,32 @@
+sel_awal,A,B,C,D
+A3,Kombinasi,Polymer/Cross-linked Bulk Gel Treatment + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed),,
+A4,Item,SA (100% WI),PNE (FI),XYZ (FI)
+A5,Total CAPEX Renewal - BAU (USD),40000000,40000000,0
+A6,Total CAPEX Prog (USD),59812273,20000000.000000004,39812273
+A7,Grand Total CAPEX (USD),99812273,60000000,39812273
+A8,Capital Constraint for PNE (USD),-,60000000,-
+A9,Total OPEX termasuk lifting (USD),336694053.17318606,252520539.87988958,84173513.29329655
+A10,Total Oil Production (bbl),38000000,,
+A11,Total Water Produced (bbl),30597496.245362006,,
+A12,Keputusan Financial (SA atau FI),FI,"Kriteria: SA hanya dipilih bila CAPEX SA <= Capital Constraint PNE (60.0 juta USD); selain itu FI. Bila lolos constraint: NPV,10 PNE tertinggi pada harga Base (80 USD/bbl)",
+A13,Metric Negosiasi (ACCEPT / NEGOSIASI),NEGOSIASI,NEGOSIASI = ajukan Opsi 1 (NPV PNE 296.5 juta USD); ACCEPT = terima penawaran XYZ (NPV PNE 233.9 juta USD),
+A14,Working Interest (%),1,0.75,0.25
+A15,Porsi CAPEX Program ditanggung (%),1,0.33437953444772117,0.6656204655522788
+A16,"NPV, 8%, 64",312915743.2680473,242755805.5092058,70159937.75884147
+A17,"NPV, 8%, 80",430522427.66772527,330960818.80896425,99561608.85876097
+A18,"NPV, 8%, 117",702487885.341981,534934912.06465614,167552973.27732491
+A19,"NPV, 10%, 64",279005327.2859749,217356633.7104877,61648693.575487226
+A20,"NPV, 10%, 80",384524969.58694726,296496365.43621695,88028604.15073031
+A21,"NPV, 10%, 117",628539142.4079458,479506995.05196583,149032147.35597995
+A22,"NPV, 12%, 64",250576659.58326685,196103559.33583036,54473100.2474365
+A23,"NPV, 12%, 80",346036736.3794174,267698616.93294328,78338119.44647413
+A24,"NPV, 12%, 117",566788163.9705157,433262187.626267,133525976.34424871
+A25,"Take (Net Income, USD, 2026-2045)",Low 64,Base 80,High 117
+A26,PNE Take,414407676.0720663,564887676.0720663,912872676.0720665
+A27,XYZ Take (hanya bila keputusan FI),126248528.22402209,176408528.2240221,292403528.22402215
+A28,"Total Emissions (kt CO2e, Scope 1+2+3, 2026-2045)",19100.521044985224,produksi 20 (15+5) tahun,
+A29,"Total Carbon Tax per tahun (USD/tahun, rata-rata 2026-2045)",227320.25397463582,Rata-rata dari total 20 tahun; tarif 1.70 USD/tCO2e (shadow cost),
+A30,"Total Carbon Tax (USD, 20 tahun 2026-2045)",4546405.079492716,"Shadow cost, bagian J",
+A31,Risk (RPN total),4158,"Kelas Critical, rank risiko 5",
+A32,Secondary Recovery Necessarily,YA,TIDAK LAYAK,Tidak dijalankan: ekonomi tambahan tidak layak
+A33,Contract Simulations (perpanjangan kontrak),YA,Gross Split,4

@@ -65,6 +65,11 @@ class V5DataLoader:
         self.sheets = get_sheet_names_for_wb(self.wb)
         self.is_v6 = ("0.Existing Data" in self.sheets.values() or "0.Introduction" in self.sheets.values())
         self.warnings: List[str] = []
+        # Membaca seluruh defined names dari workbook (149 defined names di New_Calc)
+        self.defined_names = {
+            name: self.wb.defined_names[name].value
+            for name in self.wb.defined_names.keys()
+        }
 
     def _warn_if_diff(self, name: str, actual: Any, expected: Any, tol: float = 1e-6):
         if expected is None:
@@ -283,12 +288,71 @@ class V5DataLoader:
 
         return {"items": items}
 
+    def load_lifting_liquid_parameters(self, existing_data: Dict[str, Any] = None) -> Dict[str, Any]:
+        """
+        Membaca blok parameter lifting basis liquid dari sheet
+        '0.Contingency Rate Combination' BO5:BS38 (PRD §3.2).
+        """
+        if "contingency_rate_combination" not in self.sheets or self.sheets["contingency_rate_combination"] not in self.wb.sheetnames:
+            return {}
+        ws = self.wb[self.sheets["contingency_rate_combination"]]
+        
+        ed = existing_data or {}
+        c0 = float(ed.get("lc0", 31.0))
+        wc0 = float(ed.get("wc0", 0.91))
+        q0 = float(ed.get("q0", 2000.0))
+        nA = float(ed.get("n_active", 58.0))
+        nI = float(ed.get("n_idle", 87.0))
+        rw = (nA + nI) / nA if nA > 0 else 2.5
+        
+        def _get_num(cell_ref, default):
+            v = ws[cell_ref].value
+            if isinstance(v, (int, float)):
+                return float(v)
+            try:
+                return float(v)
+            except Exception:
+                return default
+
+        f_low = _get_num("BP20", 0.0)
+        f_base = _get_num("BQ20", 0.1)
+        f_high = _get_num("BR20", 0.2)
+        
+        rv_low = (1.0 - f_low) * c0 * (1.0 - wc0)
+        rv_base = (1.0 - f_base) * c0 * (1.0 - wc0)
+        rv_high = (1.0 - f_high) * c0 * (1.0 - wc0)
+        
+        bp24 = int(_get_num("BP24", 2))
+        bp26 = int(_get_num("BP26", 2))
+        
+        rv_cases = [rv_low, rv_base, rv_high]
+        f_cases = [f_low, f_base, f_high]
+        
+        bp37 = rv_cases[bp24 - 1]
+        bp38 = f_cases[bp24 - 1]
+        
+        return {
+            "c0": c0,
+            "wc0": wc0,
+            "q0": q0,
+            "nA": nA,
+            "nI": nI,
+            "rw": rw,
+            "f_cases": {"low": f_low, "base": f_base, "high": f_high},
+            "rv_cases": {"low": rv_low, "base": rv_base, "high": rv_high},
+            "case_used": bp24,
+            "trajectory_after_yr1": bp26,
+            "rv_used": bp37,
+            "f_used": bp38,
+        }
+
     def load_all(self) -> Dict[str, Any]:
         existing_data = self.load_existing_data()
         contoh_perhitungan = self.load_contoh_perhitungan()
         comb_data = self.load_methods_and_compatibility()
         crc_data = self.load_crc_parameters()
         breakdown_data = self.load_capex_opex_breakdown()
+        lifting_liquid = self.load_lifting_liquid_parameters(existing_data)
 
         return {
             "existing_data": existing_data,
@@ -298,5 +362,8 @@ class V5DataLoader:
             "methods_13": crc_data["methods_13"],
             "overlap_weights": crc_data["overlap_weights"],
             "breakdown_items": breakdown_data["items"],
+            "lifting_liquid": lifting_liquid,
+            "defined_names": self.defined_names,
+            "sheet_names": self.wb.sheetnames,
             "warnings": self.warnings,
         }

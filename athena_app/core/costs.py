@@ -6,15 +6,26 @@ sesuai PRD §4 Tab 3 dan formula LET di Financial Projection (SA).
 from typing import List, Dict, Any, Tuple, Set
 
 
+# Default set pool MAX dari defined names sa_poolc & sa_poolo (PRD §3.3 & Q2)
+DEFAULT_POOL_C: Set[str] = {"DIAG", "EXEC", "TEST"}
+DEFAULT_POOL_O: Set[str] = {"SURV", "LAB", "TEST", "REVIEW"}
+
+
 def calculate_costs_per_well(
     combination_method_ids: List[int],
     breakdown_items: List[Dict[str, Any]],
+    pool_c: Set[str] = None,
+    pool_o: Set[str] = None,
 ) -> Dict[str, Any]:
     """
-    Menghitung CAPEX per sumur dan OPEX per sumur/thn untuk kombinasi metode tertentu.
-    combination_method_ids: list ID baru metode dalam kombinasi (misal [1, 6])
-    breakdown_items: list item dari CAPEX OPEX Breakdown (tanpa baris 'R')
+    Menghitung CAPEX per sumur dan OPEX per sumur/thn untuk kombinasi metode tertentu
+    mengikuti aturan defined names sa_wellc dan sa_wello (PRD §3.3 & Q2).
     """
+    if pool_c is None:
+        pool_c = DEFAULT_POOL_C
+    if pool_o is None:
+        pool_o = DEFAULT_POOL_O
+
     # Filter hanya item metode (abaikan 'R' jika ada)
     method_items = [it for it in breakdown_items if it["method_id"] != "R"]
 
@@ -28,36 +39,28 @@ def calculate_costs_per_well(
 
     result: Dict[str, Any] = {"okc": 1 if okc else 0}
 
-    for cost_type in ["CAPEX", "OPEX"]:
-        type_items = [it for it in method_items if it["cost_type"] == cost_type]
+    # CAPEX
+    c_items = [it for it in method_items if it["cost_type"] == "CAPEX"]
+    c_pool_max = sum(
+        max([sum(it["value"] for it in c_items if it["method_id"] == mid and it["pool"] == pool) for mid in combination_method_ids] + [0.0])
+        for pool in pool_c
+    )
+    c_jumlah = sum(it["value"] for it in c_items if it["method_id"] in combination_method_ids and it["rule"] == "Jumlah")
+    capex_per_well = c_pool_max + c_jumlah
 
-        # Pools dengan aturan "Sekali"
-        pools_sekali: Set[str] = {it["pool"] for it in type_items if it["rule"] == "Sekali"}
+    # OPEX
+    o_items = [it for it in method_items if it["cost_type"] == "OPEX"]
+    o_pool_max = sum(
+        max([sum(it["value"] for it in o_items if it["method_id"] == mid and it["pool"] == pool) for mid in combination_method_ids] + [0.0])
+        for pool in pool_o
+    )
+    o_jumlah = sum(it["value"] for it in o_items if it["method_id"] in combination_method_ids and it["rule"] == "Jumlah")
+    opex_per_well = o_pool_max + o_jumlah
 
-        # Sekali: max per pool atas metode-metode dalam kombinasi
-        sekali_total = 0.0
-        for pool in pools_sekali:
-            max_pool_val = 0.0
-            for mid in combination_method_ids:
-                val_i_pool = sum(
-                    it["value"] for it in type_items
-                    if it["method_id"] == mid and it["pool"] == pool
-                )
-                if val_i_pool > max_pool_val:
-                    max_pool_val = val_i_pool
-            sekali_total += max_pool_val
-
-        # Jumlah: sum atas seluruh item aturan "Jumlah" dari metode-metode dalam kombinasi
-        jumlah_total = sum(
-            it["value"] for it in type_items
-            if it["method_id"] in combination_method_ids and it["rule"] == "Jumlah"
-        )
-
-        per_well = sekali_total + jumlah_total
-        result[f"{cost_type.lower()}_per_well"] = per_well
-
-    result["capex_well"] = result["capex_per_well"]
-    result["opex_well"] = result["opex_per_well"]
+    result["capex_per_well"] = capex_per_well
+    result["opex_per_well"] = opex_per_well
+    result["capex_well"] = capex_per_well
+    result["opex_well"] = opex_per_well
     return result
 
 

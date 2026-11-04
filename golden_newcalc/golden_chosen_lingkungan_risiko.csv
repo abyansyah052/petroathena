@@ -1,0 +1,29 @@
+sel_awal,A,B,C,D
+A243,Oil production,38,33.14063588534598,MMbbl
+A244,Produced water,30.597496245362006,24.450585008874054,MMbbl
+A245,Scope 1,2648.9661330569184,2310.8973795018164,kt CO2e
+A246,Scope 2,28.714911928308545,24.10768506632051,kt CO2e
+A247,Scope 1+2,2677.681044985227,2335.0050645681367,kt CO2e
+A248,Scope 3,16422.839999999997,14322.720016928824,kt CO2e
+A249,Scope 1+2+3,19100.521044985224,16657.72508149696,kt CO2e
+A250,Intensitas Scope 1+2,70.46529065750597,70.45746112556101,kg CO2e/boe
+A251,Intensitas Scope 1+2+3,502.64529065750594,502.63746112556095,kg CO2e/boe
+A252,WOR (water-oil ratio),0.8051972696147897,0.7377826150790768,bbl/bbl
+A253,"Carbon cost Scope 1+2 (shadow, pajak karbon)",4.546405079492716,3.96457931614942,USD juta
+A254,"Cek: Scope 1+2+3 2026-2040 vs 1.Environmental Impact (selisih, kt)",,0,
+A260,K. RISK (FMEA) KOMBINASI TERPILIH (DARI 1.Risk),,,
+A261,Metrik,Kombinasi terpilih,Rata-rata Top 10,Satuan
+A262,p gabungan,0.9571,0.9498700000000001,%
+A263,Jumlah metode,3,3.6,metode
+A264,Jumlah failure mode aktif,25,25.5,FM
+A265,Σ RPN metode,2334,2320.4,RPN
+A266,RPN efikasi gabungan,168,180.6,RPN
+A267,Σ RPN generik,1044,983.1,RPN
+A268,Σ RPN interface,612,654,RPN
+A269,RPN TOTAL,4158,4138.1,RPN
+A270,RPN rata-rata per failure mode,166.32,162.1325838867167,RPN
+A271,RPN maksimum,343,343,RPN
+A272,Failure mode Critical (RPN >= 200),10,10.8,FM
+A273,Failure mode High (RPN 100-199),10,8,FM
+A274,Kelas risiko (RPN maksimum),Critical,-,kelas
+A275,Rank risiko (1 = risiko terendah),5,-,rank

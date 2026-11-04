@@ -1,0 +1,16 @@
+sel_awal,A,B,C
+A36,Parameter,Nilai,Satuan
+A37,Rank AHP-TOPSIS yang ditampilkan,1,rank
+A38,"No kombinasi (Top 10, 1.Financial Summary)",8,no
+A39,Kombinasi (1.Financial Summary kolom B),Polymer/Cross-linked Bulk Gel Treatment + Bridge Plug (mechanical/cast-iron) + Targeted Re-perforation (Zona Baru/Bypassed),
+A40,Indeks baris di 1.Financial Projection (SA),103,indeks
+A41,ID metode 1,1,id
+A42,ID metode 2,6,id
+A43,ID metode 3,11,id
+A44,ID metode 4,,id
+A45,Jumlah metode,3,metode
+A46,Contingency rate gabungan (p),0.9571,%
+A47,Penurunan water cut jika berhasil (r),0.8836,%
+A48,Uplift minyak jika berhasil (u),0.77315,%
+A49,Closeness Ci (AHP-TOPSIS),0.6785852609088294,
+A50,Rank dengan bobot sama (sensitivitas),2,rank

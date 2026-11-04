@@ -1,0 +1,25 @@
+sel_awal,BO,BP,BQ,BR
+BO5,Biaya lifting baseline (c0),31,,
+BO6,Water cut baseline,0.91,,
+BO7,Produksi minyak baseline (2026),2000,,
+BO8,Sumur aktif baseline,58,,
+BO9,Sumur idle (direaktivasi),87,,
+BO10,Total sumur setelah treatment,145,,
+BO11,Produksi minyak acuan per sumur idle,34.48275862068966,,
+BO12,Decline rate baseline,0.075,,
+BO13,Alpha: sensitivitas decline thd penurunan WC,0.5,,
+BO14,Biaya lifting baseline per tahun,22630000,,
+BO15,Volume cairan baseline per tahun,8111111.111111114,,
+BO16,Rasio produksi idle thd baseline,1.5000000000000002,,
+BO17,Rasio jumlah sumur (total / aktif),2.5,,
+BO19,KASUS FIXED FLOOR,Low,Base,High
+BO20,Porsi biaya fixed dari baseline (f),0,0.1,0.2
+BO21,Rate variable (USD/bbl cairan),2.789999999999999,2.5109999999999992,2.2319999999999993
+BO22,Biaya fixed per sumur-tahun (USD),0,39017.24137931035,78034.4827586207
+BO23,Cek rekonsiliasi baseline (harus 0),0,0,0
+BO24,"Kasus dipakai (1=Low, 2=Base, 3=High)",2,,
+BO25,Nama kasus dipakai,Base,,
+BO26,"Lintasan lifting setelah tahun 1 (1 = dinamis ikut WC, 2 = eskalasi tetap)",2,,
+BO36,NILAI DIPAKAI MODEL (mengikuti selector BP24),,,
+BO37,Rate variable dipakai (USD/bbl cairan),2.5109999999999992,,
+BO38,Porsi fixed (f) dipakai,0.1,,

@@ -1,0 +1,12 @@
+sel_awal,A,B,C,D,E,F,G,H,I,J
+A34,NPV 10% pada ICP 80 USD/bbl,F1,Financial,Benefit,0.15275500099029515,0.20167584644090758,USD,"1.Financial Projection (SA) kolom R: NPV,10 pada ICP 80 USD",F1,OK
+A35,Ketidakpastian bawah permukaan dan kinerja,R1,Risk,Cost,0.10438004063672515,0.13780847049508568,RPN,1.Risk kolom G: RPN efikasi gabungan (proksi ketidakpastian bawah permukaan dan kinerja),R1,OK
+A36,Risiko pasar dan harga minyak,R4,Risk,Cost,0.10438004063672515,0.13780847049508568,USD/bbl,"ICP breakeven: interpolasi linear NPV,10 SA pada ICP Low dan Base (1.Financial Projection (SA) kolom L dan R)",R4,OK
+A37,Kecocokan reservoir dan masalah air,T1,Technical,Benefit,0.07454165841420743,0.0984141400172514,skor 1-5,1.Technical Implementation kolom E,T1,OK
+A38,IRR proyek pada ICP 80 USD/bbl,F2,Financial,Benefit,0.06338812966263946,0.08368861655030856,% per tahun,1.Financial Projection (SA) kolom T: IRR pada ICP 80 USD,F2,OK
+A39,PNE Take pada ICP 80 USD/bbl,F3,Financial,Benefit,0.06338812966263946,0.08368861655030856,USD,1.Financial Projection (SA) kolom O: PNE Take pada ICP 80 USD,F3,OK
+A40,"Risiko teknis dan eksekusi (integritas sumur, jadwal, HSE)",R2,Risk,Cost,0.05537832043179638,0.07311361052112395,RPN,"1.Risk kolom J (RPN total) dikurangi kolom G: RPN metode non-efikasi, generik, dan interface (proksi risiko eksekusi)",R2,OK
+A41,Eksposur capex dan pembengkakan biaya,R3,Risk,Cost,0.05537832043179638,0.07311361052112395,USD,1.Financial Projection (SA) kolom G: Total CAPEX,R3,OK
+A42,Durabilitas terhadap umur fasilitas,T4,Technical,Benefit,0.04436753152439426,0.058576540320564294,skor 1-5,1.Technical Implementation kolom H,T4,OK
+A43,GHG operasional (Scope 1 + 2),E1,Environmental,Cost,0.03947116464592578,0.05211207808824045,kg CO2e/boe,1.Environmental Impact kolom J: intensitas Scope 1 + 2,E1,OK
+A44,Jumlah,,,,0.7574283370371445,1.0000000000000002,,,,OK
