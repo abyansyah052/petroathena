@@ -34,10 +34,14 @@ from athena_app.ui.stage2_technical import render_stage2_technical
 from athena_app.ui.stage2_secondary_recovery import render_stage2_secondary_recovery
 from athena_app.ui.stage2_contract_simulations import render_stage2_contract_simulations
 from athena_app.ui.stage3_topsis import render_stage3_topsis
+from athena_app.ui.stage3_chosen_scenario import render_stage3_chosen_scenario
+from athena_app.ui.stage3_implementation_plan import render_stage3_implementation_plan
 from athena_app.ui.page_settings import render_settings_page
 
-# Path ke file Excel V6 di data/ (didukung otomatis oleh loader)
-EXCEL_PATH = os.path.join(os.path.dirname(__file__), "data", "Bismillah_Angker_BCC_Excel_Calculations_V6.xlsx")
+# Path ke file Excel V7 di data/ (didukung otomatis oleh loader)
+EXCEL_PATH = os.path.join(os.path.dirname(__file__), "data", "Bismillah_Angker_BCC_Excel_Calculations_V7.xlsx")
+if not os.path.exists(EXCEL_PATH):
+    EXCEL_PATH = os.path.join(os.path.dirname(__file__), "data", "Bismillah_Angker_BCC_Excel_Calculations_V6.xlsx")
 if not os.path.exists(EXCEL_PATH):
     EXCEL_PATH = os.path.join(os.path.dirname(__file__), "data", "Angker_BCC_Excel_Calculations_V5.xlsx")
 
@@ -188,9 +192,9 @@ st.markdown(
         letter-spacing: 0.6px;
         pointer-events: none;
     }
-    /* Item Pengaturan Lanjutan dipisah garis tipis di atasnya */
-    div[data-testid="stRadio"]:has(input[value*="Kombinasi Strategi"]) div[role="radiogroup"] > label:nth-child(13),
-    div[role="radiogroup"][aria-label*="Navigasi"] > label:nth-child(13) {
+    /* Item Pengaturan Lanjutan dipisah garis tipis di atasnya (elemen ke-15) */
+    div[data-testid="stRadio"]:has(input[value*="Kombinasi Strategi"]) div[role="radiogroup"] > label:nth-child(15),
+    div[role="radiogroup"][aria-label*="Navigasi"] > label:nth-child(15) {
         border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
         margin-top: 10px !important;
         padding-top: 10px !important;
@@ -621,7 +625,7 @@ def main():
 
         st.markdown("---")
 
-        # Navigasi 12 Halaman Berjenjang (Tahap 0 / 1 / 2 / 3) + Pengaturan Lanjutan
+        # Navigasi 14 Halaman Berjenjang (Tahap 0 / 1 / 2 / 3) + Pengaturan Lanjutan
         nav_pages = [
             "Kombinasi Strategi",
             "Hard Constraint & Kompatibilitas",
@@ -635,7 +639,9 @@ def main():
             "Secondary Recovery",
             "Simulasi Kontrak",
             "AHP & TOPSIS",
-            "🔒 Pengaturan Lanjutan",
+            "Skenario Terpilih",
+            "Rencana Implementasi",
+            "Pengaturan Lanjutan",
         ]
 
         if "selected_page" not in st.session_state:
@@ -665,7 +671,7 @@ def main():
         st.markdown(f'<div style="color: #CBD5E1; font-size: 0.82rem; margin-bottom: 4px;"><strong>Water Cut Awal (wc0):</strong> {ed["wc0"]*100:.1f}%</div>', unsafe_allow_html=True)
         st.markdown(f'<div style="color: #CBD5E1; font-size: 0.82rem; margin-bottom: 4px;"><strong>Decline Rate (d0):</strong> {ed["d0"]*100:.2f}%/thn</div>', unsafe_allow_html=True)
         st.markdown(f'<div style="color: #CBD5E1; font-size: 0.82rem; margin-bottom: 4px;"><strong>Sumur Aktif / Idle:</strong> {ed["n_active"]} / {ed["n_idle"]}</div>', unsafe_allow_html=True)
-        st.markdown(f'<div style="color: #94A3B8; font-size: 0.80rem; margin-top: 8px;">⏱️ Waktu Hitung: <strong style="color: #FFFFFF;">{results["duration_sec"]:.3f} dtk</strong></div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="color: #94A3B8; font-size: 0.80rem; margin-top: 8px;">Waktu Hitung: <strong style="color: #FFFFFF;">{results["duration_sec"]:.3f} dtk</strong></div>', unsafe_allow_html=True)
 
     # ==========================================================================
     # MAIN AREA: HEADER, STEPPER NAVIGASI, BANNER ASUMSI & KONTEN HALAMAN
@@ -713,7 +719,11 @@ def main():
         render_stage2_contract_simulations(results)
     elif selected_page == "AHP & TOPSIS":
         render_stage3_topsis(results)
-    elif selected_page in ["Pengaturan Lanjutan", "🔒 Pengaturan Lanjutan"]:
+    elif selected_page == "Skenario Terpilih":
+        render_stage3_chosen_scenario(results)
+    elif selected_page == "Rencana Implementasi":
+        render_stage3_implementation_plan(results)
+    elif selected_page == "Pengaturan Lanjutan":
         render_settings_page(results)
 
 

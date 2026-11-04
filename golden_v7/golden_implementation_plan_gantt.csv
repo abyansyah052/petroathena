@@ -1,0 +1,56 @@
+baris,no,aktivitas,output,mulai,selesai,jenis
+8,0.1,Kompilasi data historis & Chan plot,Root cause per sumur,2026 H1,2026 H1,Aktivitas
+9,0.2,Review produksi & completion,Shortlist kandidat treatment,2026 H1,2026 H1,Aktivitas
+10,0.3,Izin lahan 145 titik sumur,Izin lahan terbit (risiko tunda utama),2026 H1,2026 H2,Aktivitas
+11,0.4,AMDAL/UKL-UPL addendum,Persetujuan lingkungan,2026 H1,2026 H2,Aktivitas
+12,0.5,Kontrak rig workover,Rig terkunci sebelum Fase 1,2026 H1,2026 H2,Aktivitas
+13,0.6,"Procurement gel, bridge plug, perf gun",Material tersedia di lokasi,2026 H1,2026 H2,Aktivitas
+14,0.7,Gate Fase 1: prioritas & urutan sumur,Ranking 145 sumur,2026 H2,2026 H2,Milestone
+16,1.1,Mobilisasi rig & HSE pre-job,"Rig siap, izin HSE terbit",2026 H2,2026 H2,Aktivitas
+17,1.2.1,[Gel] RIH tubing + uji tekanan jalur injeksi,Jalur injeksi terverifikasi,2026 H2,2026 H2,Aktivitas
+18,1.2.2,[Gel] Isi fluida + uji injektivitas,Interval target terkonfirmasi,2026 H2,2026 H2,Aktivitas
+19,1.2.3,[Gel] Injeksi gel ke interval,Gel tertempatkan sesuai desain,2026 H2,2026 H2,Aktivitas
+20,1.2.4,[Gel] Shut-in gelasi (±10-12 jam),Gel set di interval,2026 H2,2026 H2,Aktivitas
+21,1.2.5,[Gel] Bleed-off + uji tekanan casing,Isolasi lulus uji,2026 H2,2026 H2,Aktivitas
+22,1.2.6,[Gel] Cabut string + flow test,Sumur onstream,2026 H2,2027 H1,Aktivitas
+23,1.3.1,[Bridge Plug] Pasang valve + uji kebocoran,Wellhead siap wireline,2026 H2,2026 H2,Aktivitas
+24,1.3.2,[Bridge Plug] Rekam SICP + uji plug lama,Baseline tekanan valid,2026 H2,2026 H2,Aktivitas
+25,1.3.3,[Bridge Plug] Dump-bail + set plug,Plug terpasang di target,2026 H2,2026 H2,Aktivitas
+26,1.3.4,[Bridge Plug] Uji tekanan plug baru,Plug lulus uji,2026 H2,2026 H2,Aktivitas
+27,1.3.5,[Bridge Plug] Cap semen penutup,Isolasi ganda valid,2026 H2,2026 H2,Aktivitas
+28,1.3.6,[Bridge Plug] Pasang ulang completion + flow test,Sumur idle aktif kembali,2026 H2,2027 H1,Aktivitas
+29,1.4.1,[Re-perf] Hari 1: Mobilisasi rig,Rig di lokasi,2026 H2,2026 H2,Aktivitas
+30,1.4.2,[Re-perf] Hari 2: Rig-up + bit/scraper ke PBTD,Lubang bersih sampai PBTD,2026 H2,2026 H2,Aktivitas
+31,1.4.3,[Re-perf] Hari 3: CBL log + perforasi,Interval baru terperforasi,2026 H2,2026 H2,Aktivitas
+32,1.4.4,[Re-perf] Hari 4: Acid squeeze selektif,Stimulasi selesai,2026 H2,2026 H2,Aktivitas
+33,1.4.5,[Re-perf] Hari 5-9: Swab clean-up,Sumur bersih & flowing,2026 H2,2027 H1,Aktivitas
+34,1.4.6,[Re-perf] Hari 10: Pasang pompa rod + rig-down,Sumur onstream,2027 H1,2027 H1,Aktivitas
+35,1.5,Pengelolaan limbah & demobilisasi,Lokasi dipulihkan,2027 H1,2027 H1,Aktivitas
+36,1.6,Surveilans pasca-treatment pilot,Data performa pilot,2027 H1,2027 H2,Aktivitas
+37,1.7,Gate Fase 2: evaluasi pilot,Keputusan scale-up,2027 H2,2027 H2,Milestone
+39,2.1,Business case capex pool korporat,Capex pool ≤ USD 60 jt,2027 H2,2028 H1,Aktivitas
+40,2.2,Batch 2028: sumur aktif (±15),15 sumur aktif selesai,2028 H1,2028 H2,Aktivitas
+41,2.3,Batch 2028: sumur idle (±20),20 sumur idle aktif kembali,2028 H1,2028 H2,Aktivitas
+42,2.4,Persetujuan WP&B 2028,Anggaran 2028 disetujui,2028 H1,2028 H1,Milestone
+43,2.5,Persetujuan AFE 2028,Otorisasi belanja 2028 terbit,2028 H1,2028 H1,Milestone
+44,2.6,Batch 2029: sumur aktif (±15),30 sumur aktif selesai (kumulatif),2028 H2,2029,Aktivitas
+45,2.7,Batch 2029: sumur idle (±25),45 sumur idle selesai (kumulatif),2028 H2,2029,Aktivitas
+46,2.8,Persetujuan WP&B 2029,Anggaran 2029 disetujui,2029,2029,Milestone
+47,2.9,Persetujuan AFE 2029,Otorisasi belanja 2029 terbit,2029,2029,Milestone
+48,2.10,Batch 2030-2031: sumur aktif sisa (±13),58 sumur aktif selesai (100%),2030,2031,Aktivitas
+49,2.11,Batch 2030-2031: sumur idle sisa (±22),87 sumur idle selesai (100%),2030,2031,Aktivitas
+50,2.12,Persetujuan WP&B & AFE 2030,Anggaran & belanja 2030 disetujui,2030,2030,Milestone
+51,2.13,Persetujuan WP&B & AFE 2031,Anggaran & belanja 2031 disetujui,2031,2031,Milestone
+52,2.14,Milestone: 145 sumur selesai (gate Fase 3),145/145 sumur tertangani,2031,2031,Milestone
+54,3.1,Surveilans tahunan berkelanjutan,OPEX ±USD 942.500/th,2031,2045,Berulang
+55,3.2,Milestone: CAPEX renewal #1 (t=5),USD 20.000.000 (2031),2031,2031,Milestone
+56,3.3,Re-screening periodik #1,Kandidat treatment ronde berikut,2032,2032,Milestone
+57,3.4,WP&B & AFE tahunan (kontrak awal),Anggaran & belanja disetujui tiap tahun,2032,2040,Berulang
+58,3.5,Milestone: CAPEX renewal #2 (t=10),USD 20.000.000 (2036),2036,2036,Milestone
+59,3.6,Re-screening periodik #2,Kandidat treatment ronde berikut,2037,2037,Milestone
+60,3.7,Evaluasi perpanjangan kontrak,"Banding NPV 3 skema; 2P sisa 4,86 jt bbl (12,8%)",2038,2040,Aktivitas
+61,3.8,Milestone: kontrak awal berakhir,"Gross Split +4 th; NPV Base USD 419,9 jt",2040,2040,Milestone
+62,3.9,"Perpanjangan kontrak (Gross Split, +4 th)",Produksi lanjut sampai 2P habis,2041,2044,Aktivitas
+63,3.10,WP&B & AFE tahunan perpanjangan (2041-2044),Anggaran & belanja disetujui tiap tahun,2041,2044,Berulang
+64,3.11,Milestone: CAPEX renewal #3 (t=15),USD 20.000.000 (2041),2041,2041,Milestone
+65,3.12,Milestone: cadangan 2P habis,"Produksi 0 (faktor 2P: 0,114 di 2044, 0 di 2045)",2044,2044,Milestone

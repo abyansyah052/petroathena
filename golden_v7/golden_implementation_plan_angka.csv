@@ -1,0 +1,20 @@
+sel_teks_IP,item,sumber_live,nilai
+C54,OPEX treatment per tahun,3. Chosen Scenario!B112,942500
+C55/C58/C64,CAPEX renewal per kejadian,1.Contoh Perhitungan!B23,20000000
+C55/C58/C64,Tahun renewal,"MOD(t,B13)=0",2031;2036;2041
+C60,Sisa 2P setelah kontrak awal (bbl),3. Chosen Scenario!B209,4859364.1146540195
+C60,Porsi sisa 2P,1-B210,0.12787800301721108
+C61,Jenis perpanjangan,3. Chosen Scenario!B218,Gross Split
+C61,Tambah kontrak (th),3. Chosen Scenario!B217,4
+C61,NPV Gross Split Base,3. Chosen Scenario!C221,419935109.40069187
+C65,Faktor 2P 2044,3. Chosen Scenario!U127,0.11413728852696897
+C65,Faktor 2P 2045,3. Chosen Scenario!V127,0
+A119,Total produced water (bbl),3. Chosen Scenario!B138,30597496.245362006
+A120,Peak water 2026 (bbl),3. Chosen Scenario!C138,7381111.111111114
+A120,Water min pascatreatment,min D138:V138 >0,239973.08575246675
+A120,Water maks pascatreatment,max D138:V138,2037713.3580386986
+H119,Total emisi S1+2+3 (kt),3. Chosen Scenario!B249,19100.521044985224
+H120,Scope 1+2 15 th (kt),3. Chosen Scenario!C247,2335.0050645681367
+H120,Porsi Scope 3,B248/B249,0.8598110994627425
+A83,Jumlah FM aktif,3. Chosen Scenario!B264,25
+A83,RPN maksimum,3. Chosen Scenario!B271,343

@@ -300,6 +300,8 @@ def render_stage_stepper(current_page: str = "Proyeksi Stand-Alone"):
         "Simulasi Kontrak": (2, "Tahap 2 · Simulasi Lanjutan"),
         # Stage 3
         "AHP & TOPSIS": (3, "Tahap 3 · Keputusan"),
+        "Skenario Terpilih": (3, "Tahap 3 · Keputusan"),
+        "Rencana Implementasi": (3, "Tahap 3 · Keputusan"),
         "Pengaturan Lanjutan": (3, "Pengaturan Asumsi Lanjutan"),
         "🔒 Pengaturan Lanjutan": (3, "Pengaturan Asumsi Lanjutan"),
     }
@@ -324,15 +326,15 @@ def render_stage_stepper(current_page: str = "Proyeksi Stand-Alone"):
 
 def render_assumption_banner(diff_count: int):
     """
-    Renders subtle orange banner at top of content area when custom assumptions are active (§10.8).
+    Renders subtle warm banner at top of content area when custom assumptions are active (§7.12, T24).
     """
     if diff_count <= 0:
         return
     html = (
-        f'<div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 6px; '
-        f'padding: 6px 14px; margin-bottom: 12px; font-size: 0.8rem; color: #92400E; display: flex; align-items: center; justify-content: space-between;">'
-        f'<span>⚠️ <strong>Hasil di halaman ini memakai asumsi KUSTOM ({diff_count} parameter diubah)</strong></span>'
-        f'<span style="font-size: 0.75rem; color: #B45309;">(Lihat / Reset di menu 🔒 Pengaturan Lanjutan)</span>'
+        f'<div style="background: #FFF7E6; border: 1px solid #FFE58F; border-radius: 6px; '
+        f'padding: 8px 16px; margin-bottom: 14px; font-size: 0.82rem; color: #873800; display: flex; align-items: center; justify-content: space-between;">'
+        f'<span><strong>Hasil di halaman ini memakai asumsi kustom ({diff_count} parameter diubah)</strong>. Konfigurasi aktif berbeda dari acuan Excel V7.</span>'
+        f'<span style="font-size: 0.78rem; color: #D46B08;">Buka Pengaturan Lanjutan untuk melihat detail atau mereset.</span>'
         f'</div>'
     )
     st.markdown(html, unsafe_allow_html=True)

@@ -1,0 +1,27 @@
+sel_awal,A,B,C,D,E,F,G,H,I,J,K
+A88,No,Failure Mode,,Kategori,,S,O,D,RPN,Kelas,Mitigasi Utama
+A89,1,1.1 Gelasi dini di tubing/lubang sumur,,Metode (Polymer Gel),,8,5,3,120,High,Uji kompatibilitas crosslinker vs suhu sumur pra-job
+A90,2,1.2 Gel masuk zona minyak non-selektif,,Metode (Polymer Gel),,8,7,6,336,Critical,Isolasi mekanis interval target; batasi volume gel
+A91,3,1.3 Gel hilang ke rekahan / thief zone,,Metode (Polymer Gel),,6,6,5,180,High,Step-rate test pra-job + diverter pill
+A92,4,1.4 Gel terbilas sebelum gelasi,,Metode (Polymer Gel),,6,6,6,216,Critical,Sesuaikan rasio crosslinker; monitor viskositas real-time
+A93,5,1.5 Kesalahan mixing crosslinker,,Metode (Polymer Gel),,6,5,4,120,High,SOP mixing terstandar + QC checklist sebelum pumping
+A94,6,6.1 Plug gagal set / preset,,Metode (Bridge Plug),,5,3,2,30,Low,Uji tekanan setting tool pra-job
+A95,7,6.2 Plug bocor pada casing idle,,Metode (Bridge Plug),,7,5,3,105,High,Uji tekanan pass/fail wajib pasca-set
+A96,8,6.3 Plug diset di kedalaman salah,,Metode (Bridge Plug),,8,5,5,200,Critical,Dual correlation log (CCL+GR) sebelum setting
+A97,9,6.4 Air memintas channel semen (plug),,Metode (Bridge Plug),,6,6,6,216,Critical,Review cement bond log pra-job; squeeze cadangan
+A98,10,11.1 Gun misfire / discharge parsial,,Metode (Re-perf),,4,4,2,32,Low,Uji fungsi gun pra-job; detonator cadangan
+A99,11,11.2 Gun macet / debris tertinggal,,Metode (Re-perf),,7,3,3,63,Medium,Survei drift/debris casing pra-job
+A100,12,11.3 Perforasi baru dekat zona air,,Metode (Re-perf),,7,7,6,294,Critical,Wajib log saturasi RST/PNN sebelum pilih interval
+A101,13,11.4 Zona bypassed tidak movable oil,,Metode (Re-perf),,6,7,7,294,Critical,Konfirmasi kuantitatif log saturasi sebelum re-perf
+A102,14,11.5 Kerusakan casing akibat tembakan,,Metode (Re-perf),,8,4,4,128,High,Desain charge optimized pada casing tua
+A103,15,E. Efikasi gabungan gagal (WC tak turun),,Efikasi Strategi,,7,4,6,168,High,Stage-gate pilot->scale-up pakai p teramati lapangan
+A104,16,G1 Alat macet / fish di lubang,,Generik,,7,5,3,105,High,BHA fishing standby + drift run tiap intervensi
+A105,17,G2 Well control event saat re-entry,,Generik,,10,4,3,120,High,Drill well control pra-job; verifikasi BOP
+A106,18,G3 Integritas casing idle buruk,,Generik,,8,7,4,224,Critical,Log inspeksi casing wajib di SEMUA sumur idle
+A107,19,"G4 Mobilisasi rig terlambat, NPT",,Generik,,4,8,2,64,Medium,Kunci kontrak rig lebih awal
+A108,20,G5 Tumpahan kimia/semen,,Generik,,8,5,2,80,Medium,Secondary containment + spill kit tiap job
+A109,21,G6 Salah diagnosis sumber air,,Generik,,7,7,7,343,Critical,Diagnostik murah pengganti PLT (lihat catatan kritis)
+A110,22,G7 Reaktivasi sumur idle gagal,,Generik,,6,6,3,108,High,Uji sumur pra-reaktivasi (nitrogen lift/swabbing)
+A111,23,I1 Gel/PPG+plug: gel bocor lewati plug,,Interface,,6,5,5,150,High,Set plug setelah gel curing penuh
+A112,24,I4 Plug+Re-perf terlalu dekat zona air,,Interface,,7,6,6,252,Critical,"Aturan standoff minimum, verifikasi log korelasi"
+A113,25,I5 Gel/PPG+re-perf tutup perforasi baru,,Interface,,7,5,6,210,Critical,Re-perforasi setelah gel; cek flow test pasca-job
